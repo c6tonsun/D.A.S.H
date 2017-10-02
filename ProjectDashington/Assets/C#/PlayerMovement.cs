@@ -61,8 +61,8 @@ public class PlayerMovement : MonoBehaviour {
         // If our raycast hit enemy set new target.
         if (hit.collider != null && hit.collider.gameObject.layer == ENEMY_LAYER)
         {
-            _targetPosition = hit.point;
-            _targetDirection = new Vector3(hit.point.x, hit.point.y) - transform.position;
+            _targetPosition = hit.collider.transform.position;
+            _targetDirection = _targetPosition - transform.position;
             _targetDirection.Normalize();
             _startDash = true;
         }
@@ -79,14 +79,15 @@ public class PlayerMovement : MonoBehaviour {
     {
         // Where we are on this fixed frame
         Vector3 currentPosition = transform.position;
-        float currentDistance = Vector3.Distance(currentPosition, _targetPosition);
+        float currentToTarget = Vector3.Distance(currentPosition, _targetPosition);
         
         // Where we could be on the next fixed update
         Vector3 nextPosition = currentPosition + 
             _targetDirection * _movementSpeed * Time.fixedDeltaTime;
-        float nextDistance = Vector3.Distance(nextPosition, _targetPosition);
+        float currentToNext = Vector3.Distance(currentPosition, nextPosition);
+        
 
-        if (currentDistance < nextDistance)
+        if (currentToTarget < currentToNext)
         {
             transform.position = _targetPosition;
             ResetMovement();
@@ -113,21 +114,4 @@ public class PlayerMovement : MonoBehaviour {
             Destroy(other.gameObject);
         }
     }
-    /* Collision methods
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.gameObject.layer == WALL_LAYER)
-        {
-            ResetMovement();
-        }
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.collider.gameObject.layer == WALL_LAYER)
-        {
-            // ResetMovement();
-        }
-    }
-    */
 }
