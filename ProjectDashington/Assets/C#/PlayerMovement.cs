@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 
@@ -109,23 +106,4 @@ public class PlayerMovement : MonoBehaviour {
         _rb.velocity = Vector3.zero;
         _isDashing = false;
     }
-    
-    // Collider methods.
-    /*
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.layer == ENEMY_LAYER)
-        {
-            Destroy(other.gameObject);
-        }
-    }
-    
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.collider.gameObject.layer == WALL_LAYER)
-        {
-            SceneManager.LoadScene(0);
-        }
-    }
-    */
 }
