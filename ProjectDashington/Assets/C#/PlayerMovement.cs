@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour {
     private bool _startDash = false;
     private bool _isDashing = false;
 
+    const int TRAP_LAYER = 11;
     const int ENEMY_LAYER = 10;
     const int PLAYER_LAYER = 9;
     const int WALL_LAYER = 8;
@@ -43,10 +45,15 @@ public class PlayerMovement : MonoBehaviour {
             _startDash = false;
             _isDashing = true;
         }
-
+        
         if (_isDashing)
         {
             StopMovementCheck();
+        }
+
+        if(_rb.velocity.magnitude < 0.3f)
+        {
+            ResetMovement();
         }
     }
 
@@ -102,11 +109,9 @@ public class PlayerMovement : MonoBehaviour {
         _rb.velocity = Vector3.zero;
         _isDashing = false;
     }
-
-    // Getters and setters.
-
-    // Collider methods.
     
+    // Collider methods.
+    /*
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == ENEMY_LAYER)
@@ -114,4 +119,13 @@ public class PlayerMovement : MonoBehaviour {
             Destroy(other.gameObject);
         }
     }
+    
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.collider.gameObject.layer == WALL_LAYER)
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
+    */
 }
