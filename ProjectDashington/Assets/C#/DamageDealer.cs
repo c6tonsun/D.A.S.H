@@ -20,6 +20,7 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
         if (health != null)
         {
             health.DecreaseHealth(GetDamage());
+            health.SetKiller(this.gameObject);
         }
     }
 

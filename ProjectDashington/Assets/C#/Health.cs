@@ -11,16 +11,22 @@ public class Health : MonoBehaviour, IHealth {
     
     private int _currentHealth;
 
+    private GameObject _killer;
+    private LevelHandler _levelHandler;
+
     // Does initialisations.
     private void Awake()
     {
         _currentHealth = _initialHealth;
+        _levelHandler = GameObject.Find("Level handler").GetComponent<LevelHandler>();
     }
 
     private void FixedUpdate()
     {
-        if (GetIsDead())
+        if (gameObject.name != "Player" && GetIsDead())
         {
+            _levelHandler.DecreaseEnemyCount(1);
+            _levelHandler.UpdateUI();
             Destroy(this.gameObject);
         }
     }
@@ -36,9 +42,20 @@ public class Health : MonoBehaviour, IHealth {
         }
     }
 
-    // Returns dead state.
+    // Getters and setters.
+
     public bool GetIsDead()
     {
         return _currentHealth == _minHealth;
+    }
+    
+    public void SetKiller(GameObject killer)
+    {
+        _killer = killer;
+    }
+
+    public GameObject GetKiller()
+    {
+        return _killer;
     }
 }

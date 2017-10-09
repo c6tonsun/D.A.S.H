@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour {
     private bool _startDash = false;
     private bool _isDashing = false;
 
+    private LevelHandler _levelHandler;
+
     const int TRAP_LAYER = 11;
     const int ENEMY_LAYER = 10;
     const int PLAYER_LAYER = 9;
@@ -23,6 +25,7 @@ public class PlayerMovement : MonoBehaviour {
     private void Start()
     {
         _rb = gameObject.GetComponent<Rigidbody2D>();
+        _levelHandler = GameObject.Find("Level handler").GetComponent<LevelHandler>();
     }
 
     // Update is called once per frame
@@ -69,13 +72,22 @@ public class PlayerMovement : MonoBehaviour {
             _targetDirection = _targetPosition - transform.position;
             _targetDirection.Normalize();
             _startDash = true;
+
+            StopTarget(hit.collider.gameObject);
         }
+    }
+
+    private void StopTarget(GameObject target)
+    {
+        target.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
     }
 
     // Starts dash towards target position.
     private void Dash()
     {
         _rb.AddForce(_targetDirection * _movementSpeed, ForceMode2D.Impulse);
+        _levelHandler.IncreaseDashCount(1);
+        _levelHandler.UpdateUI();
     }
 
     // Checks if we reached target.
@@ -90,7 +102,6 @@ public class PlayerMovement : MonoBehaviour {
             _targetDirection * _movementSpeed * Time.fixedDeltaTime;
         float currentToNext = Vector3.Distance(currentPosition, nextPosition);
         
-
         if (currentToTarget < currentToNext)
         {
             transform.position = _targetPosition;
