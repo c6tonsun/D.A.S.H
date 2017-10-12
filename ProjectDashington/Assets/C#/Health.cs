@@ -27,7 +27,16 @@ public class Health : MonoBehaviour, IHealth {
         {
             _levelHandler.DecreaseEnemyCount(1);
             _levelHandler.UpdateUI();
-            Destroy(this.gameObject);
+            Destroy(gameObject);
+        }
+        else if (gameObject.tag == "Shield" && GetIsDead())
+        {
+            Destroy(gameObject, 0.1f);
+        }
+        else if (gameObject.tag == "Player" && GetIsDead())
+        {
+            Destroy(gameObject, 0.1f);
+            GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         }
     }
 

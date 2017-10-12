@@ -22,6 +22,8 @@ public class ShieldPush : MonoBehaviour {
     private Vector3 _playerPos;
     private GameObject _player;
 
+    private Rigidbody2D _parentRb;
+
     private void Start()
     {
         if (_useShieldPivot)
@@ -32,6 +34,13 @@ public class ShieldPush : MonoBehaviour {
         {
             _pivotPos = gameObject.transform.parent.position;
         }
+
+        _parentRb = transform.parent.GetComponent<Rigidbody2D>();
+    }
+
+    private void FixedUpdate()
+    {
+        _parentRb.velocity = Vector3.zero;
     }
 
     private Vector3 CalculateDirectionVector3()
