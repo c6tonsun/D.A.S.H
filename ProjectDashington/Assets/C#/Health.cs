@@ -23,7 +23,7 @@ public class Health : MonoBehaviour, IHealth {
 
     private void FixedUpdate()
     {
-        if (gameObject.name != "Player" && GetIsDead())
+        if (gameObject.tag == "Enemy" && GetIsDead())
         {
             _levelHandler.DecreaseEnemyCount(1);
             _levelHandler.UpdateUI();

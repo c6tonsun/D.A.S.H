@@ -12,8 +12,12 @@ public class PlayerMovement : MonoBehaviour {
     private Vector3 _targetPosition;
     private Vector3 _targetDirection;
 
+    private Vector3 _pushPosition;
+    private float _pushDistance;
+
     private bool _startDash = false;
     private bool _isDashing = false;
+    private bool _isPushed = false;
 
     private LevelHandler _levelHandler;
 
@@ -42,14 +46,20 @@ public class PlayerMovement : MonoBehaviour {
         if (_startDash)
         {
             Dash();
-            _startDash = false;
-            _isDashing = true;
         }
         
         if (_isDashing)
         {
-            StopMovementCheck();
+            if (_isPushed)
+            {
+                PushedDistanceCheck();
+            }
+            else
+            {
+                StopMovementCheck();
+            }
         }
+
 
         if(_rb.velocity.magnitude < 0.3f)
         {
@@ -79,15 +89,45 @@ public class PlayerMovement : MonoBehaviour {
 
     private void StopTarget(GameObject target)
     {
-        target.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        if (target.GetComponent<Rigidbody2D>() != null)
+        {
+            target.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        }
     }
 
     // Starts dash towards target position.
     private void Dash()
     {
         _rb.AddForce(_targetDirection * _movementSpeed, ForceMode2D.Impulse);
+        
+        _startDash = false;
+        _isDashing = true;
+        _isPushed = false;
+
         _levelHandler.IncreaseDashCount(1);
         _levelHandler.UpdateUI();
+    }
+
+    public void Pushed(Vector3 pushDirection, float pushDistance, float pushForce)
+    {
+        ResetMovement();
+
+        _pushPosition = transform.position;
+        _pushDistance = pushDistance;
+        
+        _rb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
+
+        _startDash = false;
+        _isDashing = true;
+        _isPushed = true;
+    }
+
+    private void PushedDistanceCheck()
+    {
+        if (Vector3.Distance(_pushPosition, transform.position) > _pushDistance)
+        {
+            ResetMovement();
+        }
     }
 
     // Checks if we reached target.
@@ -96,12 +136,12 @@ public class PlayerMovement : MonoBehaviour {
         // Where we are on this fixed frame
         Vector3 currentPosition = transform.position;
         float currentToTarget = Vector3.Distance(currentPosition, _targetPosition);
-        
+
         // Where we could be on the next fixed update
-        Vector3 nextPosition = currentPosition + 
+        Vector3 nextPosition = currentPosition +
             _targetDirection * _movementSpeed * Time.fixedDeltaTime;
         float currentToNext = Vector3.Distance(currentPosition, nextPosition);
-        
+
         if (currentToTarget < currentToNext)
         {
             transform.position = _targetPosition;
@@ -114,7 +154,13 @@ public class PlayerMovement : MonoBehaviour {
     {
         _targetPosition = Vector3.zero;
         _targetDirection = Vector3.zero;
+
+        _pushDistance = 0;
+        _pushPosition = Vector3.zero;
+
         _rb.velocity = Vector3.zero;
+        _startDash = false;
         _isDashing = false;
+        _isPushed = false;
     }
 }
