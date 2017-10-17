@@ -25,6 +25,13 @@ public class Health : MonoBehaviour, IHealth {
     {
         if (gameObject.tag == "Enemy" && GetIsDead())
         {
+            if (transform.childCount > 0 &&
+                transform.GetChild(0).tag == "Shield")
+            {
+                _currentHealth = _initialHealth;
+                return;
+            }
+
             _levelHandler.DecreaseEnemyCount(1);
             _levelHandler.UpdateUI();
             Destroy(gameObject);
