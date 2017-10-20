@@ -1,17 +1,17 @@
 fileFormatVersion: 2
 guid: 4193eaaedb29d264080d0e80776f942e
-timeCreated: 1508483298
+timeCreated: 1508486558
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Spooky_all_0
-    21300002: Spooky_all_1
-    21300004: Spooky_all_2
-    21300006: Spooky_all_3
-    21300008: Spooky_all_4
-    21300010: Spooky_all_5
-    21300012: Spooky_all_6
-    21300014: Spooky_all_7
+    21300000: floor_tile
+    21300002: horizontal_left_end_lava
+    21300004: horizontal_middle_lava
+    21300006: horizontal_right_end_lava
+    21300008: vertical_bottom_end_lava
+    21300010: vertical_middle_lava
+    21300012: vertical_top_end_lava
+    21300014: wall_tile
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -86,7 +86,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Spooky_all_0
+      name: floor_tile
       rect:
         serializedVersion: 2
         x: 0
@@ -94,12 +94,12 @@ TextureImporter:
         width: 400
         height: 400
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Spooky_all_1
+      name: horizontal_left_end_lava
       rect:
         serializedVersion: 2
         x: 400
@@ -107,12 +107,12 @@ TextureImporter:
         width: 400
         height: 400
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Spooky_all_2
+      name: horizontal_middle_lava
       rect:
         serializedVersion: 2
         x: 800
@@ -120,12 +120,12 @@ TextureImporter:
         width: 400
         height: 400
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Spooky_all_3
+      name: horizontal_right_end_lava
       rect:
         serializedVersion: 2
         x: 1200
@@ -133,12 +133,12 @@ TextureImporter:
         width: 400
         height: 400
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Spooky_all_4
+      name: vertical_bottom_end_lava
       rect:
         serializedVersion: 2
         x: 0
@@ -146,12 +146,12 @@ TextureImporter:
         width: 400
         height: 400
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Spooky_all_5
+      name: vertical_middle_lava
       rect:
         serializedVersion: 2
         x: 400
@@ -159,12 +159,12 @@ TextureImporter:
         width: 400
         height: 400
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Spooky_all_6
+      name: vertical_top_end_lava
       rect:
         serializedVersion: 2
         x: 800
@@ -172,12 +172,12 @@ TextureImporter:
         width: 400
         height: 400
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Spooky_all_7
+      name: wall_tile
       rect:
         serializedVersion: 2
         x: 1200
@@ -185,7 +185,7 @@ TextureImporter:
         width: 400
         height: 400
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
