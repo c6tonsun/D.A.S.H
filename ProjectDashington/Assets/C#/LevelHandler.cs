@@ -15,6 +15,8 @@ public class LevelHandler : MonoBehaviour {
     [SerializeField]
     private Text _parText;
     [SerializeField]
+    private int _parCount;
+    [SerializeField]
     private Text _enemyCountText;
     [SerializeField]
     private Text _levelEndText;
@@ -115,6 +117,7 @@ public class LevelHandler : MonoBehaviour {
     public void UpdateUI()
     {
         _dashCountText.text = string.Concat("Dash : ", _dashCount.ToString());
+        _parText.text = string.Concat("Par: ", _parCount.ToString());
         _enemyCountText.text = string.Concat("Enemies : ", _enemyCount.ToString());
     }
 

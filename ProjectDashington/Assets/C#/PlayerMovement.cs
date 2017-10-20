@@ -166,4 +166,16 @@ public class PlayerMovement : MonoBehaviour {
         _isDashing = false;
         _isPushed = false;
     }
+
+    // Getters and setters.
+    
+    private bool GetIsDashing()
+    {
+        return _isDashing;
+    }
+
+    private bool GetIsPushed()
+    {
+        return _isPushed;
+    }
 }
