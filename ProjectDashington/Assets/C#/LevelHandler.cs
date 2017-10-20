@@ -17,57 +17,63 @@ public class LevelHandler : MonoBehaviour {
     [SerializeField]
     private Text _enemyCountText;
     [SerializeField]
-    private Text _deathInfo;
+    private Text _levelEndText;
     // Changing values on UI
     private int _dashCount;
     private int _enemyCount;
 
     [SerializeField]
-    private float _deathDisplayTime;
-    private bool _deathDisplay = false;
+    private float _levelEndDisplayTime;
+    private bool _levelEndDisplay;
 
     [SerializeField]
     private GameObject _player;
     private Health _playerHealth;
-
-	// Use this for initialization
-	void Start () {
+    
+	private void Start () {
         _playerHealth = _player.GetComponent<Health>();
         _enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
         UpdateUI();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-        // Player lose.
-		if (_playerHealth.GetIsDead() && !_deathDisplay)
-        {
-            StartCoroutine(DeathDisplay(false));
-            _deathDisplay = true;
-        }
-        
-        // Player win.
-        if (_enemyCount <= 0)
-        {
-            StartCoroutine(DeathDisplay(true));
-        }
+	private void Update () {
+        CheckLevelEnd();
 	}
 
-    IEnumerator DeathDisplay(bool win)
+    private void CheckLevelEnd()
     {
-        _deathInfo.gameObject.SetActive(true);
+        if (!_levelEndDisplay)
+        {
+            // Player lose.
+            if (_playerHealth.GetIsDead())
+            {
+                StartCoroutine(LevelEndDisplay(false));
+            }
+
+            // Player win.
+            if (_enemyCount <= 0)
+            {
+                StartCoroutine(LevelEndDisplay(true));
+            }
+        }
+    }
+    IEnumerator LevelEndDisplay(bool win)
+    {
+        _levelEndDisplay = true;
+
+        _levelEndText.gameObject.SetActive(true);
 
         if (win)
         {
-            _deathInfo.text = "You win!";
+            _levelEndText.text = "You win!";
         }
         else
         {
-            string killerName = _playerHealth.GetKiller().name;
-            _deathInfo.text = string.Concat(_deathInfo.text, "\n", FormatKillerName(killerName));
+            string killerName = FormatKillerName(_playerHealth.GetKiller().name);
+            _levelEndText.text = string.Concat(_levelEndText.text, "\n", killerName);
         }
 
-        yield return new WaitForSeconds(_deathDisplayTime);
+        yield return new WaitForSeconds(_levelEndDisplayTime);
 
         ReloadThisScene();
     }
@@ -110,5 +116,12 @@ public class LevelHandler : MonoBehaviour {
     {
         _dashCountText.text = string.Concat("Dash : ", _dashCount.ToString());
         _enemyCountText.text = string.Concat("Enemies : ", _enemyCount.ToString());
+    }
+
+    // Application methods
+
+    private void OnApplicationPause(bool pause)
+    {
+        
     }
 }

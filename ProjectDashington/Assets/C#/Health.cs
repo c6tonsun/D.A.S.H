@@ -25,25 +25,19 @@ public class Health : MonoBehaviour, IHealth {
     {
         if (gameObject.tag == "Enemy" && GetIsDead())
         {
-            if (transform.childCount > 0 &&
-                transform.GetChild(0).tag == "Shield")
-            {
-                _currentHealth = _initialHealth;
-                return;
-            }
-
             _levelHandler.DecreaseEnemyCount(1);
             _levelHandler.UpdateUI();
             Destroy(gameObject);
         }
         else if (gameObject.tag == "Shield" && GetIsDead())
         {
+            transform.parent.GetComponent<Health>().Awake();
             Destroy(gameObject, 0.1f);
         }
         else if (gameObject.tag == "Player" && GetIsDead())
         {
-            Destroy(gameObject, 0.1f);
             GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            Destroy(gameObject, 0.1f);
         }
     }
 
