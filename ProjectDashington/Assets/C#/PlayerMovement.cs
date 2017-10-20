@@ -35,9 +35,12 @@ public class PlayerMovement : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-		if(Input.GetMouseButtonDown(0) && !_isDashing)
+		if(!_isDashing)
         {
-            SetNewTarget();
+            if (Input.GetMouseButtonDown(0))
+            {
+                SetNewTarget();
+            }
         }
 	}
     

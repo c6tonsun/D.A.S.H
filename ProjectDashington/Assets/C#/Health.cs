@@ -31,12 +31,13 @@ public class Health : MonoBehaviour, IHealth {
         }
         else if (gameObject.tag == "Shield" && GetIsDead())
         {
+            transform.parent.GetComponent<Health>().Awake();
             Destroy(gameObject, 0.1f);
         }
         else if (gameObject.tag == "Player" && GetIsDead())
         {
-            Destroy(gameObject, 0.1f);
             GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            Destroy(gameObject, 0.1f);
         }
     }
 
