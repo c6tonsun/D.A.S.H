@@ -169,13 +169,18 @@ public class PlayerMovement : MonoBehaviour {
 
     // Getters and setters.
     
-    private bool GetIsDashing()
+    public bool GetIsDashing()
     {
         return _isDashing;
     }
 
-    private bool GetIsPushed()
+    public bool GetIsPushed()
     {
         return _isPushed;
     }
+
+	public Vector3 GetTargetDirection()
+	{
+		return _targetDirection;
+	}
 }
