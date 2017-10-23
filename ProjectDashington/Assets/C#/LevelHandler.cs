@@ -31,6 +31,9 @@ public class LevelHandler : MonoBehaviour {
     [SerializeField]
     private GameObject _player;
     private Health _playerHealth;
+
+    [SerializeField]
+    private string _nextSceneName;
     
 	private void Start () {
         _playerHealth = _player.GetComponent<Health>();
@@ -67,7 +70,8 @@ public class LevelHandler : MonoBehaviour {
 
         if (win)
         {
-            _levelEndText.text = "You win!";
+            _levelEndText.text = "You win!\n" +
+                "Loading next level.";
         }
         else
         {
@@ -77,7 +81,14 @@ public class LevelHandler : MonoBehaviour {
 
         yield return new WaitForSeconds(_levelEndDisplayTime);
 
-        ReloadThisScene();
+        if (win)
+        {
+            SceneManager.LoadScene(_nextSceneName);
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
     private string FormatKillerName(string str)
@@ -95,11 +106,6 @@ public class LevelHandler : MonoBehaviour {
         }
 
         return result;
-    }
-
-    private void ReloadThisScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     // Public UI methods.
