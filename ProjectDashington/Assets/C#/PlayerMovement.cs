@@ -92,9 +92,9 @@ public class PlayerMovement : MonoBehaviour {
 
     private void StopTarget(GameObject target)
     {
-        if (target.GetComponent<Rigidbody2D>() != null)
+        if (target.GetComponent<EnemyMovement>() != null)
         {
-            target.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            target.GetComponent<EnemyMovement>().SetCanMove(false);
         }
     }
 

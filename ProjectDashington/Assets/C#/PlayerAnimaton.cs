@@ -8,16 +8,14 @@ public class PlayerAnimaton : MonoBehaviour {
 	private Vector3 newRotation = Vector3.zero;
 	private bool _isAngleCalculated = false;
 	private SpriteRenderer _spriteRenderer;
-
-	[SerializeField]
+    
 	private Animator anim;
 
 	// Use this for initialization
 	void Start () {
-		_playerMovement = GetComponent<PlayerMovement> ();
-		anim = GetComponent<Animator> ();
-		_spriteRenderer = GetComponent<SpriteRenderer> ();
-
+		_playerMovement = GetComponent<PlayerMovement>();
+		anim = GetComponent<Animator>();
+		_spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -27,8 +25,7 @@ public class PlayerAnimaton : MonoBehaviour {
 
 		//Sets dashing angle and direction.
 
-		if (_playerMovement.GetIsDashing () && !_isAngleCalculated) {
-			
+		if (_playerMovement.GetIsDashing() && !_isAngleCalculated) {
 			newRotation.z = CalculateAngle();
 		} else if (!_playerMovement.GetIsDashing()) {
 			_isAngleCalculated = false;
@@ -38,17 +35,22 @@ public class PlayerAnimaton : MonoBehaviour {
 	}
 
 	private float CalculateAngle() {
-		float z = Vector3.Angle (transform.position, transform.position + _playerMovement.GetTargetDirection ());
+        float z = Vector3.Angle (transform.position,
+            transform.position + _playerMovement.GetTargetDirection());
+
+        // TODO : Check flips and z value.
 		if(_playerMovement.GetTargetDirection().y < 0) {
 			z = z * -1;
 			_spriteRenderer.flipX = false;
 		}
+
 		if(_playerMovement.GetTargetDirection().x < 0) {
 			z = z * -1;
-			_spriteRenderer.flipX = true;
+            _spriteRenderer.flipX = true;
+        }
 
-		}
 		_isAngleCalculated = true;
+
 		return z;
 	}
 }
