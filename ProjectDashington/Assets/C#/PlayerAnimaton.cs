@@ -32,6 +32,7 @@ public class PlayerAnimaton : MonoBehaviour {
 			newRotation.z = CalculateAngle();
 		} else if (!_playerMovement.GetIsDashing()) {
 			_isAngleCalculated = false;
+			newRotation = Vector3.zero;
 		} 
 		transform.eulerAngles = newRotation;
 	}
@@ -48,7 +49,6 @@ public class PlayerAnimaton : MonoBehaviour {
 
 		}
 		_isAngleCalculated = true;
-		Debug.Log (z);
 		return z;
 	}
 }
