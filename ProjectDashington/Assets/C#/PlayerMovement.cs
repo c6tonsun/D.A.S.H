@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour {
     private bool _isDashing = false;
     private bool _isPushed = false;
 
-    private LevelHandler _levelHandler;
+    private WorldManager _worldManager;
 
     const int TRAP_LAYER = 11;
     const int ENEMY_LAYER = 10;
@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour {
     private void Start()
     {
         _rb = gameObject.GetComponent<Rigidbody2D>();
-        _levelHandler = GameObject.Find("Level handler").GetComponent<LevelHandler>();
+        _worldManager = GameObject.Find("World manager").GetComponent<WorldManager>();
     }
 
     // Update is called once per frame
@@ -107,8 +107,7 @@ public class PlayerMovement : MonoBehaviour {
         _isDashing = true;
         _isPushed = false;
 
-        _levelHandler.IncreaseDashCount(1);
-        _levelHandler.UpdateUI();
+        _worldManager.IncreaseDashCount();
     }
 
     public void Pushed(Vector3 pushDirection, float pushDistance, float pushForce)

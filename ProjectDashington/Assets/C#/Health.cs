@@ -12,32 +12,35 @@ public class Health : MonoBehaviour, IHealth {
     private int _currentHealth;
 
     private GameObject _killer;
-    private LevelHandler _levelHandler;
-
-    // Does initialisations.
+    private WorldManager _worldManager;
+    
     private void Awake()
     {
+        _worldManager = GameObject.Find("World manager").GetComponent<WorldManager>();
+    }
+
+    private void OnEnable()
+    {
         _currentHealth = _initialHealth;
-        _levelHandler = GameObject.Find("Level handler").GetComponent<LevelHandler>();
     }
 
     private void FixedUpdate()
     {
         if (gameObject.tag == "Enemy" && GetIsDead())
         {
-            _levelHandler.DecreaseEnemyCount(1);
-            _levelHandler.UpdateUI();
-            Destroy(gameObject);
+            _worldManager.DecreaseEnemyCount();
+            gameObject.SetActive(false);
         }
         else if (gameObject.tag == "Shield" && GetIsDead())
         {
             transform.parent.GetComponent<Health>().Awake();
-            Destroy(gameObject, 0.1f);
+            gameObject.SetActive(false);
         }
         else if (gameObject.tag == "Player" && GetIsDead())
         {
+            _worldManager.SetPlayerKiller(_killer);
             GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-            Destroy(gameObject, 0.1f);
+            gameObject.SetActive(false);
         }
     }
 

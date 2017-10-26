@@ -113,14 +113,16 @@ public class LevelHandler : MonoBehaviour {
     public void IncreaseDashCount(int amount)
     {
         _dashCount += amount;
+        UpdateUI();
     }
 
     public void DecreaseEnemyCount(int amount)
     {
         _enemyCount -= amount;
+        UpdateUI();
     }
 
-    public void UpdateUI()
+    private void UpdateUI()
     {
         _dashCountText.text = string.Concat("Dash : ", _dashCount.ToString());
         _parText.text = string.Concat("Par: ", _parCount.ToString());

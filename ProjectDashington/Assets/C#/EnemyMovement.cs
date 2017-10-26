@@ -19,15 +19,21 @@ public class EnemyMovement : MonoBehaviour {
     private Vector3 _targetDirection;
     private bool _targetReached;
 
-    private int _walkPathIndex = 0;
+    private int _walkPathIndex;
     private bool _growIndex = true;
 
-    private bool _canMove = true;
+    private bool _canMove;
 
     private void Start()
     {
         _rb = gameObject.GetComponent<Rigidbody2D>();
+    }
+
+    private void OnEnable()
+    {
         _targetReached = true;
+        _canMove = true;
+        _walkPathIndex = 0;
     }
 
     private void FixedUpdate()
