@@ -102,7 +102,8 @@ public class PlayerMovement : MonoBehaviour {
     private void Dash()
     {
         _rb.AddForce(_targetDirection * _movementSpeed, ForceMode2D.Impulse);
-        
+        transform.right = _rb.velocity;
+
         _startDash = false;
         _isDashing = true;
         _isPushed = false;
@@ -161,6 +162,8 @@ public class PlayerMovement : MonoBehaviour {
         _pushPosition = Vector3.zero;
 
         _rb.velocity = Vector3.zero;
+        transform.right = Vector3.right;
+
         _startDash = false;
         _isDashing = false;
         _isPushed = false;
