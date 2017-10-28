@@ -34,22 +34,4 @@ public class PlayerAnimation : MonoBehaviour
             _spriteRenderer.flipY = false;
         }
     }
-
-    public float CalculateAngle(Vector3 targetDirection)
-    {
-        float z = Vector3.Angle(transform.position, transform.position + targetDirection);
-
-        // flips
-        if (targetDirection.x < 0)
-        {
-            z *= -1;
-            _spriteRenderer.flipY = true;
-        }
-        else
-        {
-            _spriteRenderer.flipY = false;
-        }
-
-        return z * 2 - 90;
-    }
 }
