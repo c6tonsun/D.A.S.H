@@ -81,7 +81,7 @@ public class WorldManager : MonoBehaviour {
     {
         DeactivateAllLevels();
         _currentLevel.gameObject.SetActive(true);
-
+        UpdateInGameUI();
     }
 
     private void DeactivateAllLevels()
