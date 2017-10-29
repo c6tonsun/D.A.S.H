@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour {
     private bool _isPushed = false;
 
     private WorldManager _worldManager;
+    private DamageDealer _damageDealer;
 
     const int TRAP_LAYER = 11;
     const int ENEMY_LAYER = 10;
@@ -30,6 +31,8 @@ public class PlayerMovement : MonoBehaviour {
     {
         _rb = gameObject.GetComponent<Rigidbody2D>();
         _worldManager = GameObject.Find("World manager").GetComponent<WorldManager>();
+        _damageDealer = GameObject.Find("World manager").GetComponent<DamageDealer>();
+        _damageDealer.enabled = false;
     }
 
     // Update is called once per frame
@@ -109,6 +112,8 @@ public class PlayerMovement : MonoBehaviour {
         _isPushed = false;
 
         _worldManager.IncreaseDashCount();
+
+        _damageDealer.enabled = true;
     }
 
     public void Pushed(Vector3 pushDirection, float pushDistance, float pushForce)
@@ -163,6 +168,8 @@ public class PlayerMovement : MonoBehaviour {
 
         _rb.velocity = Vector3.zero;
         transform.right = Vector3.right;
+
+        _damageDealer.enabled = false;
 
         _startDash = false;
         _isDashing = false;

@@ -5,8 +5,39 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
     [SerializeField]
     private int _damage;
 
+    private PlayerMovement _playerMovement;
+    private bool _canDoDamage;
+    private bool _isPlayer;
+
+    private void Start()
+    {
+        _playerMovement = GetComponent<PlayerMovement>();
+
+        if (_playerMovement == null)
+        {
+            _canDoDamage = true;
+            _isPlayer = false;
+        }
+        else
+        {
+            _isPlayer = true;
+        }
+    }
+
+    private void Update()
+    {
+        if (_isPlayer)
+        {
+            _canDoDamage = _playerMovement.GetIsDashing();
+        }
+    }
+
     private void DealDamage(Collider2D other)
     {
+        if (!_canDoDamage)
+        {
+            return;
+        }
         // If other collider is trigger do nothing.
         if (other.isTrigger && other.gameObject.tag != "Lava")
         {
