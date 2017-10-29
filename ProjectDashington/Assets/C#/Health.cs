@@ -44,9 +44,23 @@ public class Health : MonoBehaviour, IHealth {
         }
     }
 
+    private bool IsEnemy()
+    {
+        if (_killer.tag == "Lava" && gameObject.tag == "Enemy")
+        {
+            return true;
+        }
+        return false;
+    }
+
     // Decreases health by amount.
     public void DecreaseHealth(int amount)
     {
+        if (IsEnemy())
+        {
+            return;
+        }
+
         _currentHealth -= amount;
 
         if (_currentHealth < _minHealth)

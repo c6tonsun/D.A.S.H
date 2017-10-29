@@ -8,7 +8,7 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
     private void DealDamage(Collider2D other)
     {
         // If other collider is trigger do nothing.
-        if (other.isTrigger)
+        if (other.isTrigger && other.gameObject.tag != "Lava")
         {
             return;
         }
@@ -19,8 +19,8 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
         // If other has health decrease it.
         if (health != null)
         {
-            health.DecreaseHealth(GetDamage());
             health.SetKiller(this.gameObject);
+            health.DecreaseHealth(GetDamage());
         }
     }
 
