@@ -1,14 +1,15 @@
 fileFormatVersion: 2
-guid: fa7f64f697fba3e42a09205a007d2243
-timeCreated: 1509527363
+guid: 8c4c861b55e3fe1428952ea5bec00449
+timeCreated: 1509538026
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Imp_hit_final_0
-    21300002: Imp_hit_final_1
-    21300004: Imp_hit_final_2
-    21300006: Imp_hit_final_3
-    21300008: Imp_hit_final_4
+    21300000: kiddo_sheet_0
+    21300002: kiddo_sheet_1
+    21300004: kiddo_sheet_2
+    21300006: kiddo_sheet_3
+    21300008: kiddo_sheet_4
+    21300010: kiddo_sheet_5
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -83,67 +84,80 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Imp_hit_final_0
+      name: kiddo_sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 520
+        width: 400
         height: 400
-      alignment: 9
-      pivot: {x: 0.66, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Imp_hit_final_1
+      name: kiddo_sheet_1
       rect:
         serializedVersion: 2
-        x: 520
+        x: 400
         y: 0
-        width: 520
+        width: 400
         height: 400
-      alignment: 9
-      pivot: {x: 0.66, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Imp_hit_final_2
+      name: kiddo_sheet_2
       rect:
         serializedVersion: 2
-        x: 1040
+        x: 800
         y: 0
-        width: 520
+        width: 400
         height: 400
-      alignment: 9
-      pivot: {x: 0.66, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Imp_hit_final_3
+      name: kiddo_sheet_3
       rect:
         serializedVersion: 2
-        x: 1560
+        x: 1200
         y: 0
-        width: 520
+        width: 400
         height: 400
-      alignment: 9
-      pivot: {x: 0.66, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Imp_hit_final_4
+      name: kiddo_sheet_4
       rect:
         serializedVersion: 2
-        x: 2080
+        x: 1600
         y: 0
-        width: 520
+        width: 400
         height: 400
-      alignment: 9
-      pivot: {x: 0.66, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: kiddo_sheet_5
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 0
+        width: 400
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

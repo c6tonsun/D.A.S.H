@@ -1,14 +1,12 @@
 fileFormatVersion: 2
-guid: fa7f64f697fba3e42a09205a007d2243
-timeCreated: 1509527363
+guid: e145100d1cdc7b24bbd524ee37e4d951
+timeCreated: 1509538594
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Imp_hit_final_0
-    21300002: Imp_hit_final_1
-    21300004: Imp_hit_final_2
-    21300006: Imp_hit_final_3
-    21300008: Imp_hit_final_4
+    21300000: hit_sheet_90s_0
+    21300002: hit_sheet_90s_1
+    21300004: hit_sheet_90s_2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -83,67 +81,41 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Imp_hit_final_0
+      name: hit_sheet_90s_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 520
+        width: 400
         height: 400
-      alignment: 9
-      pivot: {x: 0.66, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Imp_hit_final_1
+      name: hit_sheet_90s_1
       rect:
         serializedVersion: 2
-        x: 520
+        x: 400
         y: 0
-        width: 520
+        width: 400
         height: 400
-      alignment: 9
-      pivot: {x: 0.66, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Imp_hit_final_2
+      name: hit_sheet_90s_2
       rect:
         serializedVersion: 2
-        x: 1040
+        x: 800
         y: 0
-        width: 520
+        width: 400
         height: 400
-      alignment: 9
-      pivot: {x: 0.66, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Imp_hit_final_3
-      rect:
-        serializedVersion: 2
-        x: 1560
-        y: 0
-        width: 520
-        height: 400
-      alignment: 9
-      pivot: {x: 0.66, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Imp_hit_final_4
-      rect:
-        serializedVersion: 2
-        x: 2080
-        y: 0
-        width: 520
-        height: 400
-      alignment: 9
-      pivot: {x: 0.66, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
