@@ -128,11 +128,4 @@ public class LevelHandler : MonoBehaviour {
         _parText.text = string.Concat("Par: ", _parCount.ToString());
         _enemyCountText.text = string.Concat("Enemies : ", _enemyCount.ToString());
     }
-
-    // Application methods
-
-    private void OnApplicationPause(bool pause)
-    {
-        
-    }
 }
