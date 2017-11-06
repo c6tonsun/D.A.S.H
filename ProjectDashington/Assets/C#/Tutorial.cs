@@ -28,11 +28,11 @@ public class Tutorial : MonoBehaviour {
             StartCoroutine(TutorialRoutine());
             _firstTouch = false;
         }
-
-        if (_playerMovement.GetIsDashing())
+        else if (_playerMovement.GetIsDashing())
         {
             StopCoroutine(TutorialRoutine());
             _spriteRenderer.enabled = false;
+            ///this.enabled = false;
         }
     }
 
