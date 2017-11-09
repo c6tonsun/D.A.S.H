@@ -1,38 +1,40 @@
 fileFormatVersion: 2
-guid: f19560df037f25649ad9124b82163166
-timeCreated: 1510137247
+guid: 47d35eab935d7314fa83e911b3b963c0
+timeCreated: 1510227062
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: button_0_pressed
-    21300002: button_0_not
-    21300004: button_1_pressed
-    21300006: button_1_not
-    21300008: button_2_pressed
-    21300010: button_2_not
-    21300012: button_3_pressed
-    21300014: button_3_not
-    21300016: button_4_pressed
-    21300018: button_4_not
-    21300020: button_5_pressed
-    21300022: button_5_not
-    21300024: button_6_pressed
-    21300026: button_6_not
-    21300028: button_7_pressed
-    21300030: button_7_not
-    21300032: button_8_pressed
-    21300034: button_8_not
-    21300036: button_9_pressed
-    21300038: button_9_not
-    21300040: button_lock
-    21300042: button_play_not
-    21300044: button_play_pressed
-    21300046: button_replay_not
-    21300048: button_replay_pressed
-    21300050: button_settings_not
-    21300052: button_settings_pressed
-    21300054: button_mute_on
-    21300056: button_mute_off
+    21300000: button_sheet (1)_0
+    21300002: button_sheet (1)_1
+    21300004: button_sheet (1)_2
+    21300006: button_sheet (1)_3
+    21300008: button_sheet (1)_4
+    21300010: button_sheet (1)_5
+    21300012: button_sheet (1)_6
+    21300014: button_sheet (1)_7
+    21300016: button_sheet (1)_8
+    21300018: button_sheet (1)_9
+    21300020: button_sheet (1)_10
+    21300022: button_sheet (1)_11
+    21300024: button_sheet (1)_12
+    21300026: button_sheet (1)_13
+    21300028: button_sheet (1)_14
+    21300030: button_sheet (1)_15
+    21300032: button_sheet (1)_16
+    21300034: button_sheet (1)_17
+    21300036: button_sheet (1)_18
+    21300038: button_sheet (1)_19
+    21300040: button_sheet (1)_20
+    21300042: button_sheet (1)_21
+    21300044: button_sheet (1)_22
+    21300046: button_sheet (1)_23
+    21300048: button_sheet (1)_24
+    21300050: button_sheet (1)_25
+    21300052: button_sheet (1)_26
+    21300054: button_sheet (1)_27
+    21300056: button_sheet (1)_28
+    21300058: button_sheet (1)_29
+    21300060: button_sheet (1)_30
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -107,7 +109,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: button_0_pressed
+      name: button_sheet (1)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -120,11 +122,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_0_not
+      name: button_sheet (1)_1
       rect:
         serializedVersion: 2
         x: 400
-        y: 1197
+        y: 1200
         width: 400
         height: 400
       alignment: 0
@@ -133,7 +135,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_1_pressed
+      name: button_sheet (1)_2
       rect:
         serializedVersion: 2
         x: 800
@@ -146,7 +148,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_1_not
+      name: button_sheet (1)_3
       rect:
         serializedVersion: 2
         x: 1200
@@ -159,7 +161,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_2_pressed
+      name: button_sheet (1)_4
       rect:
         serializedVersion: 2
         x: 1600
@@ -172,7 +174,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_2_not
+      name: button_sheet (1)_5
       rect:
         serializedVersion: 2
         x: 2000
@@ -185,7 +187,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_3_pressed
+      name: button_sheet (1)_6
       rect:
         serializedVersion: 2
         x: 2400
@@ -198,7 +200,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_3_not
+      name: button_sheet (1)_7
       rect:
         serializedVersion: 2
         x: 2800
@@ -211,7 +213,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_4_pressed
+      name: button_sheet (1)_8
       rect:
         serializedVersion: 2
         x: 0
@@ -224,7 +226,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_4_not
+      name: button_sheet (1)_9
       rect:
         serializedVersion: 2
         x: 400
@@ -237,7 +239,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_5_pressed
+      name: button_sheet (1)_10
       rect:
         serializedVersion: 2
         x: 800
@@ -250,7 +252,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_5_not
+      name: button_sheet (1)_11
       rect:
         serializedVersion: 2
         x: 1200
@@ -263,7 +265,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_6_pressed
+      name: button_sheet (1)_12
       rect:
         serializedVersion: 2
         x: 1600
@@ -276,7 +278,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_6_not
+      name: button_sheet (1)_13
       rect:
         serializedVersion: 2
         x: 2000
@@ -289,7 +291,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_7_pressed
+      name: button_sheet (1)_14
       rect:
         serializedVersion: 2
         x: 2400
@@ -302,7 +304,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_7_not
+      name: button_sheet (1)_15
       rect:
         serializedVersion: 2
         x: 2800
@@ -315,7 +317,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_8_pressed
+      name: button_sheet (1)_16
       rect:
         serializedVersion: 2
         x: 0
@@ -328,7 +330,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_8_not
+      name: button_sheet (1)_17
       rect:
         serializedVersion: 2
         x: 400
@@ -341,7 +343,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_9_pressed
+      name: button_sheet (1)_18
       rect:
         serializedVersion: 2
         x: 800
@@ -354,7 +356,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_9_not
+      name: button_sheet (1)_19
       rect:
         serializedVersion: 2
         x: 1200
@@ -367,7 +369,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_lock
+      name: button_sheet (1)_20
       rect:
         serializedVersion: 2
         x: 1600
@@ -380,7 +382,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_play_not
+      name: button_sheet (1)_21
       rect:
         serializedVersion: 2
         x: 2000
@@ -393,7 +395,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_play_pressed
+      name: button_sheet (1)_22
       rect:
         serializedVersion: 2
         x: 2400
@@ -406,7 +408,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_replay_not
+      name: button_sheet (1)_23
       rect:
         serializedVersion: 2
         x: 2800
@@ -419,7 +421,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_replay_pressed
+      name: button_sheet (1)_24
       rect:
         serializedVersion: 2
         x: 0
@@ -432,7 +434,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_settings_not
+      name: button_sheet (1)_25
       rect:
         serializedVersion: 2
         x: 400
@@ -445,7 +447,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_settings_pressed
+      name: button_sheet (1)_26
       rect:
         serializedVersion: 2
         x: 800
@@ -458,7 +460,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_mute_on
+      name: button_sheet (1)_27
       rect:
         serializedVersion: 2
         x: 1200
@@ -471,10 +473,36 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_mute_off
+      name: button_sheet (1)_28
       rect:
         serializedVersion: 2
         x: 1600
+        y: 0
+        width: 400
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: button_sheet (1)_29
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 0
+        width: 400
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: button_sheet (1)_30
+      rect:
+        serializedVersion: 2
+        x: 2400
         y: 0
         width: 400
         height: 400
