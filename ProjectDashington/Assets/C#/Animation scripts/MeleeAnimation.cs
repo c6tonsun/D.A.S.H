@@ -9,6 +9,7 @@ public class MeleeAnimation : MonoBehaviour {
 
     private bool _isHitting = false;
     [SerializeField, Tooltip("Time till first hit.")]
+    private float _timeToFirstHit;
 	private float _attackCooldown;
     private float _attackTime = 1.6f;
 
@@ -17,6 +18,8 @@ public class MeleeAnimation : MonoBehaviour {
     {
         _anim = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        _attackCooldown = _timeToFirstHit;
 
         Collider2D[] colliders = GetComponents<Collider2D>();
         foreach (Collider2D collider in colliders)

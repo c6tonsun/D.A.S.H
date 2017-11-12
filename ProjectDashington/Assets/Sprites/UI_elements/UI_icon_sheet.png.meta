@@ -1,18 +1,12 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: ef1a2e418326fee4894c41058ce674d1
-timeCreated: 1509659491
-=======
-guid: 32b1c07bf07a99a4d87674a54cf300f3
-timeCreated: 1509952446
->>>>>>> 0db3894606d18be7554b901dfd85eb914d9c1755
+guid: 364092aa35e711f40b024bf103db95a2
+timeCreated: 1510226919
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: voodoo_shake_0
-    21300002: voodoo_shake_1
-    21300004: voodoo_shake_2
-    21300006: voodoo_shake_3
+    21300000: UI_icon_sheet_0
+    21300002: UI_icon_sheet_1
+    21300004: UI_icon_sheet_2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -87,76 +81,39 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: voodoo_shake_0
+      name: UI_icon_sheet_0
       rect:
         serializedVersion: 2
         x: 0
-<<<<<<< HEAD
         y: 0
         width: 400
-        height: 410
-=======
-        y: 10
-        width: 400
         height: 400
->>>>>>> 0db3894606d18be7554b901dfd85eb914d9c1755
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: voodoo_shake_1
+      name: UI_icon_sheet_1
       rect:
         serializedVersion: 2
         x: 400
-<<<<<<< HEAD
         y: 0
         width: 400
-        height: 410
-=======
-        y: 10
-        width: 400
         height: 400
->>>>>>> 0db3894606d18be7554b901dfd85eb914d9c1755
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: voodoo_shake_2
+      name: UI_icon_sheet_2
       rect:
         serializedVersion: 2
         x: 800
-<<<<<<< HEAD
         y: 0
         width: 400
-        height: 410
-=======
-        y: 10
-        width: 400
         height: 400
->>>>>>> 0db3894606d18be7554b901dfd85eb914d9c1755
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: voodoo_shake_3
-      rect:
-        serializedVersion: 2
-        x: 1200
-<<<<<<< HEAD
-        y: 0
-        width: 400
-        height: 410
-=======
-        y: 10
-        width: 400
-        height: 400
->>>>>>> 0db3894606d18be7554b901dfd85eb914d9c1755
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
