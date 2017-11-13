@@ -124,8 +124,8 @@ public class LevelHandler : MonoBehaviour {
 
     private void UpdateUI()
     {
-        _dashCountText.text = string.Concat("Dash : ", _dashCount.ToString());
-        _parText.text = string.Concat("Par: ", _parCount.ToString());
-        _enemyCountText.text = string.Concat("Enemies : ", _enemyCount.ToString());
+        _dashCountText.text = string.Concat(" : ", _dashCount.ToString());
+        _parText.text = string.Concat(" : ", _parCount.ToString());
+        _enemyCountText.text = string.Concat(" : ", _enemyCount.ToString());
     }
 }

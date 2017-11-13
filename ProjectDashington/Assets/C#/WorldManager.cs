@@ -170,9 +170,9 @@ public class WorldManager : MonoBehaviour {
 
     private void UpdateInGameUI()
     {
-        _dashText.text = string.Concat("Dash : " + _dashCount.ToString());
-        _parText.text = string.Concat("Par : " + _parCount.ToString());
-        _enemyText.text = string.Concat("Enemies : " + _enemyCount.ToString());
+        _dashText.text = string.Concat(" : " + _dashCount.ToString());
+        _parText.text = string.Concat(" : " + _parCount.ToString());
+        _enemyText.text = string.Concat(" : " + _enemyCount.ToString());
     }
 
     // Public UI methods.
