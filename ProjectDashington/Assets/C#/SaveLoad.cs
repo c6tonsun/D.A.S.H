@@ -15,11 +15,13 @@ public static class SaveLoad {
     public const int FALSE = 0;
     public const int TRUE = 1;
 
+    public const string FILE_PATH = "/DASHsave.gd";
+
     public static int[,] SaveFile { get; set; }
 
     public static bool FindSaveFile()
     {
-        if (File.Exists(Application.persistentDataPath + "/DASHsave.gd"))
+        if (File.Exists(Application.persistentDataPath + FILE_PATH))
         {
             return true;
         }
@@ -34,13 +36,16 @@ public static class SaveLoad {
         int currentWolrd = 1;
         int currentLevel = 0;
 
-        for (int i = 0; i < newSaveFile.Length; i++)
+        Debug.Log(newSaveFile.Length.ToString());
+
+        for (int i = 0; i < newSaveFile.Length / 4; i++)
         {
+            Debug.Log(i.ToString());
+
             newSaveFile[i, WORLD] = currentWolrd;
             newSaveFile[i, LEVEL] = currentLevel;
             newSaveFile[i, OPEN] = FALSE;
             newSaveFile[i, STAR] = FALSE;
-
             currentLevel++;
 
             if (currentLevel > levelsPerWorld)
@@ -59,17 +64,17 @@ public static class SaveLoad {
     public static void Save()
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/DASHsave.gd");
+        FileStream file = File.Create(Application.persistentDataPath + FILE_PATH);
         bf.Serialize(file, SaveFile);
         file.Close();
     }
 
     public static void Load()
     {
-        if (File.Exists(Application.persistentDataPath + "/DASHsave.gd"))
+        if (File.Exists(Application.persistentDataPath + FILE_PATH))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/DASHsave.gd", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + FILE_PATH, FileMode.Open);
             SaveFile = (int[,])bf.Deserialize(file);
             file.Close();
         }

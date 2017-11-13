@@ -7,7 +7,7 @@ public class WorldManager : MonoBehaviour {
     // World UI
     private Canvas _canvas;
     private Text _dashText;
-    private Text _parText;
+    private Text _starText;
     private Text _enemyText;
     private Text _levelResultText;
     // UI variables
@@ -133,9 +133,9 @@ public class WorldManager : MonoBehaviour {
             {
                 _dashText = text;
             }
-            else if (text.gameObject.name.Contains("Par"))
+            else if (text.gameObject.name.Contains("Star"))
             {
-                _parText = text;
+                _starText = text;
             }
             else if (text.gameObject.name.Contains("Enem"))
             {
@@ -151,7 +151,7 @@ public class WorldManager : MonoBehaviour {
     private void InGameUI(bool enable)
     {
         _dashText.enabled = enable;
-        _parText.enabled = enable;
+        _starText.enabled = enable;
         _enemyText.enabled = enable;
     }
 
@@ -171,7 +171,7 @@ public class WorldManager : MonoBehaviour {
     private void UpdateInGameUI()
     {
         _dashText.text = string.Concat(" : " + _dashCount.ToString());
-        _parText.text = string.Concat(" : " + _parCount.ToString());
+        _starText.text = string.Concat(" : " + _parCount.ToString());
         _enemyText.text = string.Concat(" : " + _enemyCount.ToString());
     }
 
