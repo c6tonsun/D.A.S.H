@@ -16,14 +16,15 @@ public class WorldManager : MonoBehaviour {
     private int _enemyCount;
     private string _playerKiller;
 
+    // Level stuff
     [SerializeField]
     private float _readTime;
-
     private Level[] _levels;
     private Level _currentLevel;
     private int _levelNumber = 1;
     private int _maxLevelNumber;
-
+    
+    // other
     public const string TAG_PLAYER = "Player";
     public const string TAG_ENEMY = "Enemy";
     public const string TAG_SHIELD= "Shield";
