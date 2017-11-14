@@ -21,26 +21,25 @@ public class WorldManager : MonoBehaviour {
     private float _readTime;
     private Level[] _levels;
     private Level _currentLevel;
-    private int _levelNumber = 1;
+    private int _levelNumber;
     private int _maxLevelNumber;
+    private GameManager _gameManager;
     
     // other
     public const string TAG_PLAYER = "Player";
     public const string TAG_ENEMY = "Enemy";
     public const string TAG_SHIELD= "Shield";
     public const string TAG_LAVA = "Lava";
-
-    private void Awake()
+    
+    private void Start()
     {
-        // DontDestroyOnLoad(gameObject);
+        _gameManager = FindObjectOfType<GameManager>();
+        _levelNumber = _gameManager.GetLevelValue();
         
         InitializeUI();
         InGameUI(true);
         LevelResultUI(false);
-    }
 
-    private void Start()
-    {
         InitializeLevels();
         FindNextLevel();
         ActivateLevel();
@@ -66,7 +65,8 @@ public class WorldManager : MonoBehaviour {
     {
         if (_levelNumber > _maxLevelNumber)
         {
-            _levelNumber = 1;
+            //_levelNumber = 1;
+            _gameManager.LoadMenu(_gameManager.GetLevelMenuString());
         }
 
         foreach (Level level in _levels)

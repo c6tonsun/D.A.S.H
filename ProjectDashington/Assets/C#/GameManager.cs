@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -12,8 +13,20 @@ public class GameManager : MonoBehaviour {
     public int world;
     public int level;
 
+    public string menuMode;
+    public const string LEVEL_MENU = "Level";
+
     private void Start()
     {
+        if (FindObjectsOfType<GameManager>().Length == 1)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         GetSaveFileFromMemory();
     }
 
@@ -31,6 +44,22 @@ public class GameManager : MonoBehaviour {
         saveFile = SaveLoad.SaveFile;
     }
 
+    // public methods
+
+    public void StartLevel()
+    {
+        if (SceneManager.GetSceneByName("World " + world) != null)
+        {
+            SceneManager.LoadScene("World " + world);
+        }
+    }
+
+    public void LoadMenu(string menuMode)
+    {
+        this.menuMode = menuMode;
+        SceneManager.LoadScene("Main menu");
+    }
+
     // Getters and setters
 
     public void SetWorldValue(int value)
@@ -41,5 +70,15 @@ public class GameManager : MonoBehaviour {
     public void SetLevelValue(int value)
     {
         level = value;
+    }
+
+    public int GetLevelValue()
+    {
+        return level;
+    }
+
+    public string GetLevelMenuString()
+    {
+        return LEVEL_MENU;
     }
 }
