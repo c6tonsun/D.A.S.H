@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
+    private MenuUI _menuUI;
+
     private int[,] saveFile;
 
     public int worldCount;
@@ -27,6 +29,8 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
         }
 
+        _menuUI = FindObjectOfType<MenuUI>();
+
         GetSaveFileFromMemory();
     }
 
@@ -48,6 +52,8 @@ public class GameManager : MonoBehaviour {
 
     public void StartLevel()
     {
+        _menuUI.gameObject.SetActive(false);
+
         if (SceneManager.GetSceneByName("World " + world) != null)
         {
             SceneManager.LoadScene("World " + world);
@@ -57,6 +63,9 @@ public class GameManager : MonoBehaviour {
     public void LoadMenu(string menuMode)
     {
         this.menuMode = menuMode;
+
+        _menuUI.gameObject.SetActive(true);
+
         SceneManager.LoadScene("Main menu");
     }
 
@@ -80,5 +89,11 @@ public class GameManager : MonoBehaviour {
     public string GetLevelMenuString()
     {
         return LEVEL_MENU;
+    }
+
+    public void SetMenuMode(string menuMode)
+    {
+        this.menuMode = menuMode;
+        _menuUI.UpdateMenu();
     }
 }
