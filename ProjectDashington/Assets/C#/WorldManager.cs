@@ -171,7 +171,7 @@ public class WorldManager : MonoBehaviour {
     private void UpdateInGameUI()
     {
         _dashText.text = string.Concat(" : " + _dashCount.ToString());
-        _starText.text = string.Concat(" : " + _parCount.ToString());
+        _starText.text = string.Concat("" + _parCount.ToString());
         _enemyText.text = string.Concat(" : " + _enemyCount.ToString());
     }
 
