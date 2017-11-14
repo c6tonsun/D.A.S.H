@@ -36,12 +36,8 @@ public static class SaveLoad {
         int currentWolrd = 1;
         int currentLevel = 0;
 
-        Debug.Log(newSaveFile.Length.ToString());
-
         for (int i = 0; i < newSaveFile.Length / 4; i++)
         {
-            Debug.Log(i.ToString());
-
             newSaveFile[i, WORLD] = currentWolrd;
             newSaveFile[i, LEVEL] = currentLevel;
             newSaveFile[i, OPEN] = FALSE;
