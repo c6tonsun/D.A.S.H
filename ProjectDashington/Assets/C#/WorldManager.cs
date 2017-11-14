@@ -16,14 +16,15 @@ public class WorldManager : MonoBehaviour {
     private int _enemyCount;
     private string _playerKiller;
 
+    // Level stuff
     [SerializeField]
     private float _readTime;
-
     private Level[] _levels;
     private Level _currentLevel;
     private int _levelNumber = 1;
     private int _maxLevelNumber;
-
+    
+    // other
     public const string TAG_PLAYER = "Player";
     public const string TAG_ENEMY = "Enemy";
     public const string TAG_SHIELD= "Shield";
@@ -169,9 +170,9 @@ public class WorldManager : MonoBehaviour {
 
     private void UpdateInGameUI()
     {
-        _dashText.text = string.Concat("Dash : " + _dashCount.ToString());
-        _parText.text = string.Concat("Par : " + _parCount.ToString());
-        _enemyText.text = string.Concat("Enemies : " + _enemyCount.ToString());
+        _dashText.text = string.Concat(" : " + _dashCount.ToString());
+        _parText.text = string.Concat(" : " + _parCount.ToString());
+        _enemyText.text = string.Concat(" : " + _enemyCount.ToString());
     }
 
     // Public UI methods.
