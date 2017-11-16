@@ -30,6 +30,8 @@ public class WorldManager : MonoBehaviour {
     public const string TAG_ENEMY = "Enemy";
     public const string TAG_SHIELD= "Shield";
     public const string TAG_LAVA = "Lava";
+
+    private Text FPS;
     
     private void Start()
     {
@@ -45,6 +47,13 @@ public class WorldManager : MonoBehaviour {
         ActivateLevel();
         
         ResetUIValues();
+
+        FPS = GameObject.Find("FPS").GetComponent<Text>();
+    }
+
+    private void Update()
+    {
+        FPS.text = (1f / Time.deltaTime).ToString();
     }
 
     // Level methods

@@ -82,9 +82,17 @@ public class PlayerMovement : MonoBehaviour {
             Camera.main.transform.forward);
 
         // If our raycast hit enemy set new target.
-        if (hit.collider != null && hit.collider.gameObject.tag == "Enemy")
+        if (hit.collider != null && hit.collider.gameObject.layer == ENEMY_LAYER)
         {
-            _targetPosition = hit.collider.transform.position;
+            if (hit.collider.gameObject.tag == "Enemy")
+            {
+                _targetPosition = hit.collider.transform.position;
+            }
+            else if (hit.collider.gameObject.tag == "Shield")
+            {
+                _targetPosition = hit.collider.transform.parent.position;
+            }
+
             _targetDirection = _targetPosition - transform.position;
             _targetDirection.Normalize();
             _startDash = true;

@@ -33,6 +33,13 @@ public class PlayerAnimation : MonoBehaviour
         {
             _spriteRenderer.flipY = false;
         }
+		if (_playerMovement.GetIsPushed ()) {
+			if (_spriteRenderer.flipY) {
+				_spriteRenderer.flipY = false;
+			} else {
+				_spriteRenderer.flipY = true;
+			}
+		}
     }
 }
 
