@@ -8,17 +8,26 @@ public class Tutorial : MonoBehaviour {
 
     [SerializeField]
     private float _alphaSpeed;
-    private float _minAlpha = 0;
-    private float _maxAlpha = 0.8f;
-    private bool _grow;
+    private float _alphaValue;
+
+    public float factor;
 
     private PlayerMovement _playerMovement;
-    private bool _firstTouch = true;
+    private bool _firstTouch;
 
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _playerMovement = FindObjectOfType<PlayerMovement>();
+    }
+
+    private void OnEnable()
+    {
+        _color = _spriteRenderer.color;
+        _color.a = 0f;
+        _spriteRenderer.color = _color;
+
+        _firstTouch = true;
     }
 
     private void Update()
@@ -32,7 +41,6 @@ public class Tutorial : MonoBehaviour {
         {
             StopCoroutine(TutorialRoutine());
             _spriteRenderer.enabled = false;
-            ///this.enabled = false;
         }
     }
 
@@ -42,23 +50,9 @@ public class Tutorial : MonoBehaviour {
         {
             _color = _spriteRenderer.color;
 
-            if (_color.a <= _minAlpha)
-            {
-                _grow = true;
-            }
-            else if (_color.a >= _maxAlpha)
-            {
-                _grow = false;
-            }
+            _color.a = Mathf.Abs(Mathf.Sin(_alphaValue)) * factor;
 
-            if (_grow)
-            {
-                _color.a += _alphaSpeed * Time.deltaTime;
-            }
-            else
-            {
-                _color.a -= _alphaSpeed * Time.deltaTime;
-            }
+            _alphaValue += _alphaSpeed * Time.deltaTime;
 
             _spriteRenderer.color = _color;
 

@@ -3,7 +3,7 @@
 public class Level : MonoBehaviour {
 
     [SerializeField]
-    private int _par;
+    private int _star;
 
     private int _levelNumber;
 
@@ -16,13 +16,10 @@ public class Level : MonoBehaviour {
         CreateLevelNumber();
 
         FindDiables();
-
-        // Debug.Log(transform.childCount.ToString());
     }
 
     private void OnEnable()
     {
-        DiablesToDefaultTransform();
         EnableAllChildren();
         DiablesToDefaultTransform();
     }
@@ -89,6 +86,6 @@ public class Level : MonoBehaviour {
 
     public int GetParValue()
     {
-        return _par;
+        return _star;
     }
 }

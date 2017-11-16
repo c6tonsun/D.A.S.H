@@ -66,7 +66,7 @@ public class WorldManager : MonoBehaviour {
         if (_levelNumber > _maxLevelNumber)
         {
             //_levelNumber = 1;
-            _gameManager.LoadMenu(_gameManager.GetLevelMenuString());
+            ReturnToMenu();
         }
 
         foreach (Level level in _levels)
@@ -118,6 +118,19 @@ public class WorldManager : MonoBehaviour {
 
         LevelResultUI(false);
         ResetUIValues();
+    }
+
+    // public methods
+
+    public void RestartLevel()
+    {
+        ActivateLevel();
+        ResetUIValues();
+    }
+
+    public void ReturnToMenu()
+    {
+        _gameManager.LoadMenu(_gameManager.GetLevelMenuString());
     }
 
     // UI methods.
