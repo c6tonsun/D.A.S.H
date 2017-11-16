@@ -10,6 +10,7 @@ public class WorldManager : MonoBehaviour {
     private Text _starText;
     private Text _enemyText;
     private Text _levelResultText;
+    public Button restartButton;
     // UI variables
     private int _dashCount;
     private int _parCount;
@@ -47,13 +48,6 @@ public class WorldManager : MonoBehaviour {
         ActivateLevel();
         
         ResetUIValues();
-
-        FPS = GameObject.Find("FPS").GetComponent<Text>();
-    }
-
-    private void Update()
-    {
-        FPS.text = (1f / Time.deltaTime).ToString();
     }
 
     // Level methods
@@ -115,7 +109,9 @@ public class WorldManager : MonoBehaviour {
 
         LevelResultUI(true);
 
+        restartButton.gameObject.SetActive(false);
         yield return new WaitForSeconds(_readTime);
+        restartButton.gameObject.SetActive(true);
 
         if (win)
         {
