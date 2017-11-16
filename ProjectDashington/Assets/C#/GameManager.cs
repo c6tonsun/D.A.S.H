@@ -9,8 +9,9 @@ public class GameManager : MonoBehaviour {
 
     private int[,] saveFile;
 
-    public int worldCount;
-    public int levelsPerWorld;
+    public int w1LevelCount;
+    public int w2LevelCount;
+    public int w3LevelCount;
 
     public int world;
     public int level;
@@ -42,7 +43,7 @@ public class GameManager : MonoBehaviour {
         }
         else
         {
-            SaveLoad.MakeSaveFile(worldCount, levelsPerWorld);
+            SaveLoad.MakeSaveFile(w1LevelCount, w2LevelCount, w3LevelCount);
         }
 
         saveFile = SaveLoad.SaveFile;

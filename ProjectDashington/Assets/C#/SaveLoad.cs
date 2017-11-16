@@ -29,9 +29,9 @@ public static class SaveLoad {
         return false;
     }
 
-    public static void MakeSaveFile(int worldCount, int levelsPerWorld)
+    public static void MakeSaveFile(int w1LevelCount, int w2LevelCount, int w3LevelCount)
     {
-        int[,] newSaveFile = new int[worldCount * levelsPerWorld, 4];
+        int[,] newSaveFile = new int[w1LevelCount + w2LevelCount + w3LevelCount, 4];
 
         int currentWolrd = 1;
         int currentLevel = 0;
@@ -44,7 +44,8 @@ public static class SaveLoad {
             newSaveFile[i, STAR] = FALSE;
             currentLevel++;
 
-            if (currentLevel > levelsPerWorld)
+            if (currentWolrd == 1 && currentLevel == w1LevelCount ||
+                currentWolrd == 2 && currentLevel == w2LevelCount)
             {
                 currentWolrd++;
                 currentLevel = 0;
