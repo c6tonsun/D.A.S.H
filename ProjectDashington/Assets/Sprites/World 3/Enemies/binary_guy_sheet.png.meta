@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: e54c3a18bad11cb41b18cbd9b257b0e0
-timeCreated: 1510830656
+timeCreated: 1510842533
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -14,6 +14,8 @@ TextureImporter:
     21300014: binary_guy_sheet_7
     21300016: binary_guy_sheet_8
     21300018: binary_guy_sheet_9
+    21300020: binary_guy_sheet_10
+    21300022: binary_guy_sheet_11
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -209,6 +211,32 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1200
+        y: 0
+        width: 400
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: binary_guy_sheet_10
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 0
+        width: 400
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: binary_guy_sheet_11
+      rect:
+        serializedVersion: 2
+        x: 2000
         y: 0
         width: 400
         height: 400
