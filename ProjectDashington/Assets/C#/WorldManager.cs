@@ -86,6 +86,8 @@ public class WorldManager : MonoBehaviour {
         DeactivateAllLevels();
         _currentLevel.gameObject.SetActive(true);
         UpdateInGameUI();
+
+        RemoveProjectiles();
     }
 
     private void DeactivateAllLevels()
@@ -93,6 +95,15 @@ public class WorldManager : MonoBehaviour {
         foreach (Level level in _levels)
         {
             level.gameObject.SetActive(false);
+        }
+    }
+
+    private void RemoveProjectiles()
+    {
+        GameObject[] projectiles = GameObject.FindGameObjectsWithTag("Projectile");
+        foreach (GameObject projetctile in projectiles)
+        {
+            Destroy(projetctile);
         }
     }
 
