@@ -7,10 +7,10 @@ public class Tutorial : MonoBehaviour {
     private Color _color;
 
     [SerializeField]
-    private float _alphaSpeed;
+    private float _alphaSpeed = 1.3f;
     private float _alphaValue;
 
-    public float factor;
+    public float factor = 0.77f;
 
     private PlayerMovement _playerMovement;
     private bool _firstTouch;
