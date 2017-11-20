@@ -1,21 +1,27 @@
 fileFormatVersion: 2
-guid: e54c3a18bad11cb41b18cbd9b257b0e0
-timeCreated: 1510842533
+guid: d2df99219db314c49bc09b6390afc0c8
+timeCreated: 1511177719
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: binary_guy_sheet_0
-    21300002: binary_guy_sheet_1
-    21300004: binary_guy_sheet_2
-    21300006: binary_guy_sheet_3
-    21300008: binary_guy_sheet_4
-    21300010: binary_guy_sheet_5
-    21300012: binary_guy_sheet_6
-    21300014: binary_guy_sheet_7
-    21300016: binary_guy_sheet_8
-    21300018: binary_guy_sheet_9
-    21300020: binary_guy_sheet_10
-    21300022: binary_guy_sheet_11
+    21300000: binary_guy_sheet (1)_0
+    21300002: binary_guy_sheet (1)_1
+    21300004: binary_guy_sheet (1)_2
+    21300006: binary_guy_sheet (1)_3
+    21300008: binary_guy_sheet (1)_4
+    21300010: binary_guy_sheet (1)_5
+    21300012: binary_guy_sheet (1)_6
+    21300014: binary_guy_sheet (1)_7
+    21300016: binary_guy_sheet (1)_8
+    21300018: binary_guy_sheet (1)_9
+    21300020: binary_guy_sheet (1)_10
+    21300022: binary_guy_sheet (1)_11
+    21300024: binary_guy_sheet (1)_12
+    21300026: binary_guy_sheet (1)_13
+    21300028: binary_guy_sheet (1)_14
+    21300030: binary_guy_sheet (1)_15
+    21300032: binary_guy_sheet (1)_16
+    21300034: binary_guy_sheet (1)_17
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -90,7 +96,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: binary_guy_sheet_0
+      name: binary_guy_sheet (1)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 800
+        width: 400
+        height: 400
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: binary_guy_sheet (1)_1
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 800
+        width: 400
+        height: 400
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: binary_guy_sheet (1)_2
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 800
+        width: 400
+        height: 400
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: binary_guy_sheet (1)_3
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 800
+        width: 400
+        height: 400
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: binary_guy_sheet (1)_4
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 800
+        width: 400
+        height: 400
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: binary_guy_sheet (1)_5
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 800
+        width: 400
+        height: 400
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: binary_guy_sheet (1)_6
       rect:
         serializedVersion: 2
         x: 0
@@ -98,12 +182,12 @@ TextureImporter:
         width: 400
         height: 400
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: binary_guy_sheet_1
+      name: binary_guy_sheet (1)_7
       rect:
         serializedVersion: 2
         x: 400
@@ -111,12 +195,12 @@ TextureImporter:
         width: 400
         height: 400
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: binary_guy_sheet_2
+      name: binary_guy_sheet (1)_8
       rect:
         serializedVersion: 2
         x: 800
@@ -124,12 +208,12 @@ TextureImporter:
         width: 400
         height: 400
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: binary_guy_sheet_3
+      name: binary_guy_sheet (1)_9
       rect:
         serializedVersion: 2
         x: 1200
@@ -137,12 +221,12 @@ TextureImporter:
         width: 400
         height: 400
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: binary_guy_sheet_4
+      name: binary_guy_sheet (1)_10
       rect:
         serializedVersion: 2
         x: 1600
@@ -150,12 +234,12 @@ TextureImporter:
         width: 400
         height: 400
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: binary_guy_sheet_5
+      name: binary_guy_sheet (1)_11
       rect:
         serializedVersion: 2
         x: 2000
@@ -163,12 +247,12 @@ TextureImporter:
         width: 400
         height: 400
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: binary_guy_sheet_6
+      name: binary_guy_sheet (1)_12
       rect:
         serializedVersion: 2
         x: 0
@@ -176,12 +260,12 @@ TextureImporter:
         width: 400
         height: 400
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: binary_guy_sheet_7
+      name: binary_guy_sheet (1)_13
       rect:
         serializedVersion: 2
         x: 400
@@ -189,12 +273,12 @@ TextureImporter:
         width: 400
         height: 400
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: binary_guy_sheet_8
+      name: binary_guy_sheet (1)_14
       rect:
         serializedVersion: 2
         x: 800
@@ -202,25 +286,25 @@ TextureImporter:
         width: 400
         height: 400
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: binary_guy_sheet_9
+      name: binary_guy_sheet (1)_15
       rect:
         serializedVersion: 2
         x: 1200
         y: 0
         width: 400
         height: 400
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.45, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: binary_guy_sheet_10
+      name: binary_guy_sheet (1)_16
       rect:
         serializedVersion: 2
         x: 1600
@@ -228,12 +312,12 @@ TextureImporter:
         width: 400
         height: 400
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: binary_guy_sheet_11
+      name: binary_guy_sheet (1)_17
       rect:
         serializedVersion: 2
         x: 2000
@@ -241,7 +325,7 @@ TextureImporter:
         width: 400
         height: 400
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
