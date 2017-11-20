@@ -65,8 +65,7 @@ public class PlayerMovement : MonoBehaviour {
                 StopMovementCheck();
             }
         }
-
-
+        
         if(_rb.velocity.magnitude < 0.3f)
         {
             ResetMovement();
@@ -132,6 +131,7 @@ public class PlayerMovement : MonoBehaviour {
         _pushDistance = pushDistance;
         
         _rb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
+        transform.right = -_rb.velocity;
 
         _startDash = false;
         _isDashing = true;

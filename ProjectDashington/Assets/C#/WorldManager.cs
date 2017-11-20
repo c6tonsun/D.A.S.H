@@ -31,8 +31,6 @@ public class WorldManager : MonoBehaviour {
     public const string TAG_ENEMY = "Enemy";
     public const string TAG_SHIELD= "Shield";
     public const string TAG_LAVA = "Lava";
-
-    private Text FPS;
     
     private void Start()
     {
