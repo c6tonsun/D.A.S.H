@@ -46,6 +46,8 @@ public class WorldManager : MonoBehaviour {
         ActivateLevel();
         
         ResetUIValues();
+
+        _canvas.GetComponentInChildren<MenuHeader>().gameObject.SetActive(false);
     }
 
     // Level methods
