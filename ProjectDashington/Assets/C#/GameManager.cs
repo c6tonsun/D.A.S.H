@@ -1,14 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
-    private MenuUI _menuUI;
+    private UIManager _UIManager;
+    private WorldManager _worldManager;
 
     private int[,] saveFile;
-
     public int w1LevelCount;
     public int w2LevelCount;
     public int w3LevelCount;
@@ -18,6 +16,14 @@ public class GameManager : MonoBehaviour {
 
     public string menuMode;
     public const string LEVEL_MENU = "Level";
+    public const string GAME_UI = "Game";
+    public const string PAUSE_UI = "Pause";
+    public const string END_UI = "End";
+    
+    public const int ENEMY_LAYER = 10;
+    public const string PLAYER_TAG = "Player";
+    public const string ENEMY_TAG = "Enemy";
+    public const string SHIELD_TAG = "Shield";
 
     private void Start()
     {
@@ -30,7 +36,7 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        _menuUI = FindObjectOfType<MenuUI>();
+        _UIManager = FindObjectOfType<UIManager>();
 
         GetSaveFileFromMemory();
     }
@@ -51,10 +57,8 @@ public class GameManager : MonoBehaviour {
 
     // public methods
 
-    public void StartLevel()
+    public void StartWorldAndLevel()
     {
-        _menuUI.gameObject.SetActive(false);
-
         if (SceneManager.GetSceneByName("World " + world) != null)
         {
             SceneManager.LoadScene("World " + world);
@@ -65,9 +69,17 @@ public class GameManager : MonoBehaviour {
     {
         this.menuMode = menuMode;
 
-        _menuUI.gameObject.SetActive(true);
-
         SceneManager.LoadScene("Main menu");
+    }
+
+    public void StartLevel()
+    {
+        _UIManager.StartLevel();
+    }
+
+    public void EndLevel()
+    {
+        _UIManager.EndLevel();
     }
 
     // Getters and setters
@@ -95,6 +107,16 @@ public class GameManager : MonoBehaviour {
     public void SetMenuMode(string menuMode)
     {
         this.menuMode = menuMode;
-        _menuUI.UpdateMenu();
+        _UIManager.UpdateMenu();
+    }
+
+    public void SetWorldManager(WorldManager worldManager)
+    {
+        _worldManager = worldManager;
+    }
+
+    public int GetStarValue()
+    {
+        return _worldManager.GetStarValue();
     }
 }

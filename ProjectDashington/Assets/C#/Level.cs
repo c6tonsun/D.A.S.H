@@ -84,7 +84,7 @@ public class Level : MonoBehaviour {
         return _levelNumber;
     }
 
-    public int GetParValue()
+    public int GetStarValue()
     {
         return _star;
     }

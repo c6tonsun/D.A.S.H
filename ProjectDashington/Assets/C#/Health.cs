@@ -12,11 +12,11 @@ public class Health : MonoBehaviour, IHealth {
     private int _currentHealth;
 
     private GameObject _killer;
-    private WorldManager _worldManager;
+    private UIManager _UIManager;
     
     private void Awake()
     {
-        _worldManager = GameObject.Find("World manager").GetComponent<WorldManager>();
+        _UIManager = FindObjectOfType<UIManager>();
     }
 
     private void OnEnable()
@@ -28,7 +28,7 @@ public class Health : MonoBehaviour, IHealth {
     {
         if (gameObject.tag == "Enemy" && GetIsDead())
         {
-            _worldManager.DecreaseEnemyCount();
+            _UIManager.DecreaseEnemyCount();
             gameObject.SetActive(false);
         }
         else if (gameObject.tag == "Shield" && GetIsDead())
@@ -38,7 +38,7 @@ public class Health : MonoBehaviour, IHealth {
         }
         else if (gameObject.tag == "Player" && GetIsDead())
         {
-            _worldManager.SetPlayerKiller(_killer);
+            _UIManager.PlayerLost(_killer);
             GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             gameObject.SetActive(false);
         }
