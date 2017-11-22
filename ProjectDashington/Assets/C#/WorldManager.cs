@@ -56,7 +56,6 @@ public class WorldManager : MonoBehaviour {
         RemoveProjectiles();
 
         _gameManager.SetMenuMode(GameManager.GAME_UI);
-        _gameManager.StartLevel();
     }
 
     private void DeactivateAllLevels()

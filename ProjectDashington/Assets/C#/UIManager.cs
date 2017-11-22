@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour {
     private int _starCount;
 
     public Text endScreenText;
+    public Button nextLevelButton;
+    public Button worldSelectionButton;
 
     private void Start()
     {
@@ -123,7 +125,7 @@ public class UIManager : MonoBehaviour {
         }
         else
         {
-            endScreenText.text = "You win!";
+            endScreenText.text = "Level complite!";
         }
 
         EndLevel();

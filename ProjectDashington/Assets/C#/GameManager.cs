@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour {
 
     public void StartLevel()
     {
+        _worldManager.RestartLevel();
         _UIManager.StartLevel();
     }
 
