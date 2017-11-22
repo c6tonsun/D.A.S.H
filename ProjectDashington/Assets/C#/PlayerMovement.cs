@@ -19,20 +19,15 @@ public class PlayerMovement : MonoBehaviour {
     private bool _isDashing = false;
     private bool _isPushed = false;
 
-    private WorldManager _worldManager;
+    private UIManager _UIManager;
     private DamageDealer _damageDealer;
 
-    const int TRAP_LAYER = 11;
     const int ENEMY_LAYER = 10;
-    const int PLAYER_LAYER = 9;
-    const int WALL_LAYER = 8;
 
     private void Start()
     {
         _rb = gameObject.GetComponent<Rigidbody2D>();
-        _worldManager = GameObject.Find("World manager").GetComponent<WorldManager>();
-        _damageDealer = GameObject.Find("World manager").GetComponent<DamageDealer>();
-        _damageDealer.enabled = false;
+        _UIManager = FindObjectOfType<UIManager>();
     }
 
     // Update is called once per frame
@@ -81,7 +76,7 @@ public class PlayerMovement : MonoBehaviour {
             Camera.main.transform.forward);
 
         // If our raycast hit enemy set new target.
-        if (hit.collider != null && hit.collider.gameObject.layer == ENEMY_LAYER)
+        if (hit.collider != null && hit.collider.gameObject.layer == GameManager.ENEMY_LAYER)
         {
             if (hit.collider.gameObject.tag == "Enemy")
             {
@@ -118,9 +113,7 @@ public class PlayerMovement : MonoBehaviour {
         _isDashing = true;
         _isPushed = false;
 
-        _worldManager.IncreaseDashCount();
-
-        _damageDealer.enabled = true;
+        _UIManager.IncreaseDashCount();
     }
 
     public void Pushed(Vector3 pushDirection, float pushDistance, float pushForce)
@@ -176,8 +169,6 @@ public class PlayerMovement : MonoBehaviour {
 
         _rb.velocity = Vector3.zero;
         transform.right = Vector3.right;
-
-        _damageDealer.enabled = false;
 
         _startDash = false;
         _isDashing = false;
