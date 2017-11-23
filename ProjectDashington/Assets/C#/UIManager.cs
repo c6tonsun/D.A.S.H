@@ -15,9 +15,12 @@ public class UIManager : MonoBehaviour {
     private int _dashCount;
     private int _starCount;
 
-    public Text endScreenText;
-    public Button nextLevelButton;
-    public Button worldSelectionButton;
+    public GameObject winStar;
+    public GameObject winNoStar;
+
+    public Text loseText;
+
+    public Animator starAnimator;
 
     private void Start()
     {
@@ -72,12 +75,6 @@ public class UIManager : MonoBehaviour {
 
     }
 
-    public void EndLevel()
-    {
-        _gameManager.SetMenuMode(GameManager.END_UI);
-        UpdateMenu();
-    }
-
     private void ResetGameUIValues()
     {
         _enemyCount = GameObject.FindGameObjectsWithTag(GameManager.ENEMY_TAG).Length;
@@ -113,21 +110,28 @@ public class UIManager : MonoBehaviour {
 
     public void PlayerLost(GameObject killer)
     {
-        endScreenText.text = "You died to " + killer.tag;
-        EndLevel();
+        _gameManager.menuMode = GameManager.LOSE_UI;
+        UpdateMenu();
     }
 
     private void PlayerWon()
     {
+        _gameManager.menuMode = GameManager.WIN_UI;
+        UpdateMenu();
+
+        winStar.SetActive(false);
+        winNoStar.SetActive(false);
+
         if (_dashCount <= _starCount)
         {
-            endScreenText.text = "You are the best!";
+            winStar.SetActive(true);
+
+            // reset animation
+            starAnimator.Play("Star animation");
         }
         else
         {
-            endScreenText.text = "Level complite!";
+            winNoStar.SetActive(true);
         }
-
-        EndLevel();
     }
 }

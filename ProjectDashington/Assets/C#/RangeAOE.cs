@@ -11,9 +11,17 @@ public class RangeAOE : RangeAnimation {
     [SerializeField]
     private float _needleSpeed;
 
-    private bool _isNeedlesReady;
+    public bool _isNeedlesReady;
     private GameObject[] _needles;
-    
+
+    private void OnEnable()
+    {
+        //transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+        GetComponent<Animator>().runtimeAnimatorController =
+            Resources.Load("Voodoo") as RuntimeAnimatorController;
+        //transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -71,9 +79,12 @@ public class RangeAOE : RangeAnimation {
     {
         foreach (GameObject needle in _needles)
         {
-            needle.GetComponent<Rigidbody2D>().AddForce(
-                -needle.transform.up * _needleSpeed, ForceMode2D.Impulse);
-            Destroy(needle, 1f);
+            if (needle != null)
+            {
+                needle.GetComponent<Rigidbody2D>().AddForce(
+                    -needle.transform.up * _needleSpeed, ForceMode2D.Impulse);
+                Destroy(needle, 1f);
+            }
         }
     }
 }
