@@ -16,6 +16,8 @@ public class WorldManager : MonoBehaviour {
         InitializeLevels();
         FindNextLevel();
         ActivateLevel();
+
+        _gameManager.InitializeGameUI();
     }
 
     // Level methods
@@ -56,7 +58,6 @@ public class WorldManager : MonoBehaviour {
         RemoveProjectiles();
 
         _gameManager.SetMenuMode(GameManager.GAME_UI);
-        _gameManager.StartLevel();
     }
 
     private void DeactivateAllLevels()
@@ -80,7 +81,10 @@ public class WorldManager : MonoBehaviour {
 
     public void RestartLevel()
     {
+        FindNextLevel();
         ActivateLevel();
+
+        _gameManager.InitializeGameUI();
     }
 
     public void ReturnToMenu()

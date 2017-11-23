@@ -18,8 +18,9 @@ public class GameManager : MonoBehaviour {
     public const string LEVEL_MENU = "Level";
     public const string GAME_UI = "Game";
     public const string PAUSE_UI = "Pause";
-    public const string END_UI = "End";
-    
+    public const string WIN_UI = "Win";
+    public const string LOSE_UI = "Lose";
+
     public const int ENEMY_LAYER = 10;
     public const string PLAYER_TAG = "Player";
     public const string ENEMY_TAG = "Enemy";
@@ -68,18 +69,26 @@ public class GameManager : MonoBehaviour {
     public void LoadMenu(string menuMode)
     {
         this.menuMode = menuMode;
+        _UIManager.UpdateMenu();
 
         SceneManager.LoadScene("Main menu");
     }
 
     public void StartLevel()
     {
+        _worldManager.RestartLevel();
         _UIManager.StartLevel();
     }
 
-    public void EndLevel()
+    public void NextLevel()
     {
-        _UIManager.EndLevel();
+        level++;
+        _worldManager.RestartLevel();
+    }
+
+    public void InitializeGameUI()
+    {
+        _UIManager.StartLevel();
     }
 
     // Getters and setters
