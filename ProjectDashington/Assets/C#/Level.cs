@@ -74,6 +74,11 @@ public class Level : MonoBehaviour {
         {
             _diables[i].transform.position = _defaultPositions[i];
             _diables[i].transform.localEulerAngles = _defaultRotations[i];
+
+            if (_diables[i].GetComponent<RangeAOE>() != null)
+            {
+                _diables[i].GetComponent<RangeAOE>().ResetAnimation();
+            }
         }
     }
 

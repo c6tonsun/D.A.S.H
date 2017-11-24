@@ -14,14 +14,6 @@ public class RangeAOE : RangeAnimation {
     public bool _isNeedlesReady;
     private GameObject[] _needles;
 
-    private void OnEnable()
-    {
-        //transform.localScale = new Vector3(0.5f, 0.5f, 1f);
-        GetComponent<Animator>().runtimeAnimatorController =
-            Resources.Load("Voodoo") as RuntimeAnimatorController;
-        //transform.localScale = new Vector3(0.5f, 0.5f, 1f);
-    }
-
     protected override void Start()
     {
         base.Start();
@@ -52,6 +44,14 @@ public class RangeAOE : RangeAnimation {
             _isNeedlesReady = false;
         }
 	}
+
+    public void ResetAnimation()
+    {
+        //transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+        GetComponent<Animator>().runtimeAnimatorController =
+            Resources.Load("Voodoo") as RuntimeAnimatorController;
+        //transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+    }
 
     private void InstantiateNeedles()
     {
