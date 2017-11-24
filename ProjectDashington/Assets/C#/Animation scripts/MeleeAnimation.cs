@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 
 public class MeleeAnimation : MonoBehaviour {
-
-    private SpriteRenderer _spriteRenderer;
+    
 	private Animator _anim;
 
     private Collider2D _attackCollider;
@@ -17,9 +16,8 @@ public class MeleeAnimation : MonoBehaviour {
     private void Start()
     {
         _anim = GetComponent<Animator>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
 
-        _attackCooldown = _timeToFirstHit;
+        ResetAnimation();
 
         Collider2D[] colliders = GetComponents<Collider2D>();
         foreach (Collider2D collider in colliders)
@@ -52,4 +50,11 @@ public class MeleeAnimation : MonoBehaviour {
 			_isHitting = true;
 		}
 	}
+
+    public void ResetAnimation()
+    {
+        _attackCooldown = _timeToFirstHit;
+        GetComponent<Animator>().runtimeAnimatorController =
+            Resources.Load("MeleeImp") as RuntimeAnimatorController;
+    }
 }

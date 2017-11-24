@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class RangeAOE : RangeAnimation {
+public class RangeAOE : MonoBehaviour {
     
     [SerializeField]
     private GameObject _needleParentObject;
@@ -14,10 +14,8 @@ public class RangeAOE : RangeAnimation {
     public bool _isNeedlesReady;
     private GameObject[] _needles;
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
-
         if (_needleCount == 0)
         {
             _needleCount = 1;
@@ -47,10 +45,8 @@ public class RangeAOE : RangeAnimation {
 
     public void ResetAnimation()
     {
-        //transform.localScale = new Vector3(0.5f, 0.5f, 1f);
         GetComponent<Animator>().runtimeAnimatorController =
             Resources.Load("Voodoo") as RuntimeAnimatorController;
-        //transform.localScale = new Vector3(0.5f, 0.5f, 1f);
     }
 
     private void InstantiateNeedles()

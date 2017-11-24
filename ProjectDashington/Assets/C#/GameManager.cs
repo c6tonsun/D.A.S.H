@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour {
     public int world;
     public int level;
 
+    private bool _isPaused;
+
     public string menuMode;
     public const string LEVEL_MENU = "Level";
     public const string GAME_UI = "Game";
@@ -60,10 +62,7 @@ public class GameManager : MonoBehaviour {
 
     public void StartWorldAndLevel()
     {
-        if (SceneManager.GetSceneByName("World " + world) != null)
-        {
-            SceneManager.LoadScene("World " + world);
-        }
+        SceneManager.LoadScene("World " + world);
     }
 
     public void LoadMenu(string menuMode)
@@ -127,5 +126,30 @@ public class GameManager : MonoBehaviour {
     public int GetStarValue()
     {
         return _worldManager.GetStarValue();
+    }
+
+    // On App Pause
+
+    public void OnApplicationPause(bool pause)
+    {
+        _isPaused = pause;
+        
+        if (_UIManager != null)
+        {
+            if (_isPaused && menuMode == GAME_UI)
+            {
+                menuMode = PAUSE_UI;
+                _UIManager.UpdateMenu();
+
+                Time.timeScale = 0f;
+            }
+            else if (!_isPaused && menuMode == PAUSE_UI)
+            {
+                menuMode = GAME_UI;
+                _UIManager.UpdateMenu();
+
+                Time.timeScale = 1f;
+            }
+        }
     }
 }

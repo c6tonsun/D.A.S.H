@@ -21,7 +21,7 @@ public class Level : MonoBehaviour {
     private void OnEnable()
     {
         EnableAllChildren();
-        DiablesToDefaultTransform();
+        ResetDiables();
     }
 
     private void CreateLevelNumber()
@@ -68,7 +68,7 @@ public class Level : MonoBehaviour {
         }
     }
 
-    private void DiablesToDefaultTransform()
+    private void ResetDiables()
     {
         for (int i = 0; i < _diables.Length; i++)
         {
@@ -78,6 +78,10 @@ public class Level : MonoBehaviour {
             if (_diables[i].GetComponent<RangeAOE>() != null)
             {
                 _diables[i].GetComponent<RangeAOE>().ResetAnimation();
+            }
+            else if (_diables[i].GetComponent<MeleeAnimation>() != null)
+            {
+                _diables[i].GetComponent<MeleeAnimation>().ResetAnimation();
             }
         }
     }

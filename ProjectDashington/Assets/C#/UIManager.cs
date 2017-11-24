@@ -18,9 +18,12 @@ public class UIManager : MonoBehaviour {
     public GameObject winStar;
     public GameObject winNoStar;
 
-    public Text loseText;
+    public GameObject muteButton;
+    public GameObject unmuteButton;
 
     public Animator starAnimator;
+
+    private bool pause;
 
     private void Start()
     {
@@ -72,7 +75,12 @@ public class UIManager : MonoBehaviour {
 
     public void PauseLevel()
     {
+        _gameManager.OnApplicationPause(true);
+    }
 
+    public void UnpauseLevel()
+    {
+        _gameManager.OnApplicationPause(false);
     }
 
     private void ResetGameUIValues()

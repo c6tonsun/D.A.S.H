@@ -58,6 +58,8 @@ public class WorldManager : MonoBehaviour {
         RemoveProjectiles();
 
         _gameManager.SetMenuMode(GameManager.GAME_UI);
+
+        Time.timeScale = 1f;
     }
 
     private void DeactivateAllLevels()

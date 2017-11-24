@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Tutorial : MonoBehaviour {
 
@@ -13,12 +12,11 @@ public class Tutorial : MonoBehaviour {
     public float factor = 0.77f;
 
     private PlayerMovement _playerMovement;
-    private bool _firstTouch;
+    private bool _tutorialRunning;
 
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _playerMovement = FindObjectOfType<PlayerMovement>();
     }
 
     private void OnEnable()
@@ -27,26 +25,30 @@ public class Tutorial : MonoBehaviour {
         _color.a = 0f;
         _spriteRenderer.color = _color;
 
-        _firstTouch = true;
+        _tutorialRunning = false;
+
+        _alphaValue = 0f;
+    }
+
+    private void Start()
+    {
+        _playerMovement = FindObjectOfType<PlayerMovement>();
     }
 
     private void Update()
     {
-        if (_firstTouch && Input.GetMouseButtonDown(0))
+        if (!_tutorialRunning && Input.GetMouseButtonDown(0))
         {
-            StartCoroutine(TutorialRoutine());
-            _firstTouch = false;
+            _tutorialRunning = true;
         }
-        else if (_playerMovement.GetIsDashing())
-        {
-            StopCoroutine(TutorialRoutine());
-            _spriteRenderer.enabled = false;
-        }
-    }
 
-    IEnumerator TutorialRoutine()
-    {
-        while (true)
+        if (_playerMovement.GetIsDashing())
+        {
+            gameObject.SetActive(false);
+            _tutorialRunning = false;
+        }
+
+        if (_tutorialRunning)
         {
             _color = _spriteRenderer.color;
 
@@ -55,8 +57,6 @@ public class Tutorial : MonoBehaviour {
             _alphaValue += _alphaSpeed * Time.deltaTime;
 
             _spriteRenderer.color = _color;
-
-            yield return null;
         }
     }
 }
