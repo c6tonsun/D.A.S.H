@@ -14,6 +14,13 @@ public class RangeAOE : MonoBehaviour {
     public bool _isNeedlesReady;
     private GameObject[] _needles;
 
+    private void OnEnable()
+    {
+        GetComponent<Animator>().runtimeAnimatorController =
+            Resources.Load("Voodoo") as RuntimeAnimatorController;
+        GetComponent<Animator>().Play("Voodoo_idle_final", -1, 0f);
+    }
+
     private void Start()
     {
         if (_needleCount == 0)
@@ -42,12 +49,6 @@ public class RangeAOE : MonoBehaviour {
             _isNeedlesReady = false;
         }
 	}
-
-    public void ResetAnimation()
-    {
-        GetComponent<Animator>().runtimeAnimatorController =
-            Resources.Load("Voodoo") as RuntimeAnimatorController;
-    }
 
     private void InstantiateNeedles()
     {

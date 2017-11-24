@@ -12,12 +12,18 @@ public class MeleeAnimation : MonoBehaviour {
 	private float _attackCooldown;
     private float _attackTime = 1.6f;
 
+    private void OnEnable()
+    {
+        GetComponent<Animator>().runtimeAnimatorController =
+            Resources.Load("MeleeImp") as RuntimeAnimatorController;
+        GetComponent<Animator>().Play("Imp_idle_final", -1, 0f);
+        _attackCooldown = _timeToFirstHit;
+    }
+
     // Use this for initialization
     private void Start()
     {
         _anim = GetComponent<Animator>();
-
-        ResetAnimation();
 
         Collider2D[] colliders = GetComponents<Collider2D>();
         foreach (Collider2D collider in colliders)
@@ -50,11 +56,4 @@ public class MeleeAnimation : MonoBehaviour {
 			_isHitting = true;
 		}
 	}
-
-    public void ResetAnimation()
-    {
-        _attackCooldown = _timeToFirstHit;
-        GetComponent<Animator>().runtimeAnimatorController =
-            Resources.Load("MeleeImp") as RuntimeAnimatorController;
-    }
 }
