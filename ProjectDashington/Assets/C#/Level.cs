@@ -3,11 +3,12 @@
 public class Level : MonoBehaviour {
 
     [SerializeField]
-    private int _par;
+    private int _star;
 
     private int _levelNumber;
 
-    private GameObject[] _diables;
+    private Transform[] _children;
+    private GameObject[] _resetables;
     private Vector3[] _defaultPositions;
     private Vector3[] _defaultRotations;
 
@@ -15,16 +16,13 @@ public class Level : MonoBehaviour {
     {
         CreateLevelNumber();
 
-        FindDiables();
-
-        // Debug.Log(transform.childCount.ToString());
+        FindResetables();
     }
 
     private void OnEnable()
     {
-        DiablesToDefaultTransform();
         EnableAllChildren();
-        DiablesToDefaultTransform();
+        ResetDiables();
     }
 
     private void CreateLevelNumber()
@@ -46,37 +44,36 @@ public class Level : MonoBehaviour {
         }
     }
 
-    private void FindDiables()
+    private void FindResetables()
     {
-        Health[] healths = GetComponentsInChildren<Health>(true);
+        _children = GetComponentsInChildren<Transform>(true);
 
-        _diables = new GameObject[healths.Length];
-        _defaultPositions = new Vector3[healths.Length];
-        _defaultRotations = new Vector3[healths.Length];
+        _resetables = new GameObject[_children.Length];
+        _defaultPositions = new Vector3[_children.Length];
+        _defaultRotations = new Vector3[_children.Length];
 
-        for (int i = 0; i < healths.Length; i++)
+        for (int i = 0; i < _children.Length; i++)
         {
-            _diables.SetValue(healths[i].gameObject, i);
-            _defaultPositions.SetValue(healths[i].transform.position, i);
-            _defaultRotations.SetValue(healths[i].transform.localEulerAngles, i);
+            _resetables.SetValue(_children[i].gameObject, i);
+            _defaultPositions.SetValue(_children[i].transform.position, i);
+            _defaultRotations.SetValue(_children[i].transform.localEulerAngles, i);
         }
     }
 
     private void EnableAllChildren()
     {
-        Transform[] children = GetComponentsInChildren<Transform>(true);
-        for (int i = 0; i < children.Length; i++)
+        for (int i = 0; i < _children.Length; i++)
         {
-            children[i].gameObject.SetActive(true);
+            _children[i].gameObject.SetActive(true);
         }
     }
 
-    private void DiablesToDefaultTransform()
+    private void ResetDiables()
     {
-        for (int i = 0; i < _diables.Length; i++)
+        for (int i = 0; i < _resetables.Length; i++)
         {
-            _diables[i].transform.position = _defaultPositions[i];
-            _diables[i].transform.localEulerAngles = _defaultRotations[i];
+            _resetables[i].transform.position = _defaultPositions[i];
+            _resetables[i].transform.localEulerAngles = _defaultRotations[i];
         }
     }
 
@@ -87,8 +84,8 @@ public class Level : MonoBehaviour {
         return _levelNumber;
     }
 
-    public int GetParValue()
+    public int GetStarValue()
     {
-        return _par;
+        return _star;
     }
 }

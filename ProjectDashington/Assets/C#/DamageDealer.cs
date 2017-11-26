@@ -23,7 +23,7 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
             _isPlayer = true;
         }
     }
-
+    
     private void Update()
     {
         if (_isPlayer)
@@ -31,7 +31,7 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
             _canDoDamage = _playerMovement.GetIsDashing();
         }
     }
-
+    
     private void DealDamage(Collider2D other)
     {
         if (!_canDoDamage)

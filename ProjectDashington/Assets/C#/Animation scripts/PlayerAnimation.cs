@@ -25,7 +25,12 @@ public class PlayerAnimation : MonoBehaviour
         _anim.SetBool("isDashing", _playerMovement.GetIsDashing());
 
         // Flips
-        if (_rb.velocity.x < 0)
+		if (_rb.velocity.x == 0) {
+			
+		} else {
+			
+		}
+		if (_rb.velocity.x < 0)
         {
             _spriteRenderer.flipY = true;
         }
@@ -33,6 +38,13 @@ public class PlayerAnimation : MonoBehaviour
         {
             _spriteRenderer.flipY = false;
         }
+		if (_playerMovement.GetIsPushed ()) {
+			if (_spriteRenderer.flipY) {
+				_spriteRenderer.flipY = false;
+			} else {
+				_spriteRenderer.flipY = true;
+			}
+		}
     }
 }
 

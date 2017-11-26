@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class RangeAOE : RangeAnimation {
+public class RangeAOE : MonoBehaviour {
     
     [SerializeField]
     private GameObject _needleParentObject;
@@ -11,13 +11,18 @@ public class RangeAOE : RangeAnimation {
     [SerializeField]
     private float _needleSpeed;
 
-    private bool _isNeedlesReady;
+    public bool _isNeedlesReady;
     private GameObject[] _needles;
-    
-    protected override void Start()
-    {
-        base.Start();
 
+    private void OnEnable()
+    {
+        GetComponent<Animator>().runtimeAnimatorController =
+            Resources.Load("Voodoo") as RuntimeAnimatorController;
+        GetComponent<Animator>().Play("Voodoo_idle_final", -1, 0f);
+    }
+
+    private void Start()
+    {
         if (_needleCount == 0)
         {
             _needleCount = 1;
@@ -71,9 +76,12 @@ public class RangeAOE : RangeAnimation {
     {
         foreach (GameObject needle in _needles)
         {
-            needle.GetComponent<Rigidbody2D>().AddForce(
-                -needle.transform.up * _needleSpeed, ForceMode2D.Impulse);
-            Destroy(needle, 1f);
+            if (needle != null)
+            {
+                needle.GetComponent<Rigidbody2D>().AddForce(
+                    -needle.transform.up * _needleSpeed, ForceMode2D.Impulse);
+                Destroy(needle, 1f);
+            }
         }
     }
 }
