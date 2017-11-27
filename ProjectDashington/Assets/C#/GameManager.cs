@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour {
     {
         level++;
         _worldManager.RestartLevel();
+        _UIManager.StartLevel();
     }
 
     public void InitializeGameUI()

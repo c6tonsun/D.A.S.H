@@ -11,6 +11,8 @@ public class RangeAOE : MonoBehaviour {
     [SerializeField]
     private float _needleSpeed;
 
+    public float needleLifeTime;
+
     public bool _isNeedlesReady;
     private GameObject[] _needles;
 
@@ -80,7 +82,7 @@ public class RangeAOE : MonoBehaviour {
             {
                 needle.GetComponent<Rigidbody2D>().AddForce(
                     -needle.transform.up * _needleSpeed, ForceMode2D.Impulse);
-                Destroy(needle, 1f);
+                Destroy(needle, needleLifeTime);
             }
         }
     }

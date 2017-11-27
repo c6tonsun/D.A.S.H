@@ -36,11 +36,6 @@ public class WorldManager : MonoBehaviour {
 
     private void FindNextLevel()
     {
-        if (_gameManager.GetLevelValue() > _maxLevelNumber)
-        {
-            ReturnToMenu();
-        }
-
         foreach (Level level in _levels)
         {
             if (level.GetLevelNumber() == _gameManager.GetLevelValue())
@@ -83,6 +78,12 @@ public class WorldManager : MonoBehaviour {
 
     public void RestartLevel()
     {
+        if (_gameManager.GetLevelValue() > _maxLevelNumber)
+        {
+            ReturnToMenu();
+            return;
+        }
+
         FindNextLevel();
         ActivateLevel();
 
