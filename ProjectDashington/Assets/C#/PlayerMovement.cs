@@ -101,6 +101,10 @@ public class PlayerMovement : MonoBehaviour {
         {
             target.GetComponent<EnemyMovement>().SetCanMove(false);
         }
+        else if (target.GetComponent<JumpMovement>() != null)
+        {
+            target.GetComponent<JumpMovement>().StopAndIdle();
+        }
     }
 
     // Starts dash towards target position.
