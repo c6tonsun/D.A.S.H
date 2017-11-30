@@ -157,6 +157,6 @@ public class JumpMovement : MonoBehaviour {
         Stop();
         GetComponent<Animator>().runtimeAnimatorController =
             Resources.Load("Wrestler") as RuntimeAnimatorController;
-        GetComponent<Animator>().Play("Wrestler_jump", -1, 0f);
+        GetComponent<Animator>().Play("Wrestler_idle", -1, 0f);
     }
 }
