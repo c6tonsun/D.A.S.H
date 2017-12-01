@@ -31,6 +31,11 @@ public static class SaveLoad {
 
     public static void MakeSaveFile(int w1LevelCount, int w2LevelCount, int w3LevelCount)
     {
+        // adds saveslots for worlds
+        w1LevelCount++;
+        w2LevelCount++;
+        w3LevelCount++;
+
         int[,] newSaveFile = new int[w1LevelCount + w2LevelCount + w3LevelCount, 4];
 
         int currentWolrd = 1;

@@ -5,7 +5,10 @@ public class UIManager : MonoBehaviour {
 
     private GameManager _gameManager;
     private MenuHeader[] _menuHeaders;
+
     public Text _worldText;
+    public GameObject worldButtonParent;
+    private Button[] _worldButtons;
     public GameObject levelButtonParent;
     private Button[] _levelButtons;
     
@@ -24,8 +27,6 @@ public class UIManager : MonoBehaviour {
 
     public Animator starAnimator;
 
-    private bool pause;
-
     private void Start()
     {
         if (FindObjectsOfType<UIManager>().Length == 1)
@@ -41,6 +42,7 @@ public class UIManager : MonoBehaviour {
         _gameManager = FindObjectOfType<GameManager>();
         _menuHeaders = transform.GetComponentsInChildren<MenuHeader>(true);
 
+        _worldButtons = worldButtonParent.GetComponentsInChildren<Button>();
         _levelButtons = levelButtonParent.GetComponentsInChildren<Button>();
 
         UpdateMenu();
@@ -81,25 +83,46 @@ public class UIManager : MonoBehaviour {
         }
 
         int[,] savefile = _gameManager.GetSaveFile();
-        
+
+        // world selection
+        for (int i = 0; i < savefile.Length / 4; i++)
+        {
+            if (savefile[i, SaveLoad.LEVEL] == 0)
+            {
+                int index = savefile[i, SaveLoad.WORLD] - 1;
+                _worldButtons[index].interactable = false;
+                _worldButtons[index].transform.GetChild(1).gameObject.SetActive(false);
+
+                if (savefile[i, SaveLoad.OPEN] == SaveLoad.TRUE)
+                {
+                    _worldButtons[index].interactable = true;
+                }
+
+                if (savefile[i, SaveLoad.STAR] == SaveLoad.TRUE)
+                {
+                    _worldButtons[index].transform.GetChild(1).gameObject.SetActive(true);
+                }
+            }
+        }
+
+        // level selection
         for (int i = 0; i < savefile.Length / 4; i++)
         {
             if (savefile[i, SaveLoad.WORLD] == _gameManager.world &&
                 savefile[i, SaveLoad.LEVEL] != 0)
             {
-                _levelButtons[savefile[i, SaveLoad.LEVEL] - 1].gameObject.SetActive(true);
+                int index = savefile[i, SaveLoad.LEVEL] - 1;
+                _levelButtons[index].gameObject.SetActive(true);
 
                 if (savefile[i, SaveLoad.OPEN] == SaveLoad.TRUE)
                 {
-                    _levelButtons[savefile[i, SaveLoad.LEVEL] - 1].interactable = true;
-                    _levelButtons[savefile[i, SaveLoad.LEVEL] - 1].
-                        transform.GetChild(0).gameObject.SetActive(true);
+                    _levelButtons[index].interactable = true;
+                    _levelButtons[index].transform.GetChild(0).gameObject.SetActive(true);
                 }
 
                 if (savefile[i, SaveLoad.STAR] == SaveLoad.TRUE)
                 {
-                    _levelButtons[savefile[i, SaveLoad.LEVEL] - 1].
-                        transform.GetChild(1).gameObject.SetActive(true);
+                    _levelButtons[index].transform.GetChild(1).gameObject.SetActive(true);
                 }
             }
         }
@@ -188,7 +211,9 @@ public class UIManager : MonoBehaviour {
             _gameManager.StarWorldLevel(_gameManager.world, _gameManager.level);
 
             // reset animation
-            starAnimator.Play("Star animation");
+            starAnimator.runtimeAnimatorController =
+                Resources.Load("Star") as RuntimeAnimatorController;
+            starAnimator.Play("Star animation", -1, 0f);
         }
         else
         {
