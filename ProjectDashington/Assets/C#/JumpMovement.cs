@@ -5,8 +5,8 @@ public class JumpMovement : MonoBehaviour {
     private Rigidbody2D _rb;
     
     // Set this set to public to check animation and movement sync.
-    private float animationLength = 0.833f;
-    private float startJump = 0.32f;
+    private float animationLength = 0.8f;
+    private float startJump = 0.4f;
     private float endJump = 0.66f;
     private float _jumpTimer;
 
@@ -89,7 +89,7 @@ public class JumpMovement : MonoBehaviour {
         {
             _jumpCount++;
 
-            if (_jumpCount >= maxJumps)
+            if (_jumpCount > maxJumps)
             {
                 _jumpCount = 0;
                 StopAndIdle();

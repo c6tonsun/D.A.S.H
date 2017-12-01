@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 4e83a4f7e424e1b40ac99f346171cfcf
-timeCreated: 1511734280
+timeCreated: 1512036746
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,6 +10,7 @@ TextureImporter:
     21300006: wrestler_idle_3
     21300008: wrestler_idle_4
     21300010: wrestler_idle_5
+    21300012: wrestler_idle_6
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -91,8 +92,8 @@ TextureImporter:
         y: 0
         width: 400
         height: 400
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.53, y: 0.55}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -104,8 +105,8 @@ TextureImporter:
         y: 0
         width: 400
         height: 400
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.53, y: 0.55}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -117,8 +118,8 @@ TextureImporter:
         y: 0
         width: 400
         height: 400
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.53, y: 0.55}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -130,8 +131,8 @@ TextureImporter:
         y: 0
         width: 400
         height: 400
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.53, y: 0.55}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -143,8 +144,8 @@ TextureImporter:
         y: 0
         width: 400
         height: 400
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.53, y: 0.55}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -156,8 +157,8 @@ TextureImporter:
         y: 0
         width: 400
         height: 400
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.53, y: 0.55}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

@@ -31,7 +31,7 @@ public class WorldManager : MonoBehaviour {
         }
 
         _levels = GetComponentsInChildren<Level>(true);
-        _maxLevelNumber = _levels.Length;
+        _maxLevelNumber = _gameManager.GetCurrentLevelCount();
     }
 
     private void FindNextLevel()

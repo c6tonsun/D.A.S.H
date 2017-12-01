@@ -76,4 +76,12 @@ public static class SaveLoad {
             file.Close();
         }
     }
+
+    public static void Delete()
+    {
+        if (File.Exists(Application.persistentDataPath + FILE_PATH))
+        {
+            File.Delete(Application.persistentDataPath + FILE_PATH);
+        }
+    }
 }

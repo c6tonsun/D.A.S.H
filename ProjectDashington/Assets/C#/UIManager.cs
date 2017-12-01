@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour {
 
     private GameManager _gameManager;
     private MenuHeader[] _menuHeaders;
     public Text _worldText;
+    public GameObject levelButtonParent;
+    private Button[] _levelButtons;
     
     public Text enemyText;
     public Text dashText;
@@ -40,7 +41,7 @@ public class UIManager : MonoBehaviour {
         _gameManager = FindObjectOfType<GameManager>();
         _menuHeaders = transform.GetComponentsInChildren<MenuHeader>(true);
 
-        DontDestroyOnLoad(FindObjectOfType<EventSystem>().gameObject);
+        _levelButtons = levelButtonParent.GetComponentsInChildren<Button>();
 
         UpdateMenu();
     }
@@ -64,6 +65,44 @@ public class UIManager : MonoBehaviour {
         }
 
         _worldText.text = "world " + _gameManager.world;
+
+        SelectionButtonsFromSaveFile();
+    }
+
+    public void SelectionButtonsFromSaveFile()
+    {
+        foreach (Button button in _levelButtons)
+        {
+            button.transform.GetChild(1).gameObject.SetActive(false);
+            button.transform.GetChild(0).gameObject.SetActive(false);
+
+            button.interactable = false;
+            button.gameObject.SetActive(false);
+        }
+
+        int[,] savefile = _gameManager.GetSaveFile();
+        
+        for (int i = 0; i < savefile.Length / 4; i++)
+        {
+            if (savefile[i, SaveLoad.WORLD] == _gameManager.world &&
+                savefile[i, SaveLoad.LEVEL] != 0)
+            {
+                _levelButtons[savefile[i, SaveLoad.LEVEL] - 1].gameObject.SetActive(true);
+
+                if (savefile[i, SaveLoad.OPEN] == SaveLoad.TRUE)
+                {
+                    _levelButtons[savefile[i, SaveLoad.LEVEL] - 1].interactable = true;
+                    _levelButtons[savefile[i, SaveLoad.LEVEL] - 1].
+                        transform.GetChild(0).gameObject.SetActive(true);
+                }
+
+                if (savefile[i, SaveLoad.STAR] == SaveLoad.TRUE)
+                {
+                    _levelButtons[savefile[i, SaveLoad.LEVEL] - 1].
+                        transform.GetChild(1).gameObject.SetActive(true);
+                }
+            }
+        }
     }
 
     // game and level
@@ -129,10 +168,24 @@ public class UIManager : MonoBehaviour {
 
         winStar.SetActive(false);
         winNoStar.SetActive(false);
+        
+        if (_gameManager.level == _gameManager.GetCurrentLevelCount())
+        {
+            if (_gameManager.world < 3)
+            {
+                _gameManager.OpenWorldLevel(_gameManager.world + 1, 0);
+                _gameManager.OpenWorldLevel(_gameManager.world + 1, 1);
+            }
+        }
+        else
+        {
+            _gameManager.OpenWorldLevel(_gameManager.world, _gameManager.level + 1);
+        }
 
         if (_dashCount <= _starCount)
         {
             winStar.SetActive(true);
+            _gameManager.StarWorldLevel(_gameManager.world, _gameManager.level);
 
             // reset animation
             starAnimator.Play("Star animation");

@@ -41,6 +41,11 @@ public class GameManager : MonoBehaviour {
 
         _UIManager = FindObjectOfType<UIManager>();
 
+        w1LevelCount++;
+        w2LevelCount++;
+        w3LevelCount++;
+
+        SaveLoad.Delete();
         GetSaveFileFromMemory();
     }
 
@@ -81,14 +86,54 @@ public class GameManager : MonoBehaviour {
 
     public void NextLevel()
     {
-        level++;
-        _worldManager.RestartLevel();
-        _UIManager.StartLevel();
+        if (level == GetCurrentLevelCount())
+        {
+            menuMode = LEVEL_MENU;
+            _UIManager.UpdateMenu();
+        }
+        else
+        {
+            level++;
+            _worldManager.RestartLevel();
+            _UIManager.StartLevel();
+        }
     }
 
     public void InitializeGameUI()
     {
         _UIManager.StartLevel();
+    }
+
+    // saving
+
+    public void OpenWorldLevel(int world, int level)
+    {
+        for (int i = 0; i < saveFile.Length / 4; i++)
+        {
+            if (saveFile[i, SaveLoad.WORLD] == world &&
+                saveFile[i, SaveLoad.LEVEL] == level)
+            {
+                saveFile[i, SaveLoad.OPEN] = SaveLoad.TRUE;
+            }
+        }
+
+        SaveLoad.SaveFile = saveFile;
+        SaveLoad.Save();
+    }
+
+    public void StarWorldLevel(int world, int level)
+    {
+        for (int i = 0; i < saveFile.Length / 4; i++)
+        {
+            if (saveFile[i, SaveLoad.WORLD] == world &&
+                saveFile[i, SaveLoad.LEVEL] == level)
+            {
+                saveFile[i, SaveLoad.STAR] = SaveLoad.TRUE;
+            }
+        }
+
+        SaveLoad.SaveFile = saveFile;
+        SaveLoad.Save();
     }
 
     // Getters and setters
@@ -127,6 +172,25 @@ public class GameManager : MonoBehaviour {
     public int GetStarValue()
     {
         return _worldManager.GetStarValue();
+    }
+
+    public int[,] GetSaveFile()
+    {
+        return saveFile;
+    }
+    
+    public int GetCurrentLevelCount()
+    {
+        if (world == 1)
+            return w1LevelCount;
+
+        if (world == 2)
+            return w2LevelCount;
+
+        if (world == 3)
+            return w3LevelCount;
+
+        return 0;
     }
 
     // On App Pause
