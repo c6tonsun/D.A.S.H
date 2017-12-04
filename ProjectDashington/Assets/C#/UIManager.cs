@@ -6,6 +6,17 @@ public class UIManager : MonoBehaviour {
     private GameManager _gameManager;
     private MenuHeader[] _menuHeaders;
 
+    public RectTransform startPoint;
+    public RectTransform halfPoint;
+    public RectTransform endPoint;
+    public float menuAnimationTime;
+    private GameObject _menuAnimateIn;
+    private Vector2 _menuAnimateInPos;
+    private GameObject _menuAnimateOut;
+    private Vector2 _menuAnimateOutPos;
+    private bool _animateMenu = false;
+    private float _timer;
+
     public Text _worldText;
     public GameObject worldButtonParent;
     private Button[] _worldButtons;
@@ -45,26 +56,74 @@ public class UIManager : MonoBehaviour {
         _worldButtons = worldButtonParent.GetComponentsInChildren<Button>();
         _levelButtons = levelButtonParent.GetComponentsInChildren<Button>();
 
-        UpdateMenu();
+        InitializeMenu();
+    }
+
+    private void Update()
+    {
+        if (_animateMenu)
+        {
+            _timer += Time.deltaTime / menuAnimationTime;
+
+            if (_timer >= 1.571f) // this value returns 1 on mathf.sin()
+            {
+                _timer = 0f;
+                _animateMenu = false;
+                InitializeMenu();
+            }
+            else
+            {
+                _menuAnimateIn.transform.position =
+                    Vector3.Lerp(
+                        Vector3.Lerp(startPoint.position, halfPoint.position, Mathf.Sin(_timer)),
+                        Vector3.Lerp(halfPoint.position, _menuAnimateInPos, Mathf.Sin(_timer)),
+                        Mathf.Sin(_timer));
+                _menuAnimateOut.transform.position =
+                    Vector3.Lerp(
+                        Vector3.Lerp(_menuAnimateOutPos, halfPoint.position, Mathf.Sin(_timer)),
+                        Vector3.Lerp(halfPoint.position, startPoint.position, Mathf.Sin(_timer)),
+                        Mathf.Sin(_timer));
+            }
+        }
     }
 
     // menu
 
-    public void UpdateMenu()
+    public void InitializeMenu()
     {
         foreach (MenuHeader menuHeader in _menuHeaders)
         {
-            menuHeader.gameObject.SetActive(false);
+            if (menuHeader.name.Contains(_gameManager.menuMode))
+            {
+                _menuAnimateIn = menuHeader.gameObject;
+                _menuAnimateInPos = endPoint.position + menuHeader.offset;
+                menuHeader.transform.position = _menuAnimateInPos;
+            }
+            else
+            {
+                menuHeader.transform.position = startPoint.position;
+            }
+
+            menuHeader.gameObject.SetActive(true);
         }
+    }
+
+    public void UpdateMenu()
+    {
+        _menuAnimateOut = _menuAnimateIn;
 
         foreach (MenuHeader menuHeader in _menuHeaders)
         {
-            if (menuHeader.gameObject.name.Contains(_gameManager.menuMode))
+            if (menuHeader.name.Contains(_gameManager.menuMode))
             {
-                menuHeader.gameObject.SetActive(true);
-                break;
+                _menuAnimateIn = menuHeader.gameObject;
+                _menuAnimateInPos = endPoint.position + menuHeader.offset;
             }
         }
+        // animate
+        _animateMenu = true;
+
+        // activate buttons of animate in
 
         _worldText.text = "world " + _gameManager.world;
 
