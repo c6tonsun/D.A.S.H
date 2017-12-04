@@ -7,13 +7,12 @@ public class ScrollLimiter : MonoBehaviour {
     private ScrollRect _scrollRect;
     private float _minY;
     private float _maxY;
-    private float _x;
 
-    private void Start()
+    private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
         _scrollRect = GetComponent<ScrollRect>();
-        _minY = _rectTransform.anchoredPosition.y;
+        _minY = -172;
         _maxY = _minY + _rectTransform.sizeDelta.y / 2;
     }
 

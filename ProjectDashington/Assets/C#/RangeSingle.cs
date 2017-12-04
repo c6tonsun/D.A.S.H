@@ -14,7 +14,7 @@ public class RangeSingle : MonoBehaviour {
     public float shootRate;
     private float _shootTimer;
 
-    private void Start()
+    private void OnEnable()
     {
         _shootTimer = firstShoot;
     }

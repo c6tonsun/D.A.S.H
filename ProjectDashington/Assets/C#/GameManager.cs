@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour {
 
         _UIManager = FindObjectOfType<UIManager>();
 
-        SaveLoad.Delete();
+        //SaveLoad.Delete();
         GetSaveFileFromMemory();
     }
 
@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour {
     public void LoadMenu(string menuMode)
     {
         this.menuMode = menuMode;
-        _UIManager.UpdateMenu();
+        _UIManager.InitializeMenu();
 
         SceneManager.LoadScene("Main menu");
     }
