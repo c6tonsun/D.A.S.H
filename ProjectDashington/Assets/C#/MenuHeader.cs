@@ -2,13 +2,13 @@
 
 public class MenuHeader : MonoBehaviour
 {
-    public Vector3 offset;
+    public Vector2 offset;
 
     private void Awake()
     {
         if (offset == null)
         {
-            offset = transform.position;
+            offset = GetComponent<RectTransform>().anchoredPosition;
         }
     }
 }

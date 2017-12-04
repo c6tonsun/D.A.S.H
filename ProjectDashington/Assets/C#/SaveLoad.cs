@@ -45,7 +45,7 @@ public static class SaveLoad {
         {
             newSaveFile[i, WORLD] = currentWolrd;
             newSaveFile[i, LEVEL] = currentLevel;
-            newSaveFile[i, OPEN] = FALSE;
+            newSaveFile[i, OPEN] = TRUE;
             newSaveFile[i, STAR] = FALSE;
             currentLevel++;
 
