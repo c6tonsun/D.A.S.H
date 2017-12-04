@@ -31,6 +31,11 @@ public static class SaveLoad {
 
     public static void MakeSaveFile(int w1LevelCount, int w2LevelCount, int w3LevelCount)
     {
+        // adds saveslots for worlds
+        w1LevelCount++;
+        w2LevelCount++;
+        w3LevelCount++;
+
         int[,] newSaveFile = new int[w1LevelCount + w2LevelCount + w3LevelCount, 4];
 
         int currentWolrd = 1;
@@ -40,8 +45,8 @@ public static class SaveLoad {
         {
             newSaveFile[i, WORLD] = currentWolrd;
             newSaveFile[i, LEVEL] = currentLevel;
-            newSaveFile[i, OPEN] = FALSE;
-            newSaveFile[i, STAR] = FALSE;
+            newSaveFile[i, OPEN] = TRUE;// FALSE;
+            newSaveFile[i, STAR] = TRUE;// FALSE;
             currentLevel++;
 
             if (currentWolrd == 1 && currentLevel == w1LevelCount ||
@@ -74,6 +79,14 @@ public static class SaveLoad {
             FileStream file = File.Open(Application.persistentDataPath + FILE_PATH, FileMode.Open);
             SaveFile = (int[,])bf.Deserialize(file);
             file.Close();
+        }
+    }
+
+    public static void Delete()
+    {
+        if (File.Exists(Application.persistentDataPath + FILE_PATH))
+        {
+            File.Delete(Application.persistentDataPath + FILE_PATH);
         }
     }
 }

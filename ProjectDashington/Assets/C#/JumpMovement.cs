@@ -5,8 +5,8 @@ public class JumpMovement : MonoBehaviour {
     private Rigidbody2D _rb;
     
     // Set this set to public to check animation and movement sync.
-    private float animationLength = 0.833f;
-    private float startJump = 0.32f;
+    private float animationLength = 0.8f;
+    private float startJump = 0.4f;
     private float endJump = 0.66f;
     private float _jumpTimer;
 
@@ -19,6 +19,13 @@ public class JumpMovement : MonoBehaviour {
 
     public bool loopPath;
     private bool _growIndex = true;
+
+    public int maxJumps;
+    private int _jumpCount;
+
+    public float idleTime;
+    private float _idleTimer;
+    private bool _isIdle = false;
 
     private void OnEnable()
     {
@@ -36,8 +43,20 @@ public class JumpMovement : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        // run timer
-        _jumpTimer += Time.fixedDeltaTime;
+        if (_isIdle)
+        {
+            _idleTimer -= Time.fixedDeltaTime;
+
+            if (_idleTimer < 0)
+            {
+                StartJumping();
+            }
+        }
+        else
+        {
+            // run timer
+            _jumpTimer += Time.fixedDeltaTime;
+        }
 
         // reset
         if (_jumpTimer > animationLength)
@@ -68,6 +87,15 @@ public class JumpMovement : MonoBehaviour {
     {
         if (_rb.velocity.magnitude == 0)
         {
+            _jumpCount++;
+
+            if (_jumpCount > maxJumps)
+            {
+                _jumpCount = 0;
+                StopAndIdle();
+                return;
+            }
+
             _rb.AddForce(_targetDirection * jumpSpeed, ForceMode2D.Impulse);
 
             if (_targetDirection.x > 0)
@@ -143,13 +171,6 @@ public class JumpMovement : MonoBehaviour {
         }
     }
 
-    private void CheckTargetDirection()
-    {
-        _targetPosition = jumpPath[_jumpPathIndex].position;
-        _targetDirection = _targetPosition - transform.position;
-        _targetDirection.Normalize();
-    }
-
     // public methods
 
     public void StopAndIdle()
@@ -158,5 +179,16 @@ public class JumpMovement : MonoBehaviour {
         GetComponent<Animator>().runtimeAnimatorController =
             Resources.Load("Wrestler") as RuntimeAnimatorController;
         GetComponent<Animator>().Play("Wrestler_idle", -1, 0f);
+
+        _isIdle = true;
+        _idleTimer = idleTime;
+
+        _jumpTimer = 0;
+    }
+
+    public void StartJumping()
+    {
+        ResetAnimation();
+        _isIdle = false;
     }
 }
