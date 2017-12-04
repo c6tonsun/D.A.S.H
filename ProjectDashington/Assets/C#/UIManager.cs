@@ -63,7 +63,7 @@ public class UIManager : MonoBehaviour {
     {
         if (_animateMenu)
         {
-            _timer += Time.deltaTime / menuAnimationTime;
+            _timer += 0.1f / menuAnimationTime;
 
             if (_timer >= 1.571f) // this value returns 1 on mathf.sin()
             {
