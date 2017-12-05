@@ -6,6 +6,8 @@ public class MeleeAnimation : MonoBehaviour {
 
     private Collider2D _attackCollider;
 
+    public bool isImp;
+
     private bool _isHitting = false;
     [SerializeField, Tooltip("Time till first hit.")]
     private float _timeToFirstHit;
@@ -14,9 +16,19 @@ public class MeleeAnimation : MonoBehaviour {
 
     private void OnEnable()
     {
-        GetComponent<Animator>().runtimeAnimatorController =
-            Resources.Load("MeleeImp") as RuntimeAnimatorController;
-        GetComponent<Animator>().Play("Imp_idle_final", -1, 0f);
+        if (isImp)
+        {
+            GetComponent<Animator>().runtimeAnimatorController =
+                Resources.Load("MeleeImp") as RuntimeAnimatorController;
+            GetComponent<Animator>().Play("Imp_idle_final", -1, 0f);
+        }
+        else
+        {
+            GetComponent<Animator>().runtimeAnimatorController =
+                Resources.Load("MeleeSnake") as RuntimeAnimatorController;
+            GetComponent<Animator>().Play("Snake_idle", -1, 0f);
+        }
+
         _attackCooldown = _timeToFirstHit;
     }
 
