@@ -14,6 +14,7 @@ public class EnemyMovement : MonoBehaviour {
     private bool _loopWalkPath;
 
     private Rigidbody2D _rb;
+	private SpriteRenderer _spriteRenderer;
 
     private Vector3 _targetPosition;
     private Vector3 _targetDirection;
@@ -26,7 +27,8 @@ public class EnemyMovement : MonoBehaviour {
 
     private void Start()
     {
-        _rb = gameObject.GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();
+		_spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnEnable()
@@ -35,6 +37,24 @@ public class EnemyMovement : MonoBehaviour {
         _canMove = true;
         _walkPathIndex = 0;
     }
+
+	private void Update()
+	{
+
+		// Flips
+		if (_rb.velocity.x == 0) 
+		{
+			// do not flip
+		} 
+		else if (_rb.velocity.x > 0)
+		{
+			_spriteRenderer.flipX = true;
+		}
+		else
+		{
+			_spriteRenderer.flipX = false;
+		}
+	}
 
     private void FixedUpdate()
     {
