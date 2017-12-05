@@ -38,6 +38,8 @@ public class UIManager : MonoBehaviour {
 
     public Animator starAnimator;
 
+    private CameraShake _activeCamera;
+
     private void Start()
     {
         if (FindObjectsOfType<UIManager>().Length == 1)
@@ -61,6 +63,14 @@ public class UIManager : MonoBehaviour {
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            BackEvent();
+        }
+    }
+
+    private void FixedUpdate()
+    {
         if (_animateMenu)
         {
             _timer += 0.1f / menuAnimationTime;
@@ -73,18 +83,6 @@ public class UIManager : MonoBehaviour {
             }
             else
             {
-                _menuAnimateIn.anchoredPosition =
-                    Vector2.Lerp(
-                        Vector2.Lerp(
-                            startPoint.anchoredPosition, 
-                            halfPoint.anchoredPosition, 
-                            Mathf.Sin(_timer)),
-                        Vector2.Lerp(
-                            halfPoint.anchoredPosition, 
-                            _menuAnimateInPos, 
-                            Mathf.Sin(_timer)),
-                        Mathf.Sin(_timer));
-
                 _menuAnimateOut.transform.position =
                     Vector2.Lerp(
                         Vector2.Lerp(
@@ -96,6 +94,18 @@ public class UIManager : MonoBehaviour {
                             startPoint.anchoredPosition,
                             Mathf.Sin(_timer)),
                         Mathf.Sin(_timer));
+
+                _menuAnimateIn.anchoredPosition =
+                     Vector2.Lerp(
+                         Vector2.Lerp(
+                             startPoint.anchoredPosition,
+                             halfPoint.anchoredPosition,
+                             Mathf.Sin(_timer)),
+                         Vector2.Lerp(
+                             halfPoint.anchoredPosition,
+                             _menuAnimateInPos,
+                             Mathf.Sin(_timer)),
+                         Mathf.Sin(_timer));
             }
         }
     }
@@ -203,6 +213,33 @@ public class UIManager : MonoBehaviour {
         }
     }
 
+    public void BackEvent()
+    {
+        if (_gameManager.menuMode == GameManager.GAME_UI)
+        {
+            _gameManager.menuMode = GameManager.PAUSE_UI;
+        }
+        else if (_gameManager.menuMode == GameManager.PAUSE_UI)
+        {
+            _gameManager.menuMode = GameManager.LEVEL_MENU;
+        }
+        else if (_gameManager.menuMode == GameManager.LEVEL_MENU)
+        {
+            _gameManager.menuMode = GameManager.WORLD_MENU;
+        }
+        else if (_gameManager.menuMode == GameManager.WORLD_MENU ||
+            _gameManager.menuMode == GameManager.CREDIT_MENU)
+        {
+            _gameManager.menuMode = GameManager.MAIN_MENU;
+        }
+        else if (_gameManager.menuMode == GameManager.MAIN_MENU)
+        {
+            _gameManager.menuMode = GameManager.EXIT_MENU;
+        }
+
+        UpdateMenu();
+    }
+
     // game and level
     
     public void StartLevel()
@@ -293,5 +330,17 @@ public class UIManager : MonoBehaviour {
         {
             winNoStar.SetActive(true);
         }
+    }
+
+    // camera
+
+    public void FindCamera()
+    {
+        _activeCamera = FindObjectOfType<CameraShake>();
+    }
+
+    public void ShakeCamera()
+    {
+        _activeCamera.Shake();
     }
 }

@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour {
     private bool _isPushed = false;
 
     private UIManager _UIManager;
-    private DamageDealer _damageDealer;
 
     const int ENEMY_LAYER = 10;
 
@@ -33,7 +32,7 @@ public class PlayerMovement : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-		if(!_isDashing)
+        if (!_isDashing)
         {
             if (Input.GetMouseButtonDown(0))
             {
