@@ -5,6 +5,8 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
     [SerializeField]
     private int _damage;
 
+    public GameObject prefabPOW;
+
     private PlayerMovement _playerMovement;
     private bool _canDoDamage;
     private bool _isPlayer;
@@ -50,6 +52,7 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
         // If other has health decrease it.
         if (health != null)
         {
+            Instantiate(prefabPOW, other.transform.position, Quaternion.identity);
             health.SetKiller(this.gameObject);
             health.DecreaseHealth(GetDamage());
         }
