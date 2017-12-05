@@ -1,17 +1,15 @@
 fileFormatVersion: 2
-guid: 3e93d41e18876674bacab20f1ce89ac6
-timeCreated: 1512476111
+guid: 0dafd840dd6291a40b4a491c8e9932f8
+timeCreated: 1512476890
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: snake_attack_0
-    21300002: snake_attack_1
-    21300004: snake_attack_2
-    21300006: snake_attack_3
-    21300008: snake_attack_4
-    21300010: snake_attack_5
-    21300012: snake_attack_6
-    21300014: snake_attack_7
+    21300000: Troll_idle_0
+    21300002: Troll_idle_1
+    21300004: Troll_idle_2
+    21300006: Troll_idle_3
+    21300008: Troll_idle_4
+    21300010: Troll_idle_5
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -86,106 +84,80 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: snake_attack_0
+      name: Troll_idle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 500
+        width: 400
         height: 400
-      alignment: 9
-      pivot: {x: 0.6, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: snake_attack_1
+      name: Troll_idle_1
       rect:
         serializedVersion: 2
-        x: 500
+        x: 400
         y: 0
-        width: 500
+        width: 400
         height: 400
-      alignment: 9
-      pivot: {x: 0.6, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: snake_attack_2
+      name: Troll_idle_2
       rect:
         serializedVersion: 2
-        x: 1000
+        x: 800
         y: 0
-        width: 500
+        width: 400
         height: 400
-      alignment: 9
-      pivot: {x: 0.6, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: snake_attack_3
+      name: Troll_idle_3
       rect:
         serializedVersion: 2
-        x: 1500
+        x: 1200
         y: 0
-        width: 500
+        width: 400
         height: 400
-      alignment: 9
-      pivot: {x: 0.6, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: snake_attack_4
+      name: Troll_idle_4
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 0
+        width: 400
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Troll_idle_5
       rect:
         serializedVersion: 2
         x: 2000
         y: 0
-        width: 500
+        width: 400
         height: 400
-      alignment: 9
-      pivot: {x: 0.6, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: snake_attack_5
-      rect:
-        serializedVersion: 2
-        x: 2500
-        y: 0
-        width: 500
-        height: 400
-      alignment: 9
-      pivot: {x: 0.6, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: snake_attack_6
-      rect:
-        serializedVersion: 2
-        x: 3000
-        y: 0
-        width: 500
-        height: 400
-      alignment: 9
-      pivot: {x: 0.6, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: snake_attack_7
-      rect:
-        serializedVersion: 2
-        x: 3500
-        y: 0
-        width: 500
-        height: 400
-      alignment: 9
-      pivot: {x: 0.6, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

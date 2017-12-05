@@ -8,6 +8,13 @@ public class PlayerAnimation : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private Animator _anim;
 
+	private bool _left;
+
+	void OnEnable()
+	{
+		_left = false;
+	}
+
     // Use this for initialization
     void Start()
     {
@@ -27,15 +34,26 @@ public class PlayerAnimation : MonoBehaviour
         // Flips
 		if (_rb.velocity.x == 0) 
 		{
-			// do not flip
+			if (_left)
+			{
+				_spriteRenderer.flipX = true;
+			} 
+			else
+			{
+				_spriteRenderer.flipX = false;
+			}
+			_spriteRenderer.flipY = false;
+
 		} 
 		else if (_rb.velocity.x < 0)
         {
             _spriteRenderer.flipY = true;
+			_left = true;
         }
         else
         {
             _spriteRenderer.flipY = false;
+			_left = false;
         }
 
 		if (_playerMovement.GetIsPushed ()) {

@@ -13,20 +13,24 @@ public class MeleeAnimation : MonoBehaviour {
     private float _timeToFirstHit;
 	private float _attackCooldown;
     private float _attackTime = 1.6f;
+	private void Awake() 
+	{
+		_anim = GetComponent<Animator>();
+	}
 
     private void OnEnable()
     {
         if (isImp)
         {
-            GetComponent<Animator>().runtimeAnimatorController =
+			_anim.runtimeAnimatorController =
                 Resources.Load("MeleeImp") as RuntimeAnimatorController;
-            GetComponent<Animator>().Play("Imp_idle_final", -1, 0f);
+			_anim.Play("Imp_idle_final", -1, 0f);
         }
         else
         {
-            GetComponent<Animator>().runtimeAnimatorController =
+			_anim.runtimeAnimatorController =
                 Resources.Load("MeleeSnake") as RuntimeAnimatorController;
-            GetComponent<Animator>().Play("Snake_idle", -1, 0f);
+			_anim.Play("snake_idle", -1, 0f);
         }
 
         _attackCooldown = _timeToFirstHit;
@@ -35,7 +39,7 @@ public class MeleeAnimation : MonoBehaviour {
     // Use this for initialization
     private void Start()
     {
-        _anim = GetComponent<Animator>();
+       
 
         Collider2D[] colliders = GetComponents<Collider2D>();
         foreach (Collider2D collider in colliders)
