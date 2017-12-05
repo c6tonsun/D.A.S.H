@@ -67,10 +67,7 @@ public class UIManager : MonoBehaviour {
         {
             BackEvent();
         }
-    }
 
-    private void FixedUpdate()
-    {
         if (_animateMenu)
         {
             _timer += 0.1f / menuAnimationTime;
