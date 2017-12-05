@@ -8,6 +8,8 @@ public class WorldManager : MonoBehaviour {
     private int _maxLevelNumber;
     private GameManager _gameManager;
 
+    public GameObject POW;
+
     private void Start()
     {
         _gameManager = FindObjectOfType<GameManager>();
@@ -101,5 +103,10 @@ public class WorldManager : MonoBehaviour {
     public int GetStarValue()
     {
         return _currentLevel.GetStarValue();
+    }
+
+    public GameObject GetPOW()
+    {
+        return POW;
     }
 }

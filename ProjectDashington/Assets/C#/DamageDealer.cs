@@ -5,7 +5,7 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
     [SerializeField]
     private int _damage;
 
-    public GameObject prefabPOW;
+    private WorldManager _worldManager;
 
     private PlayerMovement _playerMovement;
     private bool _canDoDamage;
@@ -13,6 +13,7 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
 
     private void Start()
     {
+        _worldManager = FindObjectOfType<WorldManager>();
         _playerMovement = GetComponent<PlayerMovement>();
 
         if (_playerMovement == null)
@@ -52,7 +53,13 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
         // If other has health decrease it.
         if (health != null)
         {
-            Instantiate(prefabPOW, other.transform.position, Quaternion.identity);
+            if (_isPlayer)
+            {
+                GameObject POW = Instantiate(
+                    _worldManager.GetPOW(), other.transform.position, Quaternion.identity);
+                Destroy(POW, 0.25f);
+            }
+
             health.SetKiller(this.gameObject);
             health.DecreaseHealth(GetDamage());
         }

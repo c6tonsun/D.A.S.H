@@ -6,13 +6,16 @@ public class CameraShake : MonoBehaviour {
     public int shakeTimes;
     public float shakeX;
     public float shakeY;
-    private bool _positiveShake;
-    private float _shakeCounter;
-    private Transform _defaultTransform;
+    public float shakeZ;
+    private int _shakeCounter;
+    private int _totalShakeCounter;
+    private Vector3 _defaultPos;
+    private Vector3 _defaultRot;
 
     private void Awake()
     {
-        _defaultTransform = transform;
+        _defaultPos = transform.position;
+        _defaultRot = transform.eulerAngles;
     }
 
     private void FixedUpdate()
@@ -20,24 +23,28 @@ public class CameraShake : MonoBehaviour {
         if (shake)
         {
             Vector3 newPos = new Vector3(shakeX, shakeY, -10);
-            if (_positiveShake)
+            Vector3 newRot = new Vector3(0, 0, shakeZ);
+            if (_shakeCounter > 2)
             {
                 newPos.x *= -1; 
                 newPos.y *= -1;
-                _positiveShake = false;
+                newRot.z *= -1;
+                _totalShakeCounter++;
+                _shakeCounter = 0;
             }
             else
             {
-                _positiveShake = true;
+                _shakeCounter++;
             }
 
             transform.position = newPos;
-
-            _shakeCounter++;
-            if (_shakeCounter > shakeTimes)
+            transform.eulerAngles = newRot;
+            
+            if (_totalShakeCounter > shakeTimes)
             {
-                transform.position = _defaultTransform.position;
-                _shakeCounter = 0;
+                transform.position = _defaultPos;
+                transform.eulerAngles = _defaultRot;
+                _totalShakeCounter = 0;
                 shake = false;
             }
         }
@@ -47,5 +54,6 @@ public class CameraShake : MonoBehaviour {
     {
         shake = true;
         _shakeCounter = 0;
+        _totalShakeCounter = 0;
     }
 }
