@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour {
     private bool _isPaused;
 
     public string menuMode;
+    public const string EXIT_MENU = "Exit";
+    public const string CREDIT_MENU = "Credit";
+    public const string MAIN_MENU = "Main";
+    public const string WORLD_MENU = "World";
     public const string LEVEL_MENU = "Level";
     public const string GAME_UI = "Game";
     public const string PAUSE_UI = "Pause";
@@ -41,7 +45,7 @@ public class GameManager : MonoBehaviour {
 
         _UIManager = FindObjectOfType<UIManager>();
 
-        //SaveLoad.Delete();
+        SaveLoad.Delete();
         GetSaveFileFromMemory();
     }
 
@@ -71,7 +75,7 @@ public class GameManager : MonoBehaviour {
         this.menuMode = menuMode;
         _UIManager.InitializeMenu();
 
-        SceneManager.LoadScene("Main menu");
+        SceneManager.LoadScene("Main menu", LoadSceneMode.Single);
     }
 
     public void StartLevel()
@@ -98,6 +102,11 @@ public class GameManager : MonoBehaviour {
     public void InitializeGameUI()
     {
         _UIManager.StartLevel();
+    }
+
+    public void FindCamera()
+    {
+        _UIManager.FindCamera();
     }
 
     // saving
@@ -189,7 +198,7 @@ public class GameManager : MonoBehaviour {
         return 0;
     }
 
-    // On App Pause
+    // System events
 
     public void OnApplicationPause(bool pause)
     {
@@ -212,5 +221,10 @@ public class GameManager : MonoBehaviour {
                 Time.timeScale = 1f;
             }
         }
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

@@ -18,6 +18,7 @@ public class WorldManager : MonoBehaviour {
         ActivateLevel();
 
         _gameManager.InitializeGameUI();
+        _gameManager.FindCamera();
     }
 
     // Level methods

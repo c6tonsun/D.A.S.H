@@ -29,6 +29,7 @@ public class Health : MonoBehaviour, IHealth {
         if (gameObject.tag == "Enemy" && GetIsDead())
         {
             _UIManager.DecreaseEnemyCount();
+            _UIManager.ShakeCamera();
             gameObject.SetActive(false);
         }
         else if (gameObject.tag == "Shield" && GetIsDead())
@@ -40,6 +41,7 @@ public class Health : MonoBehaviour, IHealth {
         {
             _UIManager.PlayerLost(_killer);
             GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            Handheld.Vibrate();
             gameObject.SetActive(false);
         }
     }

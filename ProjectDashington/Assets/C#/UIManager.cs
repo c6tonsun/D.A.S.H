@@ -10,20 +10,20 @@ public class UIManager : MonoBehaviour {
     public RectTransform halfPoint;
     public RectTransform endPoint;
     public float menuAnimationTime;
-    private GameObject _menuAnimateIn;
+    private RectTransform _menuAnimateIn;
     private Vector2 _menuAnimateInPos;
-    private GameObject _menuAnimateOut;
+    private RectTransform _menuAnimateOut;
     private Vector2 _menuAnimateOutPos;
     private bool _animateMenu = false;
     private float _timer;
 
-    public Text _worldText;
+    public Text worldText;
+    public Text levelText;
     public GameObject worldButtonParent;
     private Button[] _worldButtons;
     public GameObject levelButtonParent;
     private Button[] _levelButtons;
     
-    public Text enemyText;
     public Text dashText;
     public Text starText;
     private int _enemyCount;
@@ -37,6 +37,8 @@ public class UIManager : MonoBehaviour {
     public GameObject unmuteButton;
 
     public Animator starAnimator;
+
+    private CameraShake _activeCamera;
 
     private void Start()
     {
@@ -61,9 +63,17 @@ public class UIManager : MonoBehaviour {
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            BackEvent();
+        }
+    }
+
+    private void FixedUpdate()
+    {
         if (_animateMenu)
         {
-            _timer += Time.deltaTime / menuAnimationTime;
+            _timer += 0.1f / menuAnimationTime;
 
             if (_timer >= 1.571f) // this value returns 1 on mathf.sin()
             {
@@ -73,16 +83,29 @@ public class UIManager : MonoBehaviour {
             }
             else
             {
-                _menuAnimateIn.transform.position =
-                    Vector3.Lerp(
-                        Vector3.Lerp(startPoint.position, halfPoint.position, Mathf.Sin(_timer)),
-                        Vector3.Lerp(halfPoint.position, _menuAnimateInPos, Mathf.Sin(_timer)),
-                        Mathf.Sin(_timer));
                 _menuAnimateOut.transform.position =
-                    Vector3.Lerp(
-                        Vector3.Lerp(_menuAnimateOutPos, halfPoint.position, Mathf.Sin(_timer)),
-                        Vector3.Lerp(halfPoint.position, startPoint.position, Mathf.Sin(_timer)),
+                    Vector2.Lerp(
+                        Vector2.Lerp(
+                            _menuAnimateOutPos, 
+                            halfPoint.anchoredPosition, 
+                            Mathf.Sin(_timer)),
+                        Vector2.Lerp(
+                            halfPoint.anchoredPosition,
+                            startPoint.anchoredPosition,
+                            Mathf.Sin(_timer)),
                         Mathf.Sin(_timer));
+
+                _menuAnimateIn.anchoredPosition =
+                     Vector2.Lerp(
+                         Vector2.Lerp(
+                             startPoint.anchoredPosition,
+                             halfPoint.anchoredPosition,
+                             Mathf.Sin(_timer)),
+                         Vector2.Lerp(
+                             halfPoint.anchoredPosition,
+                             _menuAnimateInPos,
+                             Mathf.Sin(_timer)),
+                         Mathf.Sin(_timer));
             }
         }
     }
@@ -95,13 +118,15 @@ public class UIManager : MonoBehaviour {
         {
             if (menuHeader.name.Contains(_gameManager.menuMode))
             {
-                _menuAnimateIn = menuHeader.gameObject;
-                _menuAnimateInPos = endPoint.position + menuHeader.offset;
-                menuHeader.transform.position = _menuAnimateInPos;
+                _menuAnimateIn = menuHeader.gameObject.GetComponent<RectTransform>();
+                _menuAnimateInPos = endPoint.anchoredPosition + menuHeader.offset;
+                menuHeader.gameObject.GetComponent<RectTransform>().anchoredPosition = 
+                    _menuAnimateInPos;
             }
             else
             {
-                menuHeader.transform.position = startPoint.position;
+                menuHeader.gameObject.GetComponent<RectTransform>().anchoredPosition =
+                    startPoint.anchoredPosition;
             }
 
             menuHeader.gameObject.SetActive(true);
@@ -116,8 +141,8 @@ public class UIManager : MonoBehaviour {
         {
             if (menuHeader.name.Contains(_gameManager.menuMode))
             {
-                _menuAnimateIn = menuHeader.gameObject;
-                _menuAnimateInPos = endPoint.position + menuHeader.offset;
+                _menuAnimateIn = menuHeader.gameObject.GetComponent<RectTransform>();
+                _menuAnimateInPos = endPoint.anchoredPosition + menuHeader.offset;
             }
         }
         // animate
@@ -125,7 +150,8 @@ public class UIManager : MonoBehaviour {
 
         // activate buttons of animate in
 
-        _worldText.text = "world " + _gameManager.world;
+        worldText.text = "world " + _gameManager.world;
+        levelText.text = "level " + _gameManager.level;
 
         SelectionButtonsFromSaveFile();
     }
@@ -187,6 +213,33 @@ public class UIManager : MonoBehaviour {
         }
     }
 
+    public void BackEvent()
+    {
+        if (_gameManager.menuMode == GameManager.GAME_UI)
+        {
+            _gameManager.menuMode = GameManager.PAUSE_UI;
+        }
+        else if (_gameManager.menuMode == GameManager.PAUSE_UI)
+        {
+            _gameManager.menuMode = GameManager.LEVEL_MENU;
+        }
+        else if (_gameManager.menuMode == GameManager.LEVEL_MENU)
+        {
+            _gameManager.menuMode = GameManager.WORLD_MENU;
+        }
+        else if (_gameManager.menuMode == GameManager.WORLD_MENU ||
+            _gameManager.menuMode == GameManager.CREDIT_MENU)
+        {
+            _gameManager.menuMode = GameManager.MAIN_MENU;
+        }
+        else if (_gameManager.menuMode == GameManager.MAIN_MENU)
+        {
+            _gameManager.menuMode = GameManager.EXIT_MENU;
+        }
+
+        UpdateMenu();
+    }
+
     // game and level
     
     public void StartLevel()
@@ -215,7 +268,6 @@ public class UIManager : MonoBehaviour {
 
     private void UpdateGameUI()
     {
-        enemyText.text = ": " + _enemyCount.ToString();
         dashText.text = ": " + _dashCount.ToString();
         starText.text = _starCount.ToString();
     }
@@ -278,5 +330,17 @@ public class UIManager : MonoBehaviour {
         {
             winNoStar.SetActive(true);
         }
+    }
+
+    // camera
+
+    public void FindCamera()
+    {
+        _activeCamera = FindObjectOfType<CameraShake>();
+    }
+
+    public void ShakeCamera()
+    {
+        _activeCamera.Shake();
     }
 }
