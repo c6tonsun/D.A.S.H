@@ -6,7 +6,6 @@ public class MenuHeader : MonoBehaviour
 
     private void Awake()
     {
-		Debug.Log (offset.ToString ());
         if (offset == null)
         {
             offset = GetComponent<RectTransform>().anchoredPosition;
