@@ -14,8 +14,6 @@ public class GameManager : MonoBehaviour {
     public int world;
     public int level;
 
-    private bool _isPaused;
-
     public string menuMode;
     public const string EXIT_MENU = "Exit";
     public const string CREDIT_MENU = "Credit";
@@ -202,18 +200,16 @@ public class GameManager : MonoBehaviour {
 
     public void OnApplicationPause(bool pause)
     {
-        _isPaused = pause;
-        
         if (_UIManager != null)
         {
-            if (_isPaused && menuMode == GAME_UI)
+            if (pause && menuMode == GAME_UI)
             {
                 menuMode = PAUSE_UI;
                 _UIManager.UpdateMenu();
 
                 Time.timeScale = 0f;
             }
-            else if (!_isPaused && menuMode == PAUSE_UI)
+            else if (!pause && menuMode == PAUSE_UI)
             {
                 menuMode = GAME_UI;
                 _UIManager.UpdateMenu();

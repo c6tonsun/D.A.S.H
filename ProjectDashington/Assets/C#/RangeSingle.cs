@@ -1,14 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RangeSingle : MonoBehaviour {
 
     public GameObject player;
-    public GameObject jojo;
-    
-    public float jojoSpeed;
-    public float jojoLifeTime;
+    public GameObject projectiles;
+
+    public bool isJojoDude;
+    public float projectileSpeed;
+    public float projectileLifeTime;
 
     public float firstShoot;
     public float shootRate;
@@ -33,16 +32,31 @@ public class RangeSingle : MonoBehaviour {
     private void Shoot()
     {
         // make
-        GameObject newJojo = Instantiate(jojo, transform.position, Quaternion.identity);
+        GameObject newProjectile;
+
+        if (isJojoDude)
+        {
+            newProjectile = Instantiate(
+                    projectiles.transform.GetChild(0).gameObject,
+                    transform.position,
+                    Quaternion.identity);
+        }
+        else
+        {
+            newProjectile = Instantiate(
+                    projectiles.transform.GetChild(Random.Range(1, 3)).gameObject,
+                    transform.position,
+                    Quaternion.identity);
+        }
 
         // aim
         Vector3 target = player.transform.position - transform.position;
         target.Normalize();
 
         // shoot
-        newJojo.GetComponent<Rigidbody2D>().AddForce(target * jojoSpeed, ForceMode2D.Impulse);
-        newJojo.transform.right = -newJojo.GetComponent<Rigidbody2D>().velocity;
+        newProjectile.GetComponent<Rigidbody2D>().AddForce(target * projectileSpeed, ForceMode2D.Impulse);
+        newProjectile.transform.right = -newProjectile.GetComponent<Rigidbody2D>().velocity;
 
-        Destroy(newJojo, jojoLifeTime);
+        Destroy(newProjectile, projectileLifeTime);
     }
 }
