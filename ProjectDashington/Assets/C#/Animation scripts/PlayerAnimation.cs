@@ -30,6 +30,9 @@ public class PlayerAnimation : MonoBehaviour
     {
         //Sets current animation (idle, swing, dash, death).
         _anim.SetBool("isDashing", _playerMovement.GetIsDashing());
+        _anim.SetBool("swing", _playerMovement.GetIsSwinging());
+
+        _left = _playerMovement.GetTargetDirection().x < 0;
 
         // Flips
 		if (_rb.velocity.x == 0) 

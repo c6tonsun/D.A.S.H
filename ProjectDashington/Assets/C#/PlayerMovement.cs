@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour {
 
     [SerializeField, Range(0, 50)]
     private float _movementSpeed;
+
+    public float speedup;
     
     private Rigidbody2D _rb;
     
@@ -19,9 +21,21 @@ public class PlayerMovement : MonoBehaviour {
     private bool _isDashing = false;
     private bool _isPushed = false;
 
+    private bool _swing;
+    public float swingTime;
+    private float _swingTimer;
+
     private UIManager _UIManager;
 
     const int ENEMY_LAYER = 10;
+
+    private void OnEnable()
+    {
+        _startDash = false;
+        _isDashing = false;
+        _isPushed = false;
+        _swing = false;
+    }
 
     private void Start()
     {
@@ -45,7 +59,20 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (_startDash)
         {
-            Dash();
+            _swing = true;
+
+            _swingTimer += Time.fixedDeltaTime;
+            
+            if (_swingTimer > swingTime)
+            {
+                Dash();
+                _swingTimer = 0;
+                _swing = false;
+            }
+            else
+            {
+                SpeedUp(false);
+            }
         }
         
         if (_isDashing)
@@ -59,11 +86,12 @@ public class PlayerMovement : MonoBehaviour {
                 StopMovementCheck();
             }
         }
-        
+        /*
         if(_rb.velocity.magnitude < 0.3f)
         {
             ResetMovement();
         }
+        */
     }
 
     // Sets new target position using raycast.
@@ -104,6 +132,11 @@ public class PlayerMovement : MonoBehaviour {
         {
             target.GetComponent<JumpMovement>().StopAndIdle();
         }
+    }
+
+    private void SpeedUp(bool dashNow)
+    {
+        _rb.AddForce(_targetDirection * speedup, ForceMode2D.Force);
     }
 
     // Starts dash towards target position.
@@ -179,6 +212,11 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     // Getters and setters.
+
+    public bool GetIsSwinging()
+    {
+        return _swing;
+    }
     
     public bool GetIsDashing()
     {
