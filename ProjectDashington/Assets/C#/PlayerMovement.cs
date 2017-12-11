@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour {
             }
         }
         
-        if (_isDashing)
+        if (_isDashing || _swing)
         {
             if (_isPushed)
             {
@@ -137,11 +137,13 @@ public class PlayerMovement : MonoBehaviour {
     private void SpeedUp(bool dashNow)
     {
         _rb.AddForce(_targetDirection * speedup, ForceMode2D.Force);
+        transform.right = _rb.velocity;
     }
 
     // Starts dash towards target position.
     private void Dash()
     {
+        _rb.velocity = Vector2.zero;
         _rb.AddForce(_targetDirection * _movementSpeed, ForceMode2D.Impulse);
         transform.right = _rb.velocity;
 
@@ -209,6 +211,9 @@ public class PlayerMovement : MonoBehaviour {
         _startDash = false;
         _isDashing = false;
         _isPushed = false;
+
+        _swingTimer = 0;
+        _swing = false;
     }
 
     // Getters and setters.

@@ -31,7 +31,14 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
     {
         if (_isPlayer)
         {
-            _canDoDamage = _playerMovement.GetIsDashing();
+            if (_playerMovement.GetIsDashing() || _playerMovement.GetIsSwinging())
+            {
+                _canDoDamage = true;
+            }
+            else
+            {
+                _canDoDamage = false;
+            }
         }
     }
     
