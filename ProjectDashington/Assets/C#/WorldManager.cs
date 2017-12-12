@@ -97,8 +97,12 @@ public class WorldManager : MonoBehaviour {
     {
         if (_gameManager.world < 3) {
             _gameManager.world++;
+            _gameManager.LoadMenu(GameManager.WORLD_MENU);
         }
-        _gameManager.LoadMenu(GameManager.WORLD_MENU);
+        else
+        {
+            _gameManager.LoadMenu(GameManager.CREDIT_MENU);
+        }
     }
 
     // Getters and setters

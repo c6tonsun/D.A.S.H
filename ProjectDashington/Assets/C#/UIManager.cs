@@ -40,6 +40,10 @@ public class UIManager : MonoBehaviour {
 
     private CameraShake _activeCamera;
 
+    public Text text;
+    int min = 100;
+    int max = 0;
+
     private void Start()
     {
         if (FindObjectsOfType<UIManager>().Length == 1)
@@ -63,6 +67,24 @@ public class UIManager : MonoBehaviour {
 
     private void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            min = 100;
+            max = 0;
+        }
+
+        int fps = (int) (1 / Time.deltaTime);
+        if (fps < min)
+        {
+            min = fps;
+        }
+        if (fps > max)
+        {
+            max = fps;
+        }
+
+        text.text = "min : " + min.ToString() + "\n" + "max : " + max.ToString();
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             BackEvent();

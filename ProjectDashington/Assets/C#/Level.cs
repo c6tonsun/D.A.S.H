@@ -25,6 +25,14 @@ public class Level : MonoBehaviour {
         ResetDiables();
     }
 
+    private void OnDisable()
+    {
+        for (int i = 0; i < _children.Length; i++)
+        {
+            _children[i].gameObject.SetActive(false);
+        }
+    }
+
     private void CreateLevelNumber()
     {
         char[] chars = name.ToCharArray();
