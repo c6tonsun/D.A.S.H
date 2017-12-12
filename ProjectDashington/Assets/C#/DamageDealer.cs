@@ -65,10 +65,35 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
                 GameObject POW = Instantiate(
                     _worldManager.GetPOW(), other.transform.position, Quaternion.identity);
                 Destroy(POW, 0.25f);
+
+                other.GetComponent<Rigidbody2D>().AddForce(
+                    _playerMovement.GetTargetDirection() * 25,
+                    ForceMode2D.Impulse);
             }
 
-            health.SetKiller(this.gameObject);
+            if (tag == GameManager.ENEMY_TAG &&
+                health.tag == GameManager.PLAYER_TAG)
+            {
+                MeleeAnimation meleeAnimation = GetComponent<MeleeAnimation>();
+                if (meleeAnimation != null &&
+                    meleeAnimation.GetIsHitting() &&
+                    GetComponent<Rigidbody2D>().velocity.magnitude == 0)
+                {
+                    // melee wins
+                    Debug.Log("Die player");
+                }
+                else if (health.GetComponent<Rigidbody2D>().velocity.magnitude > 0)
+                {
+                    return;
+                }
+            }
+
+            health.SetKiller(gameObject);
             health.DecreaseHealth(GetDamage());
+            if (health.GetIsDead() && tag == "Void")
+            {
+                health.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -85,19 +110,20 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
     {
         DealDamage(other);
     }
-
+    /*
     private void OnTriggerExit2D(Collider2D other)
     {
         DealDamage(other);
     }
-
+    */
     private void OnCollisionEnter2D(Collision2D other)
     {
         DealDamage(other.collider);
     }
-
+    /*
     private void OnCollisionExit2D(Collision2D other)
     {
         DealDamage(other.collider);
     }
+    */
 }

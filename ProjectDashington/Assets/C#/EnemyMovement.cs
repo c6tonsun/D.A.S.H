@@ -23,8 +23,6 @@ public class EnemyMovement : MonoBehaviour {
     private int _walkPathIndex;
     private bool _growIndex = true;
 
-    private bool _canMove;
-
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -34,7 +32,6 @@ public class EnemyMovement : MonoBehaviour {
     private void OnEnable()
     {
         _targetReached = true;
-        _canMove = true;
         _walkPathIndex = 0;
     }
 
@@ -58,13 +55,11 @@ public class EnemyMovement : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if (_targetReached && _canMove)
+        if (_targetReached)
         {
             SetNewTarget();
             Dash();
             _targetReached = false;
-        } else if (!_canMove) {
-            _rb.velocity = Vector3.zero;
         }
 
         StopMovementCheck();
@@ -143,8 +138,8 @@ public class EnemyMovement : MonoBehaviour {
 
     // Getters and setters
 
-    public void SetCanMove(bool canMove)
+    public void Stop()
     {
-        _canMove = canMove;
+        _rb.velocity = Vector2.zero;
     }
 }

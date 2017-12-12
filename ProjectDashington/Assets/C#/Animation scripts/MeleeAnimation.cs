@@ -35,6 +35,7 @@ public class MeleeAnimation : MonoBehaviour {
         }
 
         _attackCooldown = _timeToFirstHit;
+        _isHitting = false;
     }
 
     // Use this for initialization
@@ -71,4 +72,9 @@ public class MeleeAnimation : MonoBehaviour {
 			_isHitting = true;
 		}
 	}
+
+    public bool GetIsHitting()
+    {
+        return _isHitting;
+    }
 }

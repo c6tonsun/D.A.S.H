@@ -124,13 +124,18 @@ public class PlayerMovement : MonoBehaviour {
 
     private void StopTarget(GameObject target)
     {
-        if (target.GetComponent<EnemyMovement>() != null)
+        EnemyMovement enemyMovement = target.GetComponent<EnemyMovement>();
+        if (enemyMovement != null)
         {
-            target.GetComponent<EnemyMovement>().SetCanMove(false);
+            enemyMovement.Stop();
+            enemyMovement.enabled = false;
         }
-        else if (target.GetComponent<JumpMovement>() != null)
+
+        JumpMovement jumpMovement = target.GetComponent<JumpMovement>();
+        if (jumpMovement != null)
         {
-            target.GetComponent<JumpMovement>().StopAndIdle();
+            jumpMovement.StopAndIdle();
+            jumpMovement.enabled = false;
         }
     }
 
