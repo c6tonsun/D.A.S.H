@@ -243,6 +243,8 @@ public class UIManager : MonoBehaviour {
         else if (_gameManager.menuMode == GameManager.PAUSE_UI)
         {
             _gameManager.menuMode = GameManager.LEVEL_MENU;
+            _gameManager.LoadMenu(_gameManager.menuMode);
+            return;
         }
         else if (_gameManager.menuMode == GameManager.LEVEL_MENU)
         {

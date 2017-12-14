@@ -42,8 +42,7 @@ public class GameManager : MonoBehaviour {
         }
 
         _UIManager = FindObjectOfType<UIManager>();
-
-        SaveLoad.Delete();
+        
         GetSaveFileFromMemory();
     }
 
