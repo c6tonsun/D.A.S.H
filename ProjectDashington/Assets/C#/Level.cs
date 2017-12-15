@@ -12,6 +12,8 @@ public class Level : MonoBehaviour {
     private Vector3[] _defaultPositions;
     private Vector3[] _defaultRotations;
 
+    private bool ignore = true;
+
     private void Awake()
     {
         CreateLevelNumber();
@@ -21,8 +23,8 @@ public class Level : MonoBehaviour {
 
     private void OnEnable()
     {
-        EnableAllChildren();
         ResetDiables();
+        EnableAllChildren();
     }
 
     private void OnDisable()

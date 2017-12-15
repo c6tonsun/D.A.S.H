@@ -11,6 +11,7 @@ public class PlayerAnimation : MonoBehaviour
     public GameObject spawnAnimation;
 
 	private bool _left;
+    private bool _noSpawnAnimation = true;
 
     void Awake()
     {
@@ -26,11 +27,18 @@ public class PlayerAnimation : MonoBehaviour
 		_left = false;
         _anim.runtimeAnimatorController = 
             Resources.Load("Player") as RuntimeAnimatorController;
-		_anim.Play("Main_char_idle", -1, 0f);
+		_anim.Play("idle_wait", -1, 0f);
 		_anim.SetBool("die", false);
 
-        GameObject POW = Instantiate(spawnAnimation, transform.position, Quaternion.identity);
-        Destroy(POW, 0.25f);
+        if (_noSpawnAnimation)
+        {
+            _noSpawnAnimation = false;
+        }
+        else
+        {
+            GameObject POW = Instantiate(spawnAnimation, transform.position, Quaternion.identity);
+            Destroy(POW, 0.5f);
+        }
     }
 
     void Update()
