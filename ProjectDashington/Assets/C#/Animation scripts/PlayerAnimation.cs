@@ -24,7 +24,7 @@ public class PlayerAnimation : MonoBehaviour
 		_left = false;
         _anim.runtimeAnimatorController = 
             Resources.Load("Player") as RuntimeAnimatorController;
-		_anim.Play("spawn", -1, 0f);
+		_anim.Play("explosion", -1, 0f);
 		_anim.SetBool("die", false);
         
     }
