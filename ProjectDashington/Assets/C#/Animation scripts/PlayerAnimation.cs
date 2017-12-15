@@ -32,8 +32,6 @@ public class PlayerAnimation : MonoBehaviour
         _anim.SetBool("isDashing", _playerMovement.GetIsDashing());
         _anim.SetBool("swing", _playerMovement.GetIsSwinging());
 
-        _left = _playerMovement.GetTargetDirection().x < 0;
-
         // Flips
 		if (_rb.velocity.x == 0) 
 		{
@@ -46,20 +44,18 @@ public class PlayerAnimation : MonoBehaviour
 				_spriteRenderer.flipX = false;
 			}
 			_spriteRenderer.flipY = false;
-
 		} 
 		else if (_rb.velocity.x < 0)
         {
+            _spriteRenderer.flipX = false;
             _spriteRenderer.flipY = true;
 			_left = true;
-			_spriteRenderer.flipX = false;
         }
         else
         {
+            _spriteRenderer.flipX = false;
             _spriteRenderer.flipY = false;
 			_left = false;
-			_spriteRenderer.flipX = false;
-
         }
 
 		if (_playerMovement.GetIsPushed ()) {

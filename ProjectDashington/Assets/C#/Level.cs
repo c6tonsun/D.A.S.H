@@ -25,6 +25,14 @@ public class Level : MonoBehaviour {
         ResetDiables();
     }
 
+    private void OnDisable()
+    {
+        for (int i = 0; i < _children.Length; i++)
+        {
+            _children[i].gameObject.SetActive(false);
+        }
+    }
+
     private void CreateLevelNumber()
     {
         char[] chars = name.ToCharArray();
@@ -65,6 +73,28 @@ public class Level : MonoBehaviour {
         for (int i = 0; i < _children.Length; i++)
         {
             _children[i].gameObject.SetActive(true);
+            EnableChildsComponents(_children[i]);
+        }
+    }
+
+    private void EnableChildsComponents(Transform child)
+    {
+        EnemyMovement enemyMovement = child.GetComponent<EnemyMovement>();
+        if (enemyMovement != null)
+        {
+            enemyMovement.enabled = true;
+        }
+
+        JumpMovement jumpMovement = child.GetComponent<JumpMovement>();
+        if (jumpMovement != null)
+        {
+            jumpMovement.enabled = true;
+        }
+
+        Health health = child.GetComponent<Health>();
+        if (health != null)
+        {
+            health.enabled = true;
         }
     }
 

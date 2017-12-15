@@ -40,6 +40,10 @@ public class UIManager : MonoBehaviour {
 
     private CameraShake _activeCamera;
 
+    public Text text;
+    int min = 100;
+    int max = 0;
+
     private void Start()
     {
         if (FindObjectsOfType<UIManager>().Length == 1)
@@ -63,46 +67,65 @@ public class UIManager : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetMouseButtonDown(0))
         {
-            BackEvent();
+            min = 100;
+            max = 0;
         }
 
-        if (_animateMenu)
+        int fps = (int) (1 / Time.deltaTime);
+        if (fps < min)
         {
-            _timer += 0.1f / menuAnimationTime;
+            min = fps;
+        }
+        if (fps > max)
+        {
+            max = fps;
+        }
 
-            if (_timer >= 1.571f) // this value returns 1 on mathf.sin()
+        text.text = "min : " + min.ToString() + "\n" + "max : " + max.ToString();
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                _timer = 0f;
-                _animateMenu = false;
-                InitializeMenu();
+                BackEvent();
             }
-            else
-            {
-                _menuAnimateOut.transform.position =
-                    Vector2.Lerp(
-                        Vector2.Lerp(
-                            _menuAnimateOutPos, 
-                            halfPoint.anchoredPosition, 
-                            Mathf.Sin(_timer)),
-                        Vector2.Lerp(
-                            halfPoint.anchoredPosition,
-                            startPoint.anchoredPosition,
-                            Mathf.Sin(_timer)),
-                        Mathf.Sin(_timer));
 
-                _menuAnimateIn.anchoredPosition =
-                     Vector2.Lerp(
+            if (_animateMenu)
+            {
+                _timer += 0.1f / menuAnimationTime;
+
+                if (_timer >= 1.571f) // this value returns 1 on mathf.sin()
+                {
+                    _timer = 0f;
+                    _animateMenu = false;
+                    InitializeMenu();
+                }
+                else
+                {
+                    _menuAnimateOut.transform.position =
+                        Vector2.Lerp(
+                            Vector2.Lerp(
+                                _menuAnimateOutPos,
+                                halfPoint.anchoredPosition,
+                                Mathf.Sin(_timer)),
+                            Vector2.Lerp(
+                                halfPoint.anchoredPosition,
+                                startPoint.anchoredPosition,
+                                Mathf.Sin(_timer)),
+                            Mathf.Sin(_timer));
+
+                    _menuAnimateIn.anchoredPosition =
                          Vector2.Lerp(
-                             startPoint.anchoredPosition,
-                             halfPoint.anchoredPosition,
-                             Mathf.Sin(_timer)),
-                         Vector2.Lerp(
-                             halfPoint.anchoredPosition,
-                             _menuAnimateInPos,
-                             Mathf.Sin(_timer)),
-                         Mathf.Sin(_timer));
+                             Vector2.Lerp(
+                                 startPoint.anchoredPosition,
+                                 halfPoint.anchoredPosition,
+                                 Mathf.Sin(_timer)),
+                             Vector2.Lerp(
+                                 halfPoint.anchoredPosition,
+                                 _menuAnimateInPos,
+                                 Mathf.Sin(_timer)),
+                             Mathf.Sin(_timer));
+                }
             }
         }
     }
@@ -133,6 +156,7 @@ public class UIManager : MonoBehaviour {
     public void UpdateMenu()
     {
         _menuAnimateOut = _menuAnimateIn;
+        _menuAnimateOutPos = _menuAnimateInPos;
 
         foreach (MenuHeader menuHeader in _menuHeaders)
         {
@@ -219,6 +243,8 @@ public class UIManager : MonoBehaviour {
         else if (_gameManager.menuMode == GameManager.PAUSE_UI)
         {
             _gameManager.menuMode = GameManager.LEVEL_MENU;
+            _gameManager.LoadMenu(_gameManager.menuMode);
+            return;
         }
         else if (_gameManager.menuMode == GameManager.LEVEL_MENU)
         {

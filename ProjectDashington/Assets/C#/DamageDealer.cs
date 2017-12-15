@@ -6,6 +6,7 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
     private int _damage;
 
     private WorldManager _worldManager;
+    private Health _myHealth;
 
     private PlayerMovement _playerMovement;
     private bool _canDoDamage;
@@ -14,6 +15,7 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
     private void Start()
     {
         _worldManager = FindObjectOfType<WorldManager>();
+        _myHealth = GetComponent<Health>();
         _playerMovement = GetComponent<PlayerMovement>();
 
         if (_playerMovement == null)
@@ -31,7 +33,14 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
     {
         if (_isPlayer)
         {
-            _canDoDamage = _playerMovement.GetIsDashing();
+            if (_playerMovement.GetIsDashing() || _playerMovement.GetIsSwinging())
+            {
+                _canDoDamage = true;
+            }
+            else
+            {
+                _canDoDamage = false;
+            }
         }
     }
     
@@ -41,8 +50,13 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
         {
             return;
         }
-        // If other collider is trigger do nothing.
-        if (other.isTrigger && other.gameObject.tag != "Lava")
+        // Triggers do not hit eachother
+        if (other.isTrigger)
+        {
+            return;
+        }
+        // Dead can not do damage
+        if (_myHealth != null && _myHealth.GetIsDead())
         {
             return;
         }
@@ -58,10 +72,25 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
                 GameObject POW = Instantiate(
                     _worldManager.GetPOW(), other.transform.position, Quaternion.identity);
                 Destroy(POW, 0.25f);
+
+                other.GetComponent<Rigidbody2D>().AddForce(
+                    _playerMovement.GetTargetDirection() * 25,
+                    ForceMode2D.Impulse);
+            }
+            
+            MeleeAnimation meleeAnimation = GetComponent<MeleeAnimation>();
+            if (meleeAnimation != null &&
+                meleeAnimation.GetIsHitting() == false)
+            {
+                return;
             }
 
-            health.SetKiller(this.gameObject);
+            health.SetKiller(gameObject);
             health.DecreaseHealth(GetDamage());
+            if (health.GetIsDead() && tag == "Void")
+            {
+                health.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -78,19 +107,20 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
     {
         DealDamage(other);
     }
-
+    /*
     private void OnTriggerExit2D(Collider2D other)
     {
         DealDamage(other);
     }
-
+    */
     private void OnCollisionEnter2D(Collision2D other)
     {
         DealDamage(other.collider);
     }
-
+    /*
     private void OnCollisionExit2D(Collision2D other)
     {
         DealDamage(other.collider);
     }
+    */
 }

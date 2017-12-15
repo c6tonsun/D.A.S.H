@@ -13,6 +13,7 @@ public class MeleeAnimation : MonoBehaviour {
     private float _timeToFirstHit;
 	private float _attackCooldown;
     private float _attackTime = 1.6f;
+
 	private void Awake() 
 	{
 		_anim = GetComponent<Animator>();
@@ -34,13 +35,12 @@ public class MeleeAnimation : MonoBehaviour {
         }
 
         _attackCooldown = _timeToFirstHit;
+        _isHitting = false;
     }
 
     // Use this for initialization
     private void Start()
     {
-       
-
         Collider2D[] colliders = GetComponents<Collider2D>();
         foreach (Collider2D collider in colliders)
         {
@@ -72,4 +72,9 @@ public class MeleeAnimation : MonoBehaviour {
 			_isHitting = true;
 		}
 	}
+
+    public bool GetIsHitting()
+    {
+        return _isHitting;
+    }
 }

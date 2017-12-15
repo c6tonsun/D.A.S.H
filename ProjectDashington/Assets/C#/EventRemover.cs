@@ -2,7 +2,7 @@
 
 public class EventRemover : MonoBehaviour {
 
-    private void Start()
+    private void OnEnable()
     {
         if (FindObjectsOfType<EventRemover>().Length == 1)
         {

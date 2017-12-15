@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Health : MonoBehaviour, IHealth {
 
@@ -13,15 +11,21 @@ public class Health : MonoBehaviour, IHealth {
 
     private GameObject _killer;
     private UIManager _UIManager;
+    private Rigidbody2D _rb;
     
     private void Awake()
     {
         _UIManager = FindObjectOfType<UIManager>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     private void OnEnable()
     {
         _currentHealth = _initialHealth;
+        if (_rb != null)
+        {
+            _rb.velocity = Vector2.zero;
+        }
     }
 
     private void FixedUpdate()
@@ -30,7 +34,10 @@ public class Health : MonoBehaviour, IHealth {
         {
             _UIManager.DecreaseEnemyCount();
             _UIManager.ShakeCamera();
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            
+            // disable this health component
+            enabled = false;
         }
         else if (gameObject.tag == "Shield" && GetIsDead())
         {
@@ -40,9 +47,13 @@ public class Health : MonoBehaviour, IHealth {
         else if (gameObject.tag == "Player" && GetIsDead())
         {
             _UIManager.PlayerLost(_killer);
-            GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            GetComponent<Animator>().SetBool("die", true);
             Handheld.Vibrate();
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            
+            // disable this health component
+            enabled = false;
         }
     }
 
@@ -81,10 +92,5 @@ public class Health : MonoBehaviour, IHealth {
     public void SetKiller(GameObject killer)
     {
         _killer = killer;
-    }
-
-    public GameObject GetKiller()
-    {
-        return _killer;
     }
 }

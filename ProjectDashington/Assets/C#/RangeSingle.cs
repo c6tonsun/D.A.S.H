@@ -5,6 +5,8 @@ public class RangeSingle : MonoBehaviour {
     public GameObject player;
     public GameObject projectiles;
 
+    private Animator _anim;
+
     public bool isJojoDude;
     public float projectileSpeed;
     public float projectileLifeTime;
@@ -13,14 +15,57 @@ public class RangeSingle : MonoBehaviour {
     public float shootRate;
     private float _shootTimer;
 
+    public float startShoot;
+    public float endShoot;
+    public bool _shoot;
+
+    private void Awake()
+    {
+        _anim = GetComponent<Animator>();
+
+        if (isJojoDude)
+        {
+            startShoot = 0.8f;
+            endShoot = 0.1f;
+        }
+        else
+        {
+            startShoot = 0.6f;
+            endShoot = 0.2f;
+        }
+    }
+
     private void OnEnable()
     {
+        if (isJojoDude)
+        {
+            _anim.runtimeAnimatorController =
+               Resources.Load("90sKid") as RuntimeAnimatorController;
+            _anim.Play("90s_kid_idle", -1, 0f);
+        }
+        else
+        {
+            _anim.runtimeAnimatorController =
+               Resources.Load("Binary") as RuntimeAnimatorController;
+            _anim.Play("binary_guy_idle", -1, 0f);
+        }
         _shootTimer = firstShoot;
     }
 
     private void FixedUpdate()
     {
+        _anim.SetBool("shoot", _shoot);
+
         _shootTimer -= Time.fixedDeltaTime;
+
+        if (_shootTimer < startShoot && _shootTimer > endShoot)
+        {
+            _shoot = true;
+        }
+        else
+        {
+            _shoot = false;
+        }
 
         if (_shootTimer <= 0)
         {
