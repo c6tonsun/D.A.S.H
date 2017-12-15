@@ -65,6 +65,17 @@ public class UIManager : MonoBehaviour {
         _levelButtons = levelButtonParent.GetComponentsInChildren<Button>();
 
         InitializeMenu();
+
+        if (Settings.Volume == 0)
+        {
+            muteButton.SetActive(false);
+            unmuteButton.SetActive(true);
+        }
+        else
+        {
+            muteButton.SetActive(true);
+            unmuteButton.SetActive(false);
+        }
     }
 
     private void Update()
@@ -265,9 +276,26 @@ public class UIManager : MonoBehaviour {
         UpdateMenu();
     }
 
-    public void PlayButtonPress()
+    public void PlayButtonPressed()
     {
+        _buttonPress.volume = Settings.Volume;
         _buttonPress.Play();
+    }
+
+    public void SetVolume(float volume)
+    {
+        Settings.SetVolume(volume);
+
+        if (volume == 0)
+        {
+            muteButton.SetActive(false);
+            unmuteButton.SetActive(true);
+        }
+        else
+        {
+            muteButton.SetActive(true);
+            unmuteButton.SetActive(false);
+        }
     }
 
     // game and level

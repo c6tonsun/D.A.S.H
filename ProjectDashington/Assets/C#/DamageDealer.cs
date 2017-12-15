@@ -79,6 +79,7 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
                     _playerMovement.GetTargetDirection() * 25,
                     ForceMode2D.Impulse);
 
+                _hitSound.volume = Settings.Volume;
                 _hitSound.Play();
             }
             
