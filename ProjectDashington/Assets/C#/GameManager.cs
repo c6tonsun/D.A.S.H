@@ -32,6 +32,11 @@ public class GameManager : MonoBehaviour {
 
     private AudioSource _menuMusic;
 
+    private void Awake()
+    {
+        Settings.LoadVolume();
+    }
+
     private void Start()
     {
         if (FindObjectsOfType<GameManager>().Length == 1)
@@ -47,7 +52,8 @@ public class GameManager : MonoBehaviour {
         _menuMusic = GetComponent<AudioSource>();
         
         GetSaveFileFromMemory();
-
+        
+        _menuMusic.volume = Settings.Volume;
         _menuMusic.Play();
     }
 
@@ -79,6 +85,7 @@ public class GameManager : MonoBehaviour {
         _UIManager.InitializeMenu();
 
         SceneManager.LoadScene("Main menu", LoadSceneMode.Single);
+        _menuMusic.volume = Settings.Volume;
         _menuMusic.Play();
     }
 
