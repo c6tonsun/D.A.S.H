@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 8f8fb6afd79a25840b0b1c7f3b654eab
-timeCreated: 1513250358
+timeCreated: 1513351542
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -105,7 +105,7 @@ TextureImporter:
         width: 60
         height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -132,19 +132,6 @@ TextureImporter:
         height: 124
       alignment: 9
       pivot: {x: 0.54070634, y: 0.5046325}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: explosion_4
-      rect:
-        serializedVersion: 2
-        x: 468
-        y: 67
-        width: 4
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
