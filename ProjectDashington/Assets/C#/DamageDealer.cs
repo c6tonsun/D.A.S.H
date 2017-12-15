@@ -6,6 +6,7 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
     private int _damage;
 
     private WorldManager _worldManager;
+    private Health _myHealth;
 
     private PlayerMovement _playerMovement;
     private bool _canDoDamage;
@@ -14,6 +15,7 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
     private void Start()
     {
         _worldManager = FindObjectOfType<WorldManager>();
+        _myHealth = GetComponent<Health>();
         _playerMovement = GetComponent<PlayerMovement>();
 
         if (_playerMovement == null)
@@ -48,8 +50,13 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
         {
             return;
         }
-        // If other collider is trigger do nothing.
-        if (other.isTrigger && other.gameObject.tag != "Lava")
+        // Triggers do not hit eachother
+        if (other.isTrigger)
+        {
+            return;
+        }
+        // Dead can not do damage
+        if (_myHealth != null && _myHealth.GetIsDead())
         {
             return;
         }
@@ -70,22 +77,12 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
                     _playerMovement.GetTargetDirection() * 25,
                     ForceMode2D.Impulse);
             }
-
-            if (tag == GameManager.ENEMY_TAG &&
-                health.tag == GameManager.PLAYER_TAG)
+            
+            MeleeAnimation meleeAnimation = GetComponent<MeleeAnimation>();
+            if (meleeAnimation != null &&
+                meleeAnimation.GetIsHitting() == false)
             {
-                MeleeAnimation meleeAnimation = GetComponent<MeleeAnimation>();
-                if (meleeAnimation != null &&
-                    meleeAnimation.GetIsHitting() &&
-                    GetComponent<Rigidbody2D>().velocity.magnitude == 0)
-                {
-                    // melee wins
-                    Debug.Log("Die player");
-                }
-                else if (health.GetComponent<Rigidbody2D>().velocity.magnitude > 0)
-                {
-                    return;
-                }
+                return;
             }
 
             health.SetKiller(gameObject);
