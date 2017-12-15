@@ -11,6 +11,7 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
     private PlayerMovement _playerMovement;
     private bool _canDoDamage;
     private bool _isPlayer;
+    private AudioSource _hitSound;
 
     private void Start()
     {
@@ -26,6 +27,7 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
         else
         {
             _isPlayer = true;
+            _hitSound = GetComponent<AudioSource>();
         }
     }
     
@@ -76,6 +78,8 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
                 other.GetComponent<Rigidbody2D>().AddForce(
                     _playerMovement.GetTargetDirection() * 25,
                     ForceMode2D.Impulse);
+
+                _hitSound.Play();
             }
             
             MeleeAnimation meleeAnimation = GetComponent<MeleeAnimation>();

@@ -10,13 +10,7 @@ public class PlayerAnimation : MonoBehaviour
 
 	private bool _left;
 
-	void OnEnable()
-	{
-		_left = false;
-	}
-
-    // Use this for initialization
-    void Start()
+    void Awake()
     {
         _playerMovement = GetComponent<PlayerMovement>();
         _rb = GetComponent<Rigidbody2D>();
@@ -25,11 +19,21 @@ public class PlayerAnimation : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
+    void OnEnable()
+	{
+		_left = false;
+        _anim.runtimeAnimatorController = 
+            Resources.Load("Player") as RuntimeAnimatorController;
+		_anim.Play("spawn", -1, 0f);
+		_anim.SetBool("die", false);
+        
+    }
+
     void Update()
     {
         //Sets current animation (idle, swing, dash, death).
         _anim.SetBool("isDashing", _playerMovement.GetIsDashing());
+        _anim.SetBool("isPushed", _playerMovement.GetIsPushed());
         _anim.SetBool("swing", _playerMovement.GetIsSwinging());
 
         // Flips
