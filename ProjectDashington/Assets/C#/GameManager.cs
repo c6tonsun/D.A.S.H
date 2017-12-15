@@ -50,7 +50,8 @@ public class GameManager : MonoBehaviour {
 
         _UIManager = FindObjectOfType<UIManager>();
         _menuMusic = GetComponent<AudioSource>();
-        
+
+        SaveLoad.Delete();
         GetSaveFileFromMemory();
         
         _menuMusic.volume = Settings.Volume;
