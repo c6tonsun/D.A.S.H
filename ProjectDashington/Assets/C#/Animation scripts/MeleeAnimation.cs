@@ -17,6 +17,15 @@ public class MeleeAnimation : MonoBehaviour {
 	private void Awake() 
 	{
 		_anim = GetComponent<Animator>();
+
+        if (isImp)
+        {
+            _attackTime = 1.6f;
+        }
+        else
+        {
+            
+        }
 	}
 
     private void OnEnable()

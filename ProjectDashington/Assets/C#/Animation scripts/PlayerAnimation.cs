@@ -8,6 +8,8 @@ public class PlayerAnimation : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private Animator _anim;
 
+    public GameObject spawnAnimation;
+
 	private bool _left;
 
     void Awake()
@@ -24,9 +26,11 @@ public class PlayerAnimation : MonoBehaviour
 		_left = false;
         _anim.runtimeAnimatorController = 
             Resources.Load("Player") as RuntimeAnimatorController;
-		_anim.Play("explosion", -1, 0f);
+		_anim.Play("Main_char_idle", -1, 0f);
 		_anim.SetBool("die", false);
-        
+
+        GameObject POW = Instantiate(spawnAnimation, transform.position, Quaternion.identity);
+        Destroy(POW, 0.25f);
     }
 
     void Update()
