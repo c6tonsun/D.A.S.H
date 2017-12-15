@@ -112,20 +112,9 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
     {
         DealDamage(other);
     }
-    /*
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        DealDamage(other);
-    }
-    */
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         DealDamage(other.collider);
     }
-    /*
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        DealDamage(other.collider);
-    }
-    */
 }
