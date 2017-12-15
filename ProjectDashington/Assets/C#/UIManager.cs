@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour {
     public Animator starAnimator;
 
     private CameraShake _activeCamera;
+    private AudioSource _buttonPress;
 
     public Text text;
     int min = 100;
@@ -58,6 +59,7 @@ public class UIManager : MonoBehaviour {
 
         _gameManager = FindObjectOfType<GameManager>();
         _menuHeaders = transform.GetComponentsInChildren<MenuHeader>(true);
+        _buttonPress = GetComponent<AudioSource>();
 
         _worldButtons = worldButtonParent.GetComponentsInChildren<Button>();
         _levelButtons = levelButtonParent.GetComponentsInChildren<Button>();
@@ -261,6 +263,11 @@ public class UIManager : MonoBehaviour {
         }
 
         UpdateMenu();
+    }
+
+    public void PlayButtonPress()
+    {
+        _buttonPress.Play();
     }
 
     // game and level

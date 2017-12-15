@@ -6,7 +6,9 @@ public class WorldManager : MonoBehaviour {
     private Level[] _levels;
     private Level _currentLevel;
     private int _maxLevelNumber;
+
     private GameManager _gameManager;
+    private AudioSource _levelStart;
 
     public GameObject POW;
 
@@ -14,6 +16,7 @@ public class WorldManager : MonoBehaviour {
     {
         _gameManager = FindObjectOfType<GameManager>();
         _gameManager.SetWorldManager(this);
+        _levelStart = GetComponent<AudioSource>();
 
         InitializeLevels();
         FindNextLevel();
@@ -58,6 +61,7 @@ public class WorldManager : MonoBehaviour {
         _gameManager.SetMenuMode(GameManager.GAME_UI);
 
         Time.timeScale = 1f;
+        _levelStart.Play();
     }
 
     private void DeactivateAllLevels()

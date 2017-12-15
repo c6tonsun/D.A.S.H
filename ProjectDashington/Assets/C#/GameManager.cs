@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour {
     public const string ENEMY_TAG = "Enemy";
     public const string SHIELD_TAG = "Shield";
 
+    private AudioSource _menuMusic;
+
     private void Start()
     {
         if (FindObjectsOfType<GameManager>().Length == 1)
@@ -42,8 +44,11 @@ public class GameManager : MonoBehaviour {
         }
 
         _UIManager = FindObjectOfType<UIManager>();
+        _menuMusic = GetComponent<AudioSource>();
         
         GetSaveFileFromMemory();
+
+        _menuMusic.Play();
     }
 
     private void GetSaveFileFromMemory()
@@ -65,6 +70,7 @@ public class GameManager : MonoBehaviour {
     public void StartWorldAndLevel()
     {
         SceneManager.LoadScene("World " + world);
+        _menuMusic.Stop();
     }
 
     public void LoadMenu(string menuMode)
@@ -73,6 +79,7 @@ public class GameManager : MonoBehaviour {
         _UIManager.InitializeMenu();
 
         SceneManager.LoadScene("Main menu", LoadSceneMode.Single);
+        _menuMusic.Play();
     }
 
     public void StartLevel()
