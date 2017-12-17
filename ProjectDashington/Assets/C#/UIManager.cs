@@ -39,7 +39,10 @@ public class UIManager : MonoBehaviour {
     public Animator starAnimator;
 
     private CameraShake _activeCamera;
-    private AudioSource _buttonPress;
+
+    private AudioSource _audioSource;
+    public AudioClip buttonSound;
+    public AudioClip starSound;
 
     public Text text;
     int min = 100;
@@ -59,7 +62,7 @@ public class UIManager : MonoBehaviour {
 
         _gameManager = FindObjectOfType<GameManager>();
         _menuHeaders = transform.GetComponentsInChildren<MenuHeader>(true);
-        _buttonPress = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
 
         _worldButtons = worldButtonParent.GetComponentsInChildren<Button>();
         _levelButtons = levelButtonParent.GetComponentsInChildren<Button>();
@@ -278,13 +281,28 @@ public class UIManager : MonoBehaviour {
 
     public void PlayButtonPressed()
     {
-        _buttonPress.volume = Settings.Volume;
-        _buttonPress.Play();
+        if (_audioSource.clip != buttonSound)
+        {
+            _audioSource.clip = buttonSound;
+        }
+        _audioSource.volume = Settings.Volume;
+        _audioSource.Play();
     }
 
+    public void PlayStarSound()
+    {
+        if (_audioSource.clip != starSound)
+        {
+            _audioSource.clip = starSound;
+        }
+        _audioSource.volume = Settings.Volume;
+        _audioSource.Play();
+    }
+    
     public void SetVolume(float volume)
     {
         Settings.SetVolume(volume);
+        _gameManager.PlayMusic(_gameManager.GetCurrentMusic());
 
         if (volume == 0)
         {
@@ -377,6 +395,7 @@ public class UIManager : MonoBehaviour {
         if (_dashCount <= _starCount)
         {
             winStar.SetActive(true);
+            PlayStarSound();
             _gameManager.StarWorldLevel(_gameManager.world, _gameManager.level);
 
             // reset animation

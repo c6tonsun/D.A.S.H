@@ -30,7 +30,8 @@ public class GameManager : MonoBehaviour {
     public const string ENEMY_TAG = "Enemy";
     public const string SHIELD_TAG = "Shield";
 
-    private AudioSource _menuMusic;
+    private AudioSource _music;
+    public AudioClip menuMusic;
 
     private void Awake()
     {
@@ -49,13 +50,12 @@ public class GameManager : MonoBehaviour {
         }
 
         _UIManager = FindObjectOfType<UIManager>();
-        _menuMusic = GetComponent<AudioSource>();
+        _music = GetComponent<AudioSource>();
 
         SaveLoad.Delete();
         GetSaveFileFromMemory();
-        
-        _menuMusic.volume = Settings.Volume;
-        _menuMusic.Play();
+
+        PlayMusic(menuMusic);
     }
 
     private void GetSaveFileFromMemory()
@@ -77,7 +77,6 @@ public class GameManager : MonoBehaviour {
     public void StartWorldAndLevel()
     {
         SceneManager.LoadScene("World " + world);
-        _menuMusic.Stop();
     }
 
     public void LoadMenu(string menuMode)
@@ -86,8 +85,8 @@ public class GameManager : MonoBehaviour {
         _UIManager.InitializeMenu();
 
         SceneManager.LoadScene("Main menu", LoadSceneMode.Single);
-        _menuMusic.volume = Settings.Volume;
-        _menuMusic.Play();
+
+        PlayMusic(menuMusic);
     }
 
     public void StartLevel()
@@ -119,6 +118,14 @@ public class GameManager : MonoBehaviour {
     public void FindCamera()
     {
         _UIManager.FindCamera();
+    }
+
+    public void PlayMusic(AudioClip music)
+    {
+        _music.Stop();
+        _music.clip = music;
+        _music.volume = Settings.Volume;
+        _music.Play();
     }
 
     // saving
@@ -208,6 +215,11 @@ public class GameManager : MonoBehaviour {
             return w3LevelCount;
 
         return 0;
+    }
+
+    public AudioClip GetCurrentMusic()
+    {
+        return _music.clip;
     }
 
     // System events

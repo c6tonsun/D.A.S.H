@@ -23,6 +23,7 @@ public class ShieldPush : MonoBehaviour {
     private GameObject _player;
 
     private Rigidbody2D _parentRb;
+    private AudioSource _audioSource;
 
     private void Start()
     {
@@ -36,6 +37,7 @@ public class ShieldPush : MonoBehaviour {
         }
 
         _parentRb = transform.parent.GetComponent<Rigidbody2D>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -55,6 +57,8 @@ public class ShieldPush : MonoBehaviour {
 
             PlayerMovement playerMovement = _player.GetComponent<PlayerMovement>();
             playerMovement.Pushed(directionVector3, _pushDistance, _pushForce);
+
+            _audioSource.Play();
         }
     }
 

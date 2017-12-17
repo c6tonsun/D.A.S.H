@@ -11,6 +11,7 @@ public class WorldManager : MonoBehaviour {
     private AudioSource _levelStart;
 
     public GameObject POW;
+    public AudioClip worldMusic;
 
     private void Start()
     {
@@ -24,6 +25,7 @@ public class WorldManager : MonoBehaviour {
 
         _gameManager.InitializeGameUI();
         _gameManager.FindCamera();
+        _gameManager.PlayMusic(worldMusic);
     }
 
     // Level methods

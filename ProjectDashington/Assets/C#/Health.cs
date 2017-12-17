@@ -12,11 +12,15 @@ public class Health : MonoBehaviour, IHealth {
     private GameObject _killer;
     private UIManager _UIManager;
     private Rigidbody2D _rb;
-    
+    private SoundPlayer _soundPlayer;
+    private Collider2D[] colliders;
+
     private void Awake()
     {
         _UIManager = FindObjectOfType<UIManager>();
         _rb = GetComponent<Rigidbody2D>();
+        _soundPlayer = GetComponent<SoundPlayer>();
+        colliders = GetComponents<Collider2D>();
     }
 
     private void OnEnable()
@@ -26,6 +30,19 @@ public class Health : MonoBehaviour, IHealth {
         {
             _rb.velocity = Vector2.zero;
         }
+
+        foreach (Collider2D collider in colliders)
+        {
+            collider.enabled = true;
+        }
+    }
+
+    private void OnDisable()
+    {
+        foreach (Collider2D collider in colliders)
+        {
+            collider.enabled = false;
+        }
     }
 
     private void FixedUpdate()
@@ -34,8 +51,7 @@ public class Health : MonoBehaviour, IHealth {
         {
             _UIManager.DecreaseEnemyCount();
             _UIManager.ShakeCamera();
-            //gameObject.SetActive(false);
-            
+
             // disable this health component
             enabled = false;
         }
@@ -50,8 +66,8 @@ public class Health : MonoBehaviour, IHealth {
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             GetComponent<Animator>().SetBool("die", true);
             Handheld.Vibrate();
-            //gameObject.SetActive(false);
-            
+            _soundPlayer.PlayDeathSound();
+
             // disable this health component
             enabled = false;
         }

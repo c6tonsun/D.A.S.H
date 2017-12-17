@@ -9,9 +9,9 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
     private Health _myHealth;
 
     private PlayerMovement _playerMovement;
+    private SoundPlayer _soundPlayer;
     private bool _canDoDamage;
     private bool _isPlayer;
-    private AudioSource _hitSound;
 
     private void Start()
     {
@@ -27,7 +27,7 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
         else
         {
             _isPlayer = true;
-            _hitSound = GetComponent<AudioSource>();
+            _soundPlayer = GetComponent<SoundPlayer>();
         }
     }
     
@@ -71,16 +71,29 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
         {
             if (_isPlayer)
             {
+                EnemyMovement enemyMovement = other.GetComponent<EnemyMovement>();
+                if (enemyMovement != null)
+                {
+                    //enemyMovement.Stop();
+                    enemyMovement.enabled = false;
+                }
+
+                JumpMovement jumpMovement = other.GetComponent<JumpMovement>();
+                if (jumpMovement != null)
+                {
+                    //jumpMovement.StopAndIdle();
+                    jumpMovement.enabled = false;
+                }
+
                 GameObject POW = Instantiate(
                     _worldManager.GetPOW(), other.transform.position, Quaternion.identity);
                 Destroy(POW, 0.25f);
 
                 other.GetComponent<Rigidbody2D>().AddForce(
-                    _playerMovement.GetTargetDirection() * 25,
+                    _playerMovement.GetTargetDirection() * 50,
                     ForceMode2D.Impulse);
 
-                _hitSound.volume = Settings.Volume;
-                _hitSound.Play();
+                _soundPlayer.PlayHitSound();
             }
             
             MeleeAnimation meleeAnimation = GetComponent<MeleeAnimation>();
