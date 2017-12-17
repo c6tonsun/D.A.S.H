@@ -13,14 +13,14 @@ public class Health : MonoBehaviour, IHealth {
     private UIManager _UIManager;
     private Rigidbody2D _rb;
     private SoundPlayer _soundPlayer;
-    private Collider2D[] colliders;
+    private Collider2D[] _colliders;
 
     private void Awake()
     {
         _UIManager = FindObjectOfType<UIManager>();
         _rb = GetComponent<Rigidbody2D>();
         _soundPlayer = GetComponent<SoundPlayer>();
-        colliders = GetComponents<Collider2D>();
+        _colliders = GetComponents<Collider2D>();
     }
 
     private void OnEnable()
@@ -31,17 +31,37 @@ public class Health : MonoBehaviour, IHealth {
             _rb.velocity = Vector2.zero;
         }
 
-        foreach (Collider2D collider in colliders)
+        foreach (Collider2D collider in _colliders)
         {
             collider.enabled = true;
+        }
+
+        if (transform.childCount > 0 &&
+            transform.GetChild(0).tag == GameManager.SHIELD_TAG)
+        {
+            Collider2D[] colliders = transform.GetChild(0).GetComponents<Collider2D>();
+            foreach (Collider2D collider in colliders)
+            {
+                collider.enabled = true;
+            }
         }
     }
 
     private void OnDisable()
     {
-        foreach (Collider2D collider in colliders)
+        foreach (Collider2D collider in _colliders)
         {
             collider.enabled = false;
+        }
+
+        if (transform.childCount > 0 &&
+            transform.GetChild(0).tag == GameManager.SHIELD_TAG)
+        {
+            Collider2D[] colliders = transform.GetChild(0).GetComponents<Collider2D>();
+            foreach (Collider2D collider in colliders)
+            {
+                collider.enabled = false;
+            }
         }
     }
 
@@ -51,6 +71,24 @@ public class Health : MonoBehaviour, IHealth {
         {
             _UIManager.DecreaseEnemyCount();
             _UIManager.ShakeCamera();
+
+            RangeSingle rangeSingle = GetComponent<RangeSingle>();
+            if (rangeSingle != null)
+            {
+                rangeSingle.enabled = false;
+            }
+
+            RangeAOE rangeAOE = GetComponent<RangeAOE>();
+            if (rangeAOE != null)
+            {
+                rangeAOE.enabled = false;
+            }
+
+            if (transform.childCount > 0 &&
+                transform.GetChild(1).tag == GameManager.SHIELD_TAG)
+            {
+                transform.GetChild(1).GetComponent<Health>().enabled = false;
+            }
 
             // disable this health component
             enabled = false;
@@ -70,6 +108,11 @@ public class Health : MonoBehaviour, IHealth {
 
             // disable this health component
             enabled = false;
+        }
+
+        if (GetIsDead() && _killer.tag == "Void")
+        {
+            gameObject.SetActive(false);
         }
     }
 

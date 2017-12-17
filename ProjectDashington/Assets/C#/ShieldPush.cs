@@ -35,16 +35,10 @@ public class ShieldPush : MonoBehaviour {
         {
             _pivotPos = gameObject.transform.parent.position;
         }
-
-        _parentRb = transform.parent.GetComponent<Rigidbody2D>();
+        
         _audioSource = GetComponent<AudioSource>();
     }
-
-    private void FixedUpdate()
-    {
-        _parentRb.velocity = Vector3.zero;
-    }
-
+    
     private void DoPush(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
@@ -58,6 +52,7 @@ public class ShieldPush : MonoBehaviour {
             PlayerMovement playerMovement = _player.GetComponent<PlayerMovement>();
             playerMovement.Pushed(directionVector3, _pushDistance, _pushForce);
 
+            _audioSource.volume = Settings.Volume;
             _audioSource.Play();
         }
     }

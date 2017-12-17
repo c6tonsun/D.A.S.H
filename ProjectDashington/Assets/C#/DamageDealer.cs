@@ -89,11 +89,14 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
                     _worldManager.GetPOW(), other.transform.position, Quaternion.identity);
                 Destroy(POW, 0.25f);
 
-                other.GetComponent<Rigidbody2D>().AddForce(
-                    _playerMovement.GetTargetDirection() * 50,
-                    ForceMode2D.Impulse);
+                if (other.tag != GameManager.SHIELD_TAG)
+                {
+                    other.GetComponent<Rigidbody2D>().AddForce(
+                        _playerMovement.GetTargetDirection() * 50,
+                        ForceMode2D.Impulse);
 
-                _soundPlayer.PlayHitSound();
+                    _soundPlayer.PlayHitSound();
+                }
             }
             
             MeleeAnimation meleeAnimation = GetComponent<MeleeAnimation>();
@@ -105,9 +108,11 @@ public class DamageDealer : MonoBehaviour, IDamageDealer
 
             health.SetKiller(gameObject);
             health.DecreaseHealth(GetDamage());
+
             if (health.GetIsDead() && tag == "Void")
             {
                 health.gameObject.SetActive(false);
+                Debug.Log(health.gameObject.name);
             }
         }
     }

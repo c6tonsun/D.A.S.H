@@ -285,7 +285,7 @@ public class UIManager : MonoBehaviour {
         {
             _audioSource.clip = buttonSound;
         }
-        _audioSource.volume = Settings.Volume;
+        _audioSource.volume = Settings.Volume / 2;
         _audioSource.Play();
     }
 
@@ -295,7 +295,7 @@ public class UIManager : MonoBehaviour {
         {
             _audioSource.clip = starSound;
         }
-        _audioSource.volume = Settings.Volume;
+        _audioSource.volume = Settings.Volume / 2;
         _audioSource.Play();
     }
     

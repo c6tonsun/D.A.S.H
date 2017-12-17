@@ -63,7 +63,7 @@ public class WorldManager : MonoBehaviour {
         _gameManager.SetMenuMode(GameManager.GAME_UI);
 
         Time.timeScale = 1f;
-        _levelStart.volume = Settings.Volume;
+        _levelStart.volume = Settings.Volume / 2;
         _levelStart.Play();
     }
 

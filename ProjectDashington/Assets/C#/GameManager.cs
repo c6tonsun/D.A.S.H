@@ -99,6 +99,10 @@ public class GameManager : MonoBehaviour {
     {
         if (level == GetCurrentLevelCount())
         {
+            if (world < 3)
+            {
+                world++;
+            }
             menuMode = LEVEL_MENU;
             _UIManager.UpdateMenu();
         }
@@ -124,7 +128,7 @@ public class GameManager : MonoBehaviour {
     {
         _music.Stop();
         _music.clip = music;
-        _music.volume = Settings.Volume;
+        _music.volume = Settings.Volume / 2;
         _music.Play();
     }
 

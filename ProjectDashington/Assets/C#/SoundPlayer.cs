@@ -18,7 +18,7 @@ public class SoundPlayer : MonoBehaviour {
             _audioSource.clip = hit;
         }
 
-        _audioSource.volume = Settings.Volume;
+        _audioSource.volume = Settings.Volume / 2;
         _audioSource.Play();
     }
 
@@ -29,7 +29,7 @@ public class SoundPlayer : MonoBehaviour {
             _audioSource.clip = death;
         }
 
-        _audioSource.volume = Settings.Volume;
+        _audioSource.volume = Settings.Volume / 2;
         _audioSource.Play();
     }
 }

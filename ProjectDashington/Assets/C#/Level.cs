@@ -98,6 +98,18 @@ public class Level : MonoBehaviour {
         {
             health.enabled = true;
         }
+
+        RangeSingle rangeSingle = child.GetComponent<RangeSingle>();
+        if (rangeSingle != null)
+        {
+            rangeSingle.enabled = true;
+        }
+
+        RangeAOE rangeAOE = child.GetComponent<RangeAOE>();
+        if (rangeAOE != null)
+        {
+            rangeAOE.enabled = true;
+        }
     }
 
     private void ResetDiables()
