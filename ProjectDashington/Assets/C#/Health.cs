@@ -85,9 +85,9 @@ public class Health : MonoBehaviour, IHealth {
             }
 
             if (transform.childCount > 0 &&
-                transform.GetChild(1).tag == GameManager.SHIELD_TAG)
+                transform.GetChild(0).tag == GameManager.SHIELD_TAG)
             {
-                transform.GetChild(1).GetComponent<Health>().enabled = false;
+                transform.GetChild(0).GetComponent<Health>().enabled = false;
             }
 
             // disable this health component

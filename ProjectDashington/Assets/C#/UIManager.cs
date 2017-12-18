@@ -99,7 +99,7 @@ public class UIManager : MonoBehaviour {
             max = fps;
         }
 
-        text.text = "min : " + min.ToString() + "\n" + "max : " + max.ToString();
+        //text.text = "min : " + min.ToString() + "\n" + "max : " + max.ToString();
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -336,6 +336,7 @@ public class UIManager : MonoBehaviour {
     private void ResetGameUIValues()
     {
         _enemyCount = GameObject.FindGameObjectsWithTag(GameManager.ENEMY_TAG).Length;
+        text.text = _enemyCount.ToString();
         _dashCount = 0;
         _starCount = _gameManager.GetStarValue();
 
@@ -378,8 +379,8 @@ public class UIManager : MonoBehaviour {
 
         winStar.SetActive(false);
         winNoStar.SetActive(false);
-        
-        if (_gameManager.level == _gameManager.GetCurrentLevelCount())
+
+        if (_gameManager.level == 5)
         {
             if (_gameManager.world < 3)
             {
@@ -387,7 +388,8 @@ public class UIManager : MonoBehaviour {
                 _gameManager.OpenWorldLevel(_gameManager.world + 1, 1);
             }
         }
-        else
+
+        if (_gameManager.level < _gameManager.GetCurrentLevelCount())
         {
             _gameManager.OpenWorldLevel(_gameManager.world, _gameManager.level + 1);
         }

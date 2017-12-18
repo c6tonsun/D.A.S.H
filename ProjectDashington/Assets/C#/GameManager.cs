@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour {
         _UIManager = FindObjectOfType<UIManager>();
         _music = GetComponent<AudioSource>();
 
-        SaveLoad.Delete();
+        //SaveLoad.Delete();
         GetSaveFileFromMemory();
 
         PlayMusic(menuMusic);
